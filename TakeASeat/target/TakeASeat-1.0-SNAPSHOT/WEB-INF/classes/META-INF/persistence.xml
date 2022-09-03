@@ -13,7 +13,7 @@
             <property name="hibernate.connection.requireSSL" value="false"/>
             <property name="hibernate.connection.useSSL" value="false"/>
 
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>

@@ -2,10 +2,10 @@ package com.takeaseat.controller;
 
 import com.takeaseat.controller.form.RegisterForm;
 import com.takeaseat.controller.validator.RegisterFormValidator;
+import com.takeaseat.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,9 +24,10 @@ import static com.takeaseat.constants.ViewsConstants.REGISTER_PAGE;
 @AllArgsConstructor
 public class UserController {
 
-    private final Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
     RegisterFormValidator registerFormValidator;
+    UserService userService;
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -44,6 +45,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return REGISTER_PAGE;
         }
+        userService.registerUser(form);
         return REDIRECT + HOME_ENDPOINT;
     }
 }

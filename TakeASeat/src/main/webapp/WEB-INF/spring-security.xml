@@ -8,4 +8,5 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <beans:bean name="bCrypt" class="org.springframework.security.crypto.bcrypt.BCrypt"/>
 </beans:beans>

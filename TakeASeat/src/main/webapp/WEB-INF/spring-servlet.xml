@@ -51,9 +51,38 @@
 
     <!-- FORMS -->
     <alias name="defaultRegisterFormValidator" alias="registerFormValidator"/>
-    <bean id="defaultRegisterFormValidator" class="com.takeaseat.controller.validator.RegisterFormValidator"/>
+    <bean id="defaultRegisterFormValidator" class="com.takeaseat.controller.validator.RegisterFormValidator">
+        <constructor-arg name="userService" ref="userService"/>
+        <constructor-arg name="emailValidator" ref="emailValidator"/>
+        <constructor-arg name="passwordValidator" ref="passwordValidator"/>
+    </bean>
 
     <alias name="defaultRegisterForm" alias="registerForm"/>
     <bean id="defaultRegisterForm" class="com.takeaseat.controller.form.RegisterForm"/>
+
+    <!-- VALIDATORS -->
+    <bean name="emailValidator" class="com.takeaseat.validator.EmailValidator"/>
+
+    <bean name="passwordValidator" class="com.takeaseat.validator.PasswordValidator"/>
+
+    <!-- CONVERTER -->
+
+    <bean name="mapper" class="org.modelmapper.ModelMapper"/>
+
+    <bean name="converter" class="com.takeaseat.converter.Converter">
+        <constructor-arg name="mapper" ref="mapper"/>
+    </bean>
+
+    <!-- DAO -->
+    <alias name="defaultUserDao" alias="userDao"/>
+    <bean name="defaultUserDao" class="com.takeaseat.dao.impl.UserDaoImpl"/>
+
+    <!-- SERVICE -->
+    <alias name="defaultUserService" alias="userService"/>
+    <bean name="defaultUserService" class="com.takeaseat.service.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"/>
+        <constructor-arg name="registerFormUserConverter" ref="converter"/>
+    </bean>
+
 
 </beans>
