@@ -7,6 +7,27 @@
     http://www.springframework.org/schema/security/spring-security.xsd
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <http auto-config="true" use-expressions="true">
 
-    <beans:bean name="bCrypt" class="org.springframework.security.crypto.bcrypt.BCrypt"/>
+        <form-login
+                login-page="/login"
+                default-target-url="/"
+                authentication-failure-url="/login?error=Incorrect Username or Password"
+                username-parameter="mail"
+                password-parameter="password"/>
+        <logout
+                logout-url="/logout"
+                logout-success-url="/login"
+                delete-cookies="JSESSIONID"
+                invalidate-session="true"/>
+        <csrf disabled="true"/>
+
+    </http>
+    <authentication-manager>
+        <authentication-provider user-service-ref="userService">
+            <password-encoder ref="bCrypt"/>
+        </authentication-provider>
+    </authentication-manager>
+
+    <beans:bean name="bCrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans:beans>

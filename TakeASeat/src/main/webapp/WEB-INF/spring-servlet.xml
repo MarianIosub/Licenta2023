@@ -82,6 +82,7 @@
     <bean name="defaultUserService" class="com.takeaseat.service.impl.UserServiceImpl">
         <constructor-arg name="userDao" ref="userDao"/>
         <constructor-arg name="registerFormUserConverter" ref="converter"/>
+        <constructor-arg name="bCryptPasswordEncoder" ref="bCrypt"/>
     </bean>
 
 

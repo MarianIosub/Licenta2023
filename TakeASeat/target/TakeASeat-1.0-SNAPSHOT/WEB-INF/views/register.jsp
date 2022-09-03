@@ -51,7 +51,7 @@
             <div class="field">
                 <form:label class="label" path="password">Password</form:label>
                 <div class="control">
-                    <form:input class="input" type="password" placeholder="Confirm Password" required="true"
+                    <form:input class="input" type="password" placeholder="Password" required="true"
                                 path="password"/>
                     <form:errors path="password" class="is-danger"/>
                 </div>

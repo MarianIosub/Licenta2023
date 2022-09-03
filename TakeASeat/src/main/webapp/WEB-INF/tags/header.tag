@@ -53,7 +53,7 @@
                     <a class="button is-primary" href="<c:url value="/register"/>">
                         <strong>Sign up</strong>
                     </a>
-                    <a class="button is-light">
+                    <a class="button is-light" href="<c:url value="/login"/>">
                         Log in
                     </a>
                 </div>

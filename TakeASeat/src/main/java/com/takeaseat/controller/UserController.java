@@ -1,5 +1,6 @@
 package com.takeaseat.controller;
 
+import com.takeaseat.controller.form.LoginForm;
 import com.takeaseat.controller.form.RegisterForm;
 import com.takeaseat.controller.validator.RegisterFormValidator;
 import com.takeaseat.service.UserService;
@@ -11,13 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import static com.takeaseat.constants.EndpointsConstants.*;
+import static com.takeaseat.constants.StringConstants.LOGIN_FORM;
 import static com.takeaseat.constants.StringConstants.REGISTER_FORM;
+import static com.takeaseat.constants.ViewsConstants.LOGIN_PAGE;
 import static com.takeaseat.constants.ViewsConstants.REGISTER_PAGE;
 
 @Controller
@@ -29,7 +29,7 @@ public class UserController {
     RegisterFormValidator registerFormValidator;
     UserService userService;
 
-    @InitBinder
+    @InitBinder(REGISTER_FORM)
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(registerFormValidator);
     }
@@ -47,5 +47,14 @@ public class UserController {
         }
         userService.registerUser(form);
         return REDIRECT + HOME_ENDPOINT;
+    }
+
+    @RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)
+    public String getLoginPage(@ModelAttribute(LOGIN_FORM) LoginForm loginForm,
+                               @RequestParam(value = "error", required = false) String error,
+                               Model model) {
+        LOG.error(error);
+        model.addAttribute(LOGIN_FORM, loginForm);
+        return LOGIN_PAGE;
     }
 }
