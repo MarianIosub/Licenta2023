@@ -12,6 +12,8 @@ public interface StringConstants {
     String PASSWORD = "password";
     String CONFIRM_PASSWORD = "confirmPassword";
     String ROLE = "role";
-    String USERS="users";
-    String USER_ID_COLUMN_NAME="user_id";
+    String USERS = "users";
+    String USER_ID_COLUMN_NAME = "user_id";
+    String LOGIN_ERROR = "loginError";
+    String LOGIN_ERROR_MESSAGE = "Mail or password is incorrect!";
 }

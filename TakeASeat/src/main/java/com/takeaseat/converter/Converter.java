@@ -5,13 +5,13 @@ import org.modelmapper.ModelMapper;
 
 public class Converter<S, T> {
 
-    ModelMapper mapper;
+    final ModelMapper mapper;
 
-    public Converter(ModelMapper mapper) {
+    public Converter(final ModelMapper mapper) {
         this.mapper = mapper;
     }
 
-    public T convert(S source, Class<T> targetClass) {
+    public T convert(final S source, Class<T> targetClass) {
         return mapper.map(source, targetClass);
     }
 }

@@ -17,12 +17,12 @@ public class UserDaoImpl implements UserDao {
     private EntityManager manager;
 
     @Override
-    public User findByMail(String mail) {
+    public User findByMail(final String mail) {
         return (User) manager.createQuery(format(USER_BY_MAIL, mail)).getSingleResult();
     }
 
     @Override
-    public void save(User user) {
+    public void save(final User user) {
         manager.persist(user);
     }
 }

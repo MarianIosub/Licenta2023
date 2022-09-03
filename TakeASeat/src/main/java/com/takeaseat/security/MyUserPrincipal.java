@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 public class MyUserPrincipal implements UserDetails {
+
     @Getter
     private final User user;
 
