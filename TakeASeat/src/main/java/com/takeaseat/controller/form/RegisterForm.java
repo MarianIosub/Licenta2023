@@ -36,4 +36,32 @@ public class RegisterForm {
     public boolean isTerms() {
         return terms;
     }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public void setTerms(boolean terms) {
+        this.terms = terms;
+    }
 }

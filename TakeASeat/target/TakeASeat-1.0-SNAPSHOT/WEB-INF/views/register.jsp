@@ -24,7 +24,7 @@
             <div class="field">
                 <form:label class="label" path="name">Name</form:label>
                 <div class="control">
-                    <form:input class="input" type="text" placeholder="Name" path="name" required="required"/>
+                    <form:input name="registerForm.name" class="input" type="text" placeholder="Name" path="name" required="required"/>
                     <form:errors path="name" class="is-danger"/>
                 </div>
             </div>

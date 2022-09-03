@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import static com.takeaseat.constants.EndpointsConstants.HOME_ENDPOINT;
-import static com.takeaseat.constants.EndpointsConstants.REGISTER_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.*;
+import static com.takeaseat.constants.StringConstants.REGISTER_FORM;
 import static com.takeaseat.constants.ViewsConstants.REGISTER_PAGE;
 
 @Controller
@@ -34,15 +34,16 @@ public class UserController {
     }
 
     @RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.GET)
-    public String getRegisterPage(@ModelAttribute("registerForm") RegisterForm registerForm) {
+    public String getRegisterPage(@ModelAttribute(REGISTER_FORM) RegisterForm registerForm, Model model) {
+        model.addAttribute(REGISTER_FORM, registerForm);
         return REGISTER_PAGE;
     }
 
     @RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("registerForm") @Validated RegisterForm form, BindingResult bindingResult, Model model) {
+    public String registerUser(@ModelAttribute(REGISTER_FORM) @Validated RegisterForm form, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             return REGISTER_PAGE;
         }
-        return "redirect:" + HOME_ENDPOINT;
+        return REDIRECT + HOME_ENDPOINT;
     }
 }
