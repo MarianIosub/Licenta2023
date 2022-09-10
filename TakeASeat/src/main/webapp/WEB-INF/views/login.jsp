@@ -35,6 +35,15 @@
                 <form:errors path="password" class="is-danger"/>
             </div>
         </div>
+        <div class="field">
+            <div class="control">
+                <form:label class="checkbox" path="rememberMe">
+                    <form:checkbox path="rememberMe"/>
+                    Remember me!
+                </form:label>
+                <form:errors path="rememberMe" class="is-danger"/>
+            </div>
+        </div>
         ${loginError}
         <div class="field is-grouped is-center is-10">
             <div class="control">

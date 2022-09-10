@@ -48,16 +48,30 @@
         </div>
 
         <div class="navbar-end">
-            <div class="navbar-item">
-                <div class="buttons">
-                    <a class="button is-primary" href="<c:url value="/register"/>">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light" href="<c:url value="/login"/>">
-                        Log in
-                    </a>
+            <sec:authorize access="isAnonymous()">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="<c:url value="/register"/>">
+                            <strong>Sign up</strong>
+                        </a>
+                        <a class="button is-light" href="<c:url value="/login"/>">
+                            Log in
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </sec:authorize>
+            <sec:authorize access="!isAnonymous()">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="<c:url value="/"/>">
+                            <strong>My account</strong>
+                        </a>
+                        <a class="button is-light" href="<c:url value="/logout"/>">
+                            Log out
+                        </a>
+                    </div>
+                </div>
+            </sec:authorize>
         </div>
     </div>
 </nav>

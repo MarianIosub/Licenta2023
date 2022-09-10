@@ -3,6 +3,7 @@ package com.takeaseat.controller.form;
 public class LoginForm {
     public String mail;
     public String password;
+    public Boolean rememberMe;
 
     public String getMail() {
         return mail;
@@ -18,5 +19,13 @@ public class LoginForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getRememberMe() {
+        return rememberMe;
+    }
+
+    public void setRememberMe(Boolean rememberMe) {
+        this.rememberMe = rememberMe;
     }
 }

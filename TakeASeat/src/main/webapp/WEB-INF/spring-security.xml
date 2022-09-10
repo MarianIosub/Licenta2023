@@ -8,7 +8,8 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
     <http auto-config="true" use-expressions="true">
-
+        <intercept-url pattern="/login" access="isAnonymous()"/>
+        <intercept-url pattern="/register" access="isAnonymous()"/>
         <form-login
                 login-page="/login"
                 default-target-url="/"
@@ -21,8 +22,9 @@
                 delete-cookies="JSESSIONID"
                 invalidate-session="true"/>
         <remember-me
-                key="remember me"
-                token-validity-seconds="86400"/>
+                key="uniqueAndSecret"
+                token-validity-seconds="86400"
+                remember-me-parameter="rememberMe"/>
         <csrf disabled="true"/>
 
     </http>
