@@ -13,6 +13,11 @@
     <title>Take a sEAT - Register</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../resources/css/register.css">
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+    ></script>
 </head>
 <body>
 <st:header/>
@@ -24,7 +29,7 @@
             <form:label class="label" path="mail">Mail</form:label>
             <div class="control">
                 <form:input class="input" type="email" placeholder="Email" required="true" path="mail"/>
-                <form:errors path="mail" class="is-danger"/>
+                <form:errors path="mail" class="help is-danger"/>
             </div>
         </div>
         <div class="field">
@@ -32,7 +37,7 @@
             <div class="control">
                 <form:input class="input" type="password" placeholder="Password" required="true"
                             path="password"/>
-                <form:errors path="password" class="is-danger"/>
+                <form:errors path="password" class="help is-danger"/>
             </div>
         </div>
         <div class="field">
@@ -44,7 +49,10 @@
                 <form:errors path="rememberMe" class="is-danger"/>
             </div>
         </div>
-        ${loginError}
+        <c:if test="${loginError ne null}">
+            <p class="help is-danger is-large">${loginError}</p>
+        </c:if>
+
         <div class="field is-grouped is-center is-10">
             <div class="control">
                 <button class="button is-link" type="submit">Let me in!</button>

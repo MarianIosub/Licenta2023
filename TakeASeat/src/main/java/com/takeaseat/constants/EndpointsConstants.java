@@ -6,5 +6,6 @@ public interface EndpointsConstants {
 
     String REGISTER_ENDPOINT = "/register";
     String HOME_ENDPOINT = "/";
-    String LOGIN_ENDPOINT="/login";
+    String LOGIN_ENDPOINT = "/login";
+    String ERROR_ENDPOINT = "/error";
 }

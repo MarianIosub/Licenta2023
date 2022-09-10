@@ -19,16 +19,13 @@
             <a class="navbar-item" href="<c:url value="/"/>">
                 Home
             </a>
-
             <a class="navbar-item">
                 Documentation
             </a>
-
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     More
                 </a>
-
                 <div class="navbar-dropdown">
                     <a class="navbar-item">
                         About
@@ -51,10 +48,10 @@
             <sec:authorize access="isAnonymous()">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary" href="<c:url value="/register"/>">
+                        <a class="button is-primary " href="<c:url value="/register"/>" id="nav-bar__register">
                             <strong>Sign up</strong>
                         </a>
-                        <a class="button is-light" href="<c:url value="/login"/>">
+                        <a class="button is-light" href="<c:url value="/login"/>" id="nav-bar__login">
                             Log in
                         </a>
                     </div>
@@ -63,10 +60,10 @@
             <sec:authorize access="!isAnonymous()">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary" href="<c:url value="/"/>">
+                        <a class="button is-primary" href="<c:url value="/"/>" id="nav-bar__my-account">
                             <strong>My account</strong>
                         </a>
-                        <a class="button is-light" href="<c:url value="/logout"/>">
+                        <a class="button is-light" href="<c:url value="/logout"/>" id="nav-bar__logout">
                             Log out
                         </a>
                     </div>
@@ -74,4 +71,5 @@
             </sec:authorize>
         </div>
     </div>
+    <script src="../resources/js/navbar.js"></script>
 </nav>

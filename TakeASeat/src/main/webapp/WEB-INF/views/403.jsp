@@ -24,7 +24,7 @@
             Hello World
         </h1>
         <p class="subtitle">
-            My first website with <strong>Bulma</strong>!
+            This is Forbidden page!
         </p>
     </div>
 </section>
