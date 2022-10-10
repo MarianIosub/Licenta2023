@@ -6,7 +6,6 @@ import com.takeaseat.dao.UserDao;
 import com.takeaseat.model.User;
 import com.takeaseat.security.MyUserPrincipal;
 import com.takeaseat.service.UserService;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -37,7 +36,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = registerFormUserConverter.convert(form, User.class);
         encryptUserPassword(user);
 
-
         userDao.save(user);
     }
 
@@ -48,8 +46,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
-        User user= userDao.findByMail(mail);
+    public MyUserPrincipal loadUserByUsername(String mail) throws UsernameNotFoundException {
+        User user = userDao.findByMail(mail);
         return new MyUserPrincipal(user);
     }
 }

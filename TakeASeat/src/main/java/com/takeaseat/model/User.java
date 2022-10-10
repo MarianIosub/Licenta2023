@@ -4,7 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 
-import static com.takeaseat.constants.StringConstants.*;
+import static com.takeaseat.constants.StringConstants.USERS;
+import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
 
 @Entity
 @Getter

@@ -21,11 +21,19 @@
 <section class="section">
     <div class="container">
         <h1 class="title">
-            Hello World
+            Hello There!
         </h1>
         <p class="subtitle">
-            My first website with <strong>Bulma</strong>!
+            Welcome to <strong>Take a sEAT!</strong>!
         </p>
+        <p>You are a </p>
+            <sec:authorize access="hasRole('ROLE_FOOD_LOVER')">
+                <p>food</p>
+            </sec:authorize>
+            <sec:authorize access="hasRole('ROLE_ADMIN')">
+                <p>admin</p>
+            </sec:authorize>
+
     </div>
 </section>
 <st:footer/>

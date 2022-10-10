@@ -80,8 +80,8 @@
                     <div class="select">
                         <form:select required="required" path="role">
                             <option value="" selected disabled hidden>Click me!</option>
-                            <option>Food lover</option>
-                            <option>Administrator</option>
+                            <option value="ROLE_FOOD_LOVER">Food lover</option>
+                            <option value="ROLE_ADMIN">Administrator</option>
                         </form:select>
                         <form:errors path="role" class="help is-danger"/>
                     </div>
