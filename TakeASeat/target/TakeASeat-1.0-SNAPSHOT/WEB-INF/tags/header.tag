@@ -60,7 +60,7 @@
             <sec:authorize access="!isAnonymous()">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary" href="<c:url value="/"/>" id="nav-bar__my-account">
+                        <a class="button is-primary" href="<c:url value="/update-profile"/>" id="nav-bar__my-account">
                             <strong>My account</strong>
                         </a>
                         <a class="button is-light" href="<c:url value="/logout"/>" id="nav-bar__logout">

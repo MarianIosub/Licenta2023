@@ -29,6 +29,7 @@
     </bean>
 
     <!--    EMF & TRANSACTION   -->
+
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="TakeASeat"/>
     </bean>
@@ -63,6 +64,16 @@
     <alias name="defaultRegisterForm" alias="registerForm"/>
     <bean id="defaultRegisterForm" class="com.takeaseat.controller.form.RegisterForm"/>
 
+    <alias name="defaultUpdateProfileFormValidator" alias="updateProfileFormValidator"/>
+    <bean id="defaultUpdateProfileFormValidator"
+          class="com.takeaseat.controller.validator.UpdateProfileFormValidator">
+        <constructor-arg name="passwordValidator" ref="passwordValidator"/>
+        <constructor-arg name="userService" ref="userService"/>
+    </bean>
+
+    <alias name="defaultUpdateProfileForm" alias="updateProfileForm"/>
+    <bean id="defaultUpdateProfileForm" class="com.takeaseat.controller.form.UpdateProfileForm"/>
+
     <!-- VALIDATORS -->
     <bean name="emailValidator" class="com.takeaseat.validator.EmailValidator"/>
 
@@ -85,6 +96,7 @@
     <bean name="defaultUserService" class="com.takeaseat.service.impl.UserServiceImpl">
         <constructor-arg name="userDao" ref="userDao"/>
         <constructor-arg name="registerFormUserConverter" ref="converter"/>
+        <constructor-arg name="userUpdateProfileFormConverter" ref="converter"/>
         <constructor-arg name="bCryptPasswordEncoder" ref="bCrypt"/>
     </bean>
 

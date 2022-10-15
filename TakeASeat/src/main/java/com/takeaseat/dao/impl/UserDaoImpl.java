@@ -18,11 +18,20 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User findByMail(final String mail) {
-        return (User) manager.createQuery(format(USER_BY_MAIL, mail)).getSingleResult();
+        return (User) getManager().createQuery(format(USER_BY_MAIL, mail)).getSingleResult();
     }
 
     @Override
     public void save(final User user) {
-        manager.persist(user);
+        getManager().persist(user);
+    }
+
+    @Override
+    public void update(User user) {
+        getManager().merge(user);
+    }
+
+    public EntityManager getManager() {
+        return manager;
     }
 }

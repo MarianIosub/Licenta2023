@@ -39,33 +39,45 @@ public class RegisterFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         RegisterForm form = (RegisterForm) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, NAME, NOT_EMPTY_REGISTER_NAME);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, SURNAME, NOT_EMPTY_REGISTER_SURNAME);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, MAIL, NOT_EMPTY_REGISTER_MAIL);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, PASSWORD, NOT_EMPTY_REGISTER_PASSWORD);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, CONFIRM_PASSWORD, NOT_EMPTY_REGISTER_CONFIRM_PASSWORD);
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, ROLE, NOT_EMPTY_REGISTER_ROLE);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, NAME, NOT_EMPTY_NAME);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, SURNAME, NOT_EMPTY_SURNAME);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, MAIL, NOT_EMPTY_MAIL);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, PASSWORD, NOT_EMPTY_PASSWORD);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, CONFIRM_PASSWORD, NOT_EMPTY_CONFIRM_PASSWORD);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, ROLE, NOT_EMPTY_ROLE);
 
         try {
-            userService.findByMail(form.getMail());
+            getUserService().findByMail(form.getMail());
             errors.rejectValue(MAIL, ALREADY_USED_REGISTER_MAIL);
             return;
         } catch (NoResultException e) {
             LOG.info(NO_USER_FOUND);
         }
 
-        if (!emailValidator.isValid(form.getMail())) {
-            errors.rejectValue(MAIL, INCORRECT_FORMAT_REGISTER_MAIL);
+        if (!getEmailValidator().isValid(form.getMail())) {
+            errors.rejectValue(MAIL, INCORRECT_FORMAT_MAIL);
             return;
         }
 
-        if (!passwordValidator.isValid(form.getPassword())) {
-            errors.rejectValue(PASSWORD, INCORRECT_FORMAT_REGISTER_PASSWORD);
+        if (!getPasswordValidator().isValid(form.getPassword())) {
+            errors.rejectValue(PASSWORD, INCORRECT_FORMAT_PASSWORD);
             return;
         }
 
         if (!form.getPassword().equals(form.getConfirmPassword())) {
-            errors.rejectValue(PASSWORD, NO_MATCH_REGISTER_PASSWORD);
+            errors.rejectValue(PASSWORD, NO_MATCH_PASSWORD);
         }
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public EmailValidator getEmailValidator() {
+        return emailValidator;
+    }
+
+    public PasswordValidator getPasswordValidator() {
+        return passwordValidator;
     }
 }

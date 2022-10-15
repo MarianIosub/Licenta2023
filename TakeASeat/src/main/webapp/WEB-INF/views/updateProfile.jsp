@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Take a sEAT - Register</title>
+    <title>Take a sEAT - Update Profile</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../resources/css/register.css">
     <script
@@ -21,15 +21,15 @@
 </head>
 <body>
 <st:header/>
-<spring:url value="/register" var="registerUrl"/>
-<div id="registration-label" class="form-modal">
-    <h3 class="title is-center">Register to <strong>Take a sEAT!</strong></h3>
-    <form:form method="post" action="${registerUrl}" modelAttribute="registerForm">
+<spring:url value="/update-profile" var="updateProfileUrl"/>
+<div id="update_profile-label" class="form-modal">
+    <h3 class="title is-center">Change your <strong>Take a sEAT!</strong> account:</h3>
+    <form:form method="post" action="${updateProfileUrl}" modelAttribute="updateProfileForm">
         <spring:bind path="name">
             <div class="field">
                 <form:label class="label" path="name">Name</form:label>
                 <div class="control">
-                    <form:input name="registerForm.name" class="input" type="text" placeholder="Name" path="name"
+                    <form:input name="name" class="input" type="text" placeholder="name" path="name"
                                 required="required"/>
                     <form:errors path="name" class="help is-danger"/>
                 </div>
@@ -39,7 +39,7 @@
             <div class="field">
                 <form:label class="label" path="surname">Surname</form:label>
                 <div class="control">
-                    <form:input class="input" type="text" placeholder="Surname" required="true" path="surname"/>
+                    <form:input class="input" type="text" placeholder="surname" required="true" path="surname"/>
                     <form:errors path="surname" class="help is-danger"/>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             <div class="field">
                 <form:label class="label" path="mail">Mail</form:label>
                 <div class="control">
-                    <form:input class="input" type="email" placeholder="Email" required="true" path="mail"/>
+                    <form:input class="input" type="email" placeholder="mail" required="true" path="mail"/>
                     <form:errors path="mail" class="help is-danger"/>
                 </div>
             </div>
@@ -57,7 +57,7 @@
             <div class="field">
                 <form:label class="label" path="password">Password</form:label>
                 <div class="control ">
-                    <form:input class="input" type="password" placeholder="Password" required="true"
+                    <form:input class="input" type="password" placeholder="password" required="true"
                                 path="password"/>
                     <form:errors path="password" class="help is-danger"/>
                 </div>
@@ -67,44 +67,19 @@
             <div class="field">
                 <form:label class="label" path="confirmPassword">Confirm Password</form:label>
                 <div class="control">
-                    <form:input class="input" type="password" placeholder="Confirm Password" required="true"
+                    <form:input class="input" type="password" placeholder="password" required="true"
                                 path="confirmPassword"/>
                     <form:errors path="confirmPassword" class="help is-danger"/>
                 </div>
             </div>
         </spring:bind>
-        <spring:bind path="role">
-            <div class="field">
-                <form:label class="label" path="role">You are a:</form:label>
-                <div class="control">
-                    <div class="select">
-                        <form:select required="required" path="role">
-                            <option value="" selected disabled hidden>Click me!</option>
-                            <option value="ROLE_FOOD_LOVER">Food lover</option>
-                            <option value="ROLE_ADMIN">Administrator</option>
-                        </form:select>
-                        <form:errors path="role" class="help is-danger"/>
-                    </div>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="terms">
-            <div class="field">
-                <div class="control">
-                    <form:label class="checkbox" path="terms">
-                        <form:checkbox required="true" path="terms"/>
-                        I agree to the <a href="#">terms and conditions</a>
-                    </form:label>
-                    <form:errors path="role" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
         <div class="field is-grouped is-center is-10">
             <div class="control">
-                <button class="button is-link" type="submit">Let's eat!</button>
+                <button class="button is-link" type="submit">Change profile</button>
             </div>
         </div>
     </form:form>
+
 </div>
 <st:footer/>
 </body>

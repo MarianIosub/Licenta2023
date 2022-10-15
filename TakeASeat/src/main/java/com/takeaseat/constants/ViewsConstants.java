@@ -4,6 +4,7 @@ public interface ViewsConstants {
     String HOME_PAGE = "index";
     String REGISTER_PAGE = "register";
     String LOGIN_PAGE = "login";
+    String UPDATE_PROFILE_PAGE = "updateProfile";
 
     //ERRORS
     String ERROR_404 = "404";

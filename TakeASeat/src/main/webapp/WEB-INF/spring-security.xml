@@ -10,6 +10,8 @@
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/login" access="!isAuthenticated()" method="GET"/>
         <intercept-url pattern="/register" access="!isAuthenticated()" method="GET"/>
+        <!--        <intercept-url pattern="/updateProfile" access="isAuthenticated()" method="GET" />-->
+
         <form-login
                 login-page="/login"
                 default-target-url="/"

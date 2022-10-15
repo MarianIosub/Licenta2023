@@ -22,7 +22,7 @@
 <body>
 <st:header/>
 <spring:url value="/login" var="loginUrl"/>
-<div id="registration-label" class="registration-modal">
+<div id="registration-label" class="form-modal">
     <h3 class="title is-center">Login to <strong>Take a sEAT!</strong></h3>
     <form:form method="post" action="${loginUrl}" modelAttribute="loginForm">
         <div class="field">

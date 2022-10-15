@@ -12,6 +12,10 @@ public class Converter<S, T> {
     }
 
     public T convert(final S source, Class<T> targetClass) {
-        return mapper.map(source, targetClass);
+        return getMapper().map(source, targetClass);
+    }
+
+    public ModelMapper getMapper() {
+        return mapper;
     }
 }

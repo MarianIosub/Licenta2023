@@ -6,4 +6,6 @@ public interface UserDao {
     User findByMail(String mail);
 
     void save(User user);
+
+    void update(User user);
 }

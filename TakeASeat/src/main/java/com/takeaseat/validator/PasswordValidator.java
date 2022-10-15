@@ -11,7 +11,11 @@ public class PasswordValidator {
     private final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
 
     public boolean isValid(final String password) {
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
+        try {
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 }
