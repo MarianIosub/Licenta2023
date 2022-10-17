@@ -10,11 +10,12 @@
     <http auto-config="true" use-expressions="true">
         <intercept-url pattern="/login" access="!isAuthenticated()" method="GET"/>
         <intercept-url pattern="/register" access="!isAuthenticated()" method="GET"/>
-<!--        <intercept-url pattern="/updateProfile" access="isAuthenticated()" method="GET" />-->
+        <!--        <intercept-url pattern="/updateProfile" access="isAuthenticated()" method="GET" />-->
 
         <form-login
                 login-page="/login"
                 default-target-url="/"
+                authentication-success-handler-ref="loginSuccessHandler"
                 authentication-failure-handler-ref="loginFailureHandler"
                 username-parameter="mail"
                 password-parameter="password"/>
@@ -37,6 +38,7 @@
     </authentication-manager>
 
     <beans:bean name="loginFailureHandler" class="com.takeaseat.security.LoginFailureHandler"/>
+    <beans:bean name="loginSuccessHandler" class="com.takeaseat.security.LoginSuccessHandler"/>
 
     <beans:bean name="bCrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans:beans>

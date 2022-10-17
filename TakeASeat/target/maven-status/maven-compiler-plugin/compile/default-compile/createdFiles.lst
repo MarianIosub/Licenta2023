@@ -2,8 +2,10 @@ com/takeaseat/service/UserService.class
 com/takeaseat/validator/PasswordValidator.class
 com/takeaseat/dao/UserDao.class
 com/takeaseat/converter/Converter.class
+com/takeaseat/controller/RestaurantController.class
 com/takeaseat/controller/ErrorController.class
 com/takeaseat/security/MyUserPrincipal.class
+com/takeaseat/security/LoginSuccessHandler.class
 com/takeaseat/controller/form/LoginForm.class
 com/takeaseat/constants/ExceptionMessages.class
 com/takeaseat/constants/ViewsConstants.class

@@ -91,6 +91,9 @@
     <alias name="defaultUserDao" alias="userDao"/>
     <bean name="defaultUserDao" class="com.takeaseat.dao.impl.UserDaoImpl"/>
 
+    <alias name="defaultRestaurantDao" alias="restaurantDao"/>
+    <bean name="defaultRestaurantDao" class="com.takeaseat.dao.impl.RestaurantDaoImpl"/>
+
     <!-- SERVICE -->
     <alias name="defaultUserService" alias="userService"/>
     <bean name="defaultUserService" class="com.takeaseat.service.impl.UserServiceImpl">

@@ -8,4 +8,6 @@ public interface EndpointsConstants {
     String UPDATE_PROFILE_ENDPOINT = "/update-profile";
     String LOGIN_ENDPOINT = "/login";
     String ERROR_ENDPOINT = "/error";
+    String RESTAURANT_ENDPOINT = "/restaurant";
+    String CREATE_RESTAURANT_ENDPOINT = "/create";
 }
