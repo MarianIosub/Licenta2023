@@ -5,7 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 import static com.takeaseat.constants.StringConstants.RESTAURANTS;
-import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
+import static com.takeaseat.constants.StringConstants.RESTAURANT_ID_COLUMN_NAME;
 
 @Entity
 @Getter
@@ -18,7 +18,7 @@ public class Restaurant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = USER_ID_COLUMN_NAME)
+    @Column(name = RESTAURANT_ID_COLUMN_NAME)
     private Long id;
 
     @OneToOne
@@ -26,6 +26,8 @@ public class Restaurant {
 
     @NonNull
     private String name;
+    @NonNull
+    private String description;
     @NonNull
     private String address;
     @NonNull

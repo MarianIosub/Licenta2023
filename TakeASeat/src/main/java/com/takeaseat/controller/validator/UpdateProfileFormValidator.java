@@ -48,11 +48,11 @@ public class UpdateProfileFormValidator implements Validator {
         }
     }
 
-    public PasswordValidator getPasswordValidator() {
+    protected PasswordValidator getPasswordValidator() {
         return passwordValidator;
     }
 
-    public UserService getUserService() {
+    protected UserService getUserService() {
         return userService;
     }
 }

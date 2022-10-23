@@ -58,7 +58,6 @@ public class UserController {
         return REDIRECT + HOME_ENDPOINT;
     }
 
-    //TODO: auth failure handler :)
     @RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)
     public String getLoginPage(@ModelAttribute(LOGIN_FORM) LoginForm loginForm,
                                @SessionAttribute(value = LOGIN_ERROR, required = false) String loginError,
@@ -86,15 +85,15 @@ public class UserController {
         return REDIRECT + HOME_ENDPOINT;
     }
 
-    public RegisterFormValidator getRegisterFormValidator() {
+    protected RegisterFormValidator getRegisterFormValidator() {
         return registerFormValidator;
     }
 
-    public UpdateProfileFormValidator getUpdateProfileFormValidator() {
+    protected UpdateProfileFormValidator getUpdateProfileFormValidator() {
         return updateProfileFormValidator;
     }
 
-    public UserService getUserService() {
+    protected UserService getUserService() {
         return userService;
     }
 }

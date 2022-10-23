@@ -8,19 +8,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import static com.takeaseat.constants.StringConstants.PERSISTENCE_UNIT_NAME;
+import static java.lang.String.format;
 
 public class RestaurantDaoImpl implements RestaurantDao {
+
+    String RESTAURANT_BY_USER = "SELECT a FROM Restaurant a WHERE a.user.id='%s'";
 
     @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManager manager;
 
     @Override
     public void save(Restaurant restaurant) {
-        manager.persist(restaurant);
+        getManager().persist(restaurant);
     }
 
     @Override
-    public void findByUser(User user) {
-        return;
+    public Restaurant findByUser(User user) {
+        return (Restaurant) getManager().createQuery(format(RESTAURANT_BY_USER, user.getId())).getSingleResult();
+    }
+
+    protected EntityManager getManager() {
+        return manager;
     }
 }

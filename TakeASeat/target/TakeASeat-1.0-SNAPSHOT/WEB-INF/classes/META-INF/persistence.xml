@@ -6,6 +6,7 @@
     <persistence-unit name="TakeASeat" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.takeaseat.model.User</class>
+        <class>com.takeaseat.model.Restaurant</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="marian"/>

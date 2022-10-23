@@ -69,15 +69,15 @@ public class RegisterFormValidator implements Validator {
         }
     }
 
-    public UserService getUserService() {
+    protected UserService getUserService() {
         return userService;
     }
 
-    public EmailValidator getEmailValidator() {
+    protected EmailValidator getEmailValidator() {
         return emailValidator;
     }
 
-    public PasswordValidator getPasswordValidator() {
+    protected PasswordValidator getPasswordValidator() {
         return passwordValidator;
     }
 }

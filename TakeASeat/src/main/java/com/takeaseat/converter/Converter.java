@@ -15,7 +15,7 @@ public class Converter<S, T> {
         return getMapper().map(source, targetClass);
     }
 
-    public ModelMapper getMapper() {
+    protected ModelMapper getMapper() {
         return mapper;
     }
 }

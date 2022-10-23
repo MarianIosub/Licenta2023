@@ -2,3 +2,17 @@
     max-width: 700px;
     margin: 100px auto 200px;
 }
+
+.form-modal__create-restaurant {
+    width: 1200px;
+    margin: 100px auto 200px;
+
+}
+
+.restaurant__description {
+    margin-left: 50px;
+}
+
+.create-restaurant__form {
+    width: 700px;
+}

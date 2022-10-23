@@ -74,6 +74,15 @@
     <alias name="defaultUpdateProfileForm" alias="updateProfileForm"/>
     <bean id="defaultUpdateProfileForm" class="com.takeaseat.controller.form.UpdateProfileForm"/>
 
+    <alias name="defaultCreateRestaurantFormValidator" alias="createRestaurantFormValidator"/>
+    <bean name="defaultCreateRestaurantFormValidator"
+          class="com.takeaseat.controller.validator.CreateRestaurantFormValidator">
+
+    </bean>
+
+    <alias name="defaultCreateRestaurantForm" alias="createRestaurantForm"/>
+    <bean name="defaultCreateRestaurantForm" class="com.takeaseat.controller.form.CreateRestaurantForm"/>
+
     <!-- VALIDATORS -->
     <bean name="emailValidator" class="com.takeaseat.validator.EmailValidator"/>
 
@@ -91,6 +100,9 @@
     <alias name="defaultUserDao" alias="userDao"/>
     <bean name="defaultUserDao" class="com.takeaseat.dao.impl.UserDaoImpl"/>
 
+    <alias name="defaultRestaurantDao" alias="restaurantDao"/>
+    <bean name="defaultRestaurantDao" class="com.takeaseat.dao.impl.RestaurantDaoImpl"/>
+
     <!-- SERVICE -->
     <alias name="defaultUserService" alias="userService"/>
     <bean name="defaultUserService" class="com.takeaseat.service.impl.UserServiceImpl">
@@ -100,5 +112,10 @@
         <constructor-arg name="bCryptPasswordEncoder" ref="bCrypt"/>
     </bean>
 
-
+    <alias name="defaultRestaurantService" alias="restaurantService"/>
+    <bean name="defaultRestaurantService" class="com.takeaseat.service.impl.RestaurantServiceImpl">
+        <constructor-arg name="userService" ref="userService"/>
+        <constructor-arg name="createRestaurantFormRestaurantConverter" ref="converter"/>
+        <constructor-arg name="restaurantDao" ref="restaurantDao"/>
+    </bean>
 </beans>

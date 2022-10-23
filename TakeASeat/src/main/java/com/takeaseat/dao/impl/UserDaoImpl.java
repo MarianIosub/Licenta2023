@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
         getManager().merge(user);
     }
 
-    public EntityManager getManager() {
+    protected EntityManager getManager() {
         return manager;
     }
 }

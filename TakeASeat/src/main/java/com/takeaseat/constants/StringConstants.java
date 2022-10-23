@@ -4,6 +4,7 @@ public interface StringConstants {
     String REGISTER_FORM = "registerForm";
     String LOGIN_FORM = "loginForm";
     String UPDATE_PROFILE_FORM = "updateProfileForm";
+    String CREATE_RESTAURANT_FORM = "createRestaurantForm";
 
     String PERSISTENCE_UNIT_NAME = "TakeASeat";
 
@@ -16,6 +17,7 @@ public interface StringConstants {
     String USERS = "users";
     String RESTAURANTS = "restaurants";
     String USER_ID_COLUMN_NAME = "user_id";
+    String RESTAURANT_ID_COLUMN_NAME = "restaurant_id";
     String LOGIN_ERROR = "loginError";
     String LOGIN_ERROR_MESSAGE = "Mail or password is incorrect!";
     String UPDATE_PROFILE_DTO = "updateProfileDto";

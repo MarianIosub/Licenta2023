@@ -83,19 +83,19 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return getbCryptPasswordEncoder().encode(password);
     }
 
-    public UserDao getUserDao() {
+    protected UserDao getUserDao() {
         return userDao;
     }
 
-    public Converter<RegisterForm, User> getRegisterFormUserConverter() {
+    protected Converter<RegisterForm, User> getRegisterFormUserConverter() {
         return registerFormUserConverter;
     }
 
-    public Converter<User, UpdateProfileForm> getUserUpdateProfileFormConverter() {
+    protected Converter<User, UpdateProfileForm> getUserUpdateProfileFormConverter() {
         return userUpdateProfileFormConverter;
     }
 
-    public BCryptPasswordEncoder getbCryptPasswordEncoder() {
+    protected BCryptPasswordEncoder getbCryptPasswordEncoder() {
         return bCryptPasswordEncoder;
     }
 }

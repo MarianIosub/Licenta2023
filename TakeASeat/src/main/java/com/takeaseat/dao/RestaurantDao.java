@@ -6,5 +6,5 @@ import com.takeaseat.model.User;
 public interface RestaurantDao {
     void save(Restaurant restaurant);
 
-    void findByUser(User user);
+    Restaurant findByUser(User user);
 }
