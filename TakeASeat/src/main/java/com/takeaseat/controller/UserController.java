@@ -9,14 +9,17 @@ import com.takeaseat.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.takeaseat.constants.EndpointsConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.REGISTER_SUCCESSFUL;
 import static com.takeaseat.constants.StringConstants.*;
 import static com.takeaseat.constants.ViewsConstants.*;
 
@@ -48,13 +51,12 @@ public class UserController {
 
     @RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.POST)
     public String registerUser(@ModelAttribute(REGISTER_FORM) @Validated RegisterForm form, BindingResult bindingResult,
-                               Model model) {
+                               Model model, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return REGISTER_PAGE;
         }
-
         userService.registerUser(form);
-
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, REGISTER_SUCCESSFUL);
         return REDIRECT + HOME_ENDPOINT;
     }
 

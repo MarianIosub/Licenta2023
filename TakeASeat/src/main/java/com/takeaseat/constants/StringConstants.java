@@ -19,9 +19,14 @@ public interface StringConstants {
     String USER_ID_COLUMN_NAME = "user_id";
     String RESTAURANT_ID_COLUMN_NAME = "restaurant_id";
     String LOGIN_ERROR = "loginError";
-    String LOGIN_ERROR_MESSAGE = "Mail or password is incorrect!";
+    String PHONE_NUMBER = "phoneNumber";
+    String DESCRIPTION = "description";
+    String ADDRESS = "address";
+    String PRICE_REQUIRED = "priceRequired";
     String UPDATE_PROFILE_DTO = "updateProfileDto";
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
+
+    String FLASH_MESSAGE = "flashMessage";
 }

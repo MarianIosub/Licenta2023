@@ -28,7 +28,7 @@
         <div class="field">
             <form:label class="label" path="mail">Mail</form:label>
             <div class="control">
-                <form:input class="input" type="email" placeholder="Email" required="true" path="mail"/>
+                <form:input class="input" type="text" placeholder="Email" required="true" path="mail"/>
                 <form:errors path="mail" class="help is-danger"/>
             </div>
         </div>
@@ -50,7 +50,7 @@
             </div>
         </div>
         <c:if test="${loginError ne null}">
-            <p class="help is-danger is-large">${loginError}</p>
+            <p class="help is-danger is-large"><spring:message code="${loginError}"/></p>
         </c:if>
 
         <div class="field is-grouped is-center is-10">

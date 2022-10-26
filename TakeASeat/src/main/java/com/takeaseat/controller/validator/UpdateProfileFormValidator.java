@@ -8,7 +8,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import static com.takeaseat.constants.StringConstants.*;
-import static com.takeaseat.constants.ValidatorConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.*;
 
 public class UpdateProfileFormValidator implements Validator {
 

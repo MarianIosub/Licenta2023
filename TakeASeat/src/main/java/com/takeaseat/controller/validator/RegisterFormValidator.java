@@ -14,7 +14,7 @@ import javax.persistence.NoResultException;
 
 import static com.takeaseat.constants.ExceptionMessages.NO_USER_FOUND;
 import static com.takeaseat.constants.StringConstants.*;
-import static com.takeaseat.constants.ValidatorConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.*;
 
 public class RegisterFormValidator implements Validator {
 

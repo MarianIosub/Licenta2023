@@ -9,10 +9,23 @@
 
 }
 
-.restaurant__description{
+.restaurant__description {
     margin-left: 50px;
 }
 
-.create-restaurant__form{
+.create-restaurant__form {
     width: 700px;
+}
+
+.flash-message{
+    position: fixed;
+    padding: 0 10px;
+    height: 30px;
+    border-bottom: 3px solid #00d1b2;
+    border-left: 3px solid #00d1b2;
+    border-right: 3px solid #00d1b2;
+    border-radius: 0 0 10px 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
 }
