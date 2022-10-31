@@ -9,7 +9,6 @@ import com.takeaseat.service.UserService;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,9 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static com.takeaseat.constants.EndpointsConstants.*;
-import static com.takeaseat.constants.MessagePropertiesConstants.REGISTER_SUCCESSFUL;
+import static com.takeaseat.constants.MessagePropertiesConstants.*;
 import static com.takeaseat.constants.StringConstants.*;
 import static com.takeaseat.constants.ViewsConstants.*;
+import static java.util.Objects.nonNull;
 
 @Controller
 @AllArgsConstructor
@@ -63,7 +63,11 @@ public class UserController {
     @RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)
     public String getLoginPage(@ModelAttribute(LOGIN_FORM) LoginForm loginForm,
                                @SessionAttribute(value = LOGIN_ERROR, required = false) String loginError,
+                               @RequestParam(value = LOGOUT, required = false) String logout,
                                Model model) {
+        if (nonNull(logout)) {
+            model.addAttribute(FLASH_MESSAGE, LOGOUT_SUCCESS_MESSAGE);
+        }
         model.addAttribute(LOGIN_FORM, loginForm);
         model.addAttribute(LOGIN_ERROR, loginError);
         return LOGIN_PAGE;
@@ -77,13 +81,14 @@ public class UserController {
 
     @RequestMapping(value = UPDATE_PROFILE_ENDPOINT, method = RequestMethod.POST)
     public String updateProfile(@ModelAttribute(UPDATE_PROFILE_FORM) @Validated UpdateProfileForm updateProfileForm,
-                                BindingResult bindingResult,
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes,
                                 Model model) {
 
         if (bindingResult.hasErrors()) {
             return UPDATE_PROFILE_PAGE;
         }
         getUserService().updateCurrentUser(updateProfileForm);
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, UPDATE_PROFILE_SUCCESS_MESSAGE);
         return REDIRECT + HOME_ENDPOINT;
     }
 

@@ -21,6 +21,7 @@
 </head>
 <body>
 <st:header/>
+<st:flashMessage/>
 <spring:url value="/update-profile" var="updateProfileUrl"/>
 <div id="update_profile-label" class="form-modal">
     <h3 class="title is-center">Change your <strong>Take a sEAT!</strong> account:</h3>

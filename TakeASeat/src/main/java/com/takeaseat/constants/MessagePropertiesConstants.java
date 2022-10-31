@@ -13,6 +13,8 @@ public interface MessagePropertiesConstants {
     String NO_MATCH_PASSWORD = "NoMatch.password";
     String UPDATE_PROFILE_MAIL_FORBIDDEN = "UpdateProfile.Forbidden.mail";
 
-    String REGISTER_SUCCESSFUL="FlashMessage.Register.Success";
+    String REGISTER_SUCCESSFUL = "FlashMessage.Register.Success";
     String LOGIN_ERROR_MESSAGE = "Login.Failure";
+    String LOGOUT_SUCCESS_MESSAGE = "Logout.Success";
+    String UPDATE_PROFILE_SUCCESS_MESSAGE = "UpdateProfile.Success";
 }

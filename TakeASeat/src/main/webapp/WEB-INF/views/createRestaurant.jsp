@@ -22,6 +22,7 @@
 <body>
 <spring:url value="/restaurant/create" var="createRestaurantUrl"/>
 <st:header/>
+<st:flashMessage/>
 <div id="create-restaurant-label"
      class="form-modal__create-restaurant is-flex is-flex-direction-column is-align-items-center is-align-content-space-between">
     <h3 class="title">Create your <strong>Take a sEAT!</strong> restaurant profile:</h3>

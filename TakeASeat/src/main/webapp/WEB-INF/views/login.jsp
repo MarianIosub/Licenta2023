@@ -21,6 +21,7 @@
 </head>
 <body>
 <st:header/>
+<st:flashMessage/>
 <spring:url value="/login" var="loginUrl"/>
 <div id="registration-label" class="form-modal">
     <h3 class="title is-center">Login to <strong>Take a sEAT!</strong></h3>
