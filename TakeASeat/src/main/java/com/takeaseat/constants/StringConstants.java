@@ -29,6 +29,7 @@ public interface StringConstants {
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
+    String CURRENT_RESTAURANT = "currentRestaurant";
 
     String FLASH_MESSAGE = "flashMessage";
 }

@@ -18,6 +18,7 @@
     ></script>
 </head>
 <body>
+<c:set var="restaurant" value="${currentRestaurant}"/>
 <st:header/>
 <st:flashMessage/>
 <section class="section">
@@ -29,6 +30,12 @@
             Welcome to <strong>Take a sEAT!</strong>!
         </p>
         <p>Manage Restaurant Page</p>
+        <p>name : ${restaurant.name}</p>
+        <p>phoneNumber : ${restaurant.phoneNumber}</p>
+        <p>description : ${restaurant.description}</p>
+        <p>city : ${restaurant.city}</p>
+        <p>address : ${restaurant.address}</p>
+
     </div>
 </section>
 <st:footer/>

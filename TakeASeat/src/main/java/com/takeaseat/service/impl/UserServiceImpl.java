@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPassword(password);
     }
 
-    private String encryptPassword(String password) {
+    private String encryptPassword(final String password) {
         return getbCryptPasswordEncoder().encode(password);
     }
 

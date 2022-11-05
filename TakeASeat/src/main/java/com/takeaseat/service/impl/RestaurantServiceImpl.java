@@ -39,12 +39,17 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public boolean hasCurrentUserRestaurantCreated() {
         try {
-            getRestaurantDao().findByUser(userService.getCurrentUser());
+            getRestaurantDao().findByUser(getUserService().getCurrentUser());
             return true;
         } catch (NoResultException printed) {
             LOG.warn("Current user has no restaurant created", printed);
             return false;
         }
+    }
+
+    @Override
+    public Restaurant getCurrentUserRestaurant() {
+        return getRestaurantDao().findByUser(getUserService().getCurrentUser());
     }
 
     protected RestaurantDao getRestaurantDao() {

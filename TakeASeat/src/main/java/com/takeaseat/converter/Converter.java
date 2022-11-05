@@ -5,7 +5,7 @@ import org.modelmapper.ModelMapper;
 
 public class Converter<S, T> {
 
-    final ModelMapper mapper;
+    private final ModelMapper mapper;
 
     public Converter(final ModelMapper mapper) {
         this.mapper = mapper;

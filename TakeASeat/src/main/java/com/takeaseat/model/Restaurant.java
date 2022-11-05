@@ -27,6 +27,7 @@ public class Restaurant {
     @NonNull
     private String name;
     @NonNull
+    @Column(columnDefinition = "TEXT")
     private String description;
     @NonNull
     private String city;

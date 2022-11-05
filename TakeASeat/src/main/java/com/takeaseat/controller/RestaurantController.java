@@ -19,9 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import static com.takeaseat.constants.EndpointsConstants.*;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_ALREADY_CREATED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_NOT_CREATED_MESSAGE;
-import static com.takeaseat.constants.StringConstants.CREATE_RESTAURANT_FORM;
-import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
-import static com.takeaseat.constants.ViewsConstants.*;
+import static com.takeaseat.constants.StringConstants.*;
+import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
+import static com.takeaseat.constants.ViewsConstants.MANAGE_RESTAURANT_PAGE;
 
 @Controller
 @RequestMapping(RESTAURANT_ENDPOINT)
@@ -41,7 +41,7 @@ public class RestaurantController {
     @RequestMapping(value = CREATE_RESTAURANT_ENDPOINT, method = RequestMethod.GET)
     public String getNewRestaurantForm(@ModelAttribute(CREATE_RESTAURANT_FORM) CreateRestaurantForm createRestaurantForm,
                                        Model model, RedirectAttributes redirectAttributes) {
-        if (restaurantService.hasCurrentUserRestaurantCreated()) {
+        if (getRestaurantService().hasCurrentUserRestaurantCreated()) {
             redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RESTAURANT_ALREADY_CREATED_MESSAGE);
             return REDIRECT + RESTAURANT_ENDPOINT + MANAGE_RESTAURANT_ENPOINT;
         }
@@ -59,17 +59,20 @@ public class RestaurantController {
             return CREATE_RESTAURANT_PAGE;
         }
 
-        restaurantService.saveRestaurant(createRestaurantForm);
+        getRestaurantService().saveRestaurant(createRestaurantForm);
 
-        return HOME_PAGE;
+        return REDIRECT + RESTAURANT_ENDPOINT + MANAGE_RESTAURANT_ENPOINT;
     }
 
     @RequestMapping(value = MANAGE_RESTAURANT_ENPOINT, method = RequestMethod.GET)
     public String getManageRestaurantPage(Model model, RedirectAttributes redirectAttributes) {
-        if (!restaurantService.hasCurrentUserRestaurantCreated()) {
+        if (!getRestaurantService().hasCurrentUserRestaurantCreated()) {
             redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RESTAURANT_NOT_CREATED_MESSAGE);
             return REDIRECT + RESTAURANT_ENDPOINT + CREATE_RESTAURANT_ENDPOINT;
         }
+
+        model.addAttribute(CURRENT_RESTAURANT, getRestaurantService().getCurrentUserRestaurant());
+
         return MANAGE_RESTAURANT_PAGE;
     }
 

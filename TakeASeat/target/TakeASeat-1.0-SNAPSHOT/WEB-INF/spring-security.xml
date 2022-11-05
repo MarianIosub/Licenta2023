@@ -11,7 +11,7 @@
         <intercept-url pattern="/login" access="!isAuthenticated()"/>
         <intercept-url pattern="/register" access="!isAuthenticated()"/>
         <intercept-url pattern="/updateProfile" access="isAuthenticated()"/>
-<!--        <intercept-url pattern="/restaurant/create" access="hasRole('ROLE_ADMIN')"/>-->
+        <!--        <intercept-url pattern="/restaurant/create" access="hasRole('ROLE_ADMIN')"/>-->
 
         <form-login
                 login-page="/login"
