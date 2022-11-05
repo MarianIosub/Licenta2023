@@ -13,6 +13,7 @@ public interface StringConstants {
     String MAIL = "mail";
     String PASSWORD = "password";
     String CONFIRM_PASSWORD = "confirmPassword";
+    String CITY = "city";
     String ROLE = "role";
     String USERS = "users";
     String RESTAURANTS = "restaurants";
@@ -24,7 +25,7 @@ public interface StringConstants {
     String ADDRESS = "address";
     String PRICE_REQUIRED = "priceRequired";
     String UPDATE_PROFILE_DTO = "updateProfileDto";
-    String LOGOUT="logout";
+    String LOGOUT = "logout";
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";

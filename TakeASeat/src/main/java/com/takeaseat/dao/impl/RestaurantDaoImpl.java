@@ -12,7 +12,7 @@ import static java.lang.String.format;
 
 public class RestaurantDaoImpl implements RestaurantDao {
 
-    String RESTAURANT_BY_USER = "SELECT a FROM Restaurant a WHERE a.user.id='%s'";
+    String RESTAURANT_BY_USER = "SELECT a FROM Restaurant a WHERE a.administrator.id='%s'";
 
     @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManager manager;

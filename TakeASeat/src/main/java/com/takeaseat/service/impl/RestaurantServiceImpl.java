@@ -6,10 +6,16 @@ import com.takeaseat.dao.RestaurantDao;
 import com.takeaseat.model.Restaurant;
 import com.takeaseat.service.RestaurantService;
 import com.takeaseat.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.NoResultException;
 
 @Transactional
 public class RestaurantServiceImpl implements RestaurantService {
+
+    private final Logger LOG = LoggerFactory.getLogger(RestaurantServiceImpl.class);
 
     private final RestaurantDao restaurantDao;
     private final UserService userService;
@@ -28,6 +34,17 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurant.setAdministrator(getUserService().getCurrentUser());
 
         getRestaurantDao().save(restaurant);
+    }
+
+    @Override
+    public boolean hasCurrentUserRestaurantCreated() {
+        try {
+            getRestaurantDao().findByUser(userService.getCurrentUser());
+            return true;
+        } catch (NoResultException printed) {
+            LOG.warn("Current user has no restaurant created", printed);
+            return false;
+        }
     }
 
     protected RestaurantDao getRestaurantDao() {

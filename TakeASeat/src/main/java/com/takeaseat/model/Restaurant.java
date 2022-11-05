@@ -29,9 +29,11 @@ public class Restaurant {
     @NonNull
     private String description;
     @NonNull
+    private String city;
+    @NonNull
     private String address;
     @NonNull
-    private String email;
+    private String mail;
     @NonNull
     private String phoneNumber;
     @NonNull

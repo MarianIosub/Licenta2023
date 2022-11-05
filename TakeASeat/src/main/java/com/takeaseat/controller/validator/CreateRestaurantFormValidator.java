@@ -6,9 +6,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import static com.takeaseat.constants.MessagePropertiesConstants.*;
-import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_ROLE;
 import static com.takeaseat.constants.StringConstants.*;
-import static com.takeaseat.constants.StringConstants.ROLE;
 
 public class CreateRestaurantFormValidator implements Validator {
     @Override
@@ -26,5 +24,6 @@ public class CreateRestaurantFormValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, DESCRIPTION, NOT_EMPTY_PASSWORD);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, ADDRESS, NOT_EMPTY_CONFIRM_PASSWORD);
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, PRICE_REQUIRED, NOT_EMPTY_ROLE);
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, CITY, NOT_EMPTY_CITY);
     }
 }

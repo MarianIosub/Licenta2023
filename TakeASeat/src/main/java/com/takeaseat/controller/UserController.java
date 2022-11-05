@@ -56,8 +56,8 @@ public class UserController {
             return REGISTER_PAGE;
         }
         userService.registerUser(form);
-        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, REGISTER_SUCCESSFUL);
-        return REDIRECT + HOME_ENDPOINT;
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, REGISTER_SUCCESSFUL_MESSAGE);
+        return REDIRECT + LOGIN_ENDPOINT;
     }
 
     @RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)

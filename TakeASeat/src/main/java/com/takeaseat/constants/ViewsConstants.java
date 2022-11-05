@@ -6,6 +6,7 @@ public interface ViewsConstants {
     String LOGIN_PAGE = "login";
     String UPDATE_PROFILE_PAGE = "updateProfile";
     String CREATE_RESTAURANT_PAGE = "createRestaurant";
+    String MANAGE_RESTAURANT_PAGE = "manageRestaurant";
 
     //ERRORS
     String ERROR_404 = "404";

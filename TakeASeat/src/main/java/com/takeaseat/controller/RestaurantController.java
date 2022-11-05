@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
-import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_ALREADY_CREATED_MESSAGE;
+import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_NOT_CREATED_MESSAGE;
 import static com.takeaseat.constants.StringConstants.CREATE_RESTAURANT_FORM;
-import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
-import static com.takeaseat.constants.ViewsConstants.HOME_PAGE;
-import static java.util.Objects.isNull;
+import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
+import static com.takeaseat.constants.ViewsConstants.*;
 
 @Controller
 @RequestMapping(RESTAURANT_ENDPOINT)
@@ -39,10 +40,14 @@ public class RestaurantController {
 
     @RequestMapping(value = CREATE_RESTAURANT_ENDPOINT, method = RequestMethod.GET)
     public String getNewRestaurantForm(@ModelAttribute(CREATE_RESTAURANT_FORM) CreateRestaurantForm createRestaurantForm,
-                                       Model model) {
-        if (isNull(createRestaurantForm.getEmail())) {
-            createRestaurantForm.setEmail(getUserService().getCurrentUser().getMail());
+                                       Model model, RedirectAttributes redirectAttributes) {
+        if (restaurantService.hasCurrentUserRestaurantCreated()) {
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RESTAURANT_ALREADY_CREATED_MESSAGE);
+            return REDIRECT + RESTAURANT_ENDPOINT + MANAGE_RESTAURANT_ENPOINT;
         }
+
+        createRestaurantForm.setMail(getUserService().getCurrentUser().getMail());
+
         return CREATE_RESTAURANT_PAGE;
     }
 
@@ -57,6 +62,15 @@ public class RestaurantController {
         restaurantService.saveRestaurant(createRestaurantForm);
 
         return HOME_PAGE;
+    }
+
+    @RequestMapping(value = MANAGE_RESTAURANT_ENPOINT, method = RequestMethod.GET)
+    public String getManageRestaurantPage(Model model, RedirectAttributes redirectAttributes) {
+        if (!restaurantService.hasCurrentUserRestaurantCreated()) {
+            redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RESTAURANT_NOT_CREATED_MESSAGE);
+            return REDIRECT + RESTAURANT_ENDPOINT + CREATE_RESTAURANT_ENDPOINT;
+        }
+        return MANAGE_RESTAURANT_PAGE;
     }
 
     protected UserService getUserService() {

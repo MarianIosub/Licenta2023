@@ -5,8 +5,9 @@ public class CreateRestaurantForm {
 
     public String name;
     public String description;
+    public String city;
     public String address;
-    public String email;
+    public String mail;
     public String phoneNumber;
     public Double openingHour;
     public Double closingHour;
@@ -36,12 +37,12 @@ public class CreateRestaurantForm {
         this.address = address;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPhoneNumber() {
@@ -74,5 +75,13 @@ public class CreateRestaurantForm {
 
     public void setPriceRequired(Double priceRequired) {
         this.priceRequired = priceRequired;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

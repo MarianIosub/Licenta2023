@@ -77,12 +77,23 @@
         </spring:bind>
         <div class="field is-horizontal">
             <div class="field-body">
-                <spring:bind path="email">
+                <spring:bind path="mail">
                     <div class="field-label">
-                        <form:label class="label" path="email">Email</form:label>
+                        <form:label class="label" path="mail">Email</form:label>
                     </div>
                     <div class="control">
-                        <form:input name="name" class="input" type="email" placeholder="Email" path="email"
+                        <form:input name="mail" class="input" type="email" placeholder="Email" path="mail"
+                                    required="required"/>
+                    </div>
+                </spring:bind>
+            </div>
+            <div class="field-body">
+                <spring:bind path="city">
+                    <div class="field-label">
+                        <form:label class="label" path="city">City</form:label>
+                    </div>
+                    <div class="control">
+                        <form:input name="city" class="input" type="text" placeholder="City" path="city"
                                     required="required"/>
                     </div>
                 </spring:bind>
@@ -98,8 +109,8 @@
                     </div>
                 </spring:bind>
             </div>
-            <spring:bind path="email">
-                <form:errors path="email" class="help is-danger"/>
+            <spring:bind path="mail">
+                <form:errors path="mail" class="help is-danger"/>
             </spring:bind>
             <spring:bind path="address">
                 <form:errors path="address" class="help is-danger"/>
@@ -112,7 +123,7 @@
                         <form:label class="label" path="openingHour">Open:</form:label>
                     </div>
                     <div class="select">
-                        <form:select name="name" class="select is-fullwidth" placeholder="Opening Hour"
+                        <form:select name="openingHour" class="select is-fullwidth" placeholder="Opening Hour"
                                      path="openingHour"
                                      required="required">
                             <form:option value="7.00">7:00</form:option>

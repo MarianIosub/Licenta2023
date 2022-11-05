@@ -19,7 +19,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_FOOD_LOVER))) {
             response.sendRedirect(HOME_ENDPOINT);
         } else {
-            response.sendRedirect(RESTAURANT_ENDPOINT + CREATE_RESTAURANT_ENDPOINT);
+            response.sendRedirect(RESTAURANT_ENDPOINT + MANAGE_RESTAURANT_ENPOINT);
         }
     }
 }
