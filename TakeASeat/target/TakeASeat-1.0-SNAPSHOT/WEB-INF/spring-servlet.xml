@@ -96,6 +96,31 @@
         <constructor-arg name="mapper" ref="mapper"/>
     </bean>
 
+    <!-- MAIL -->
+
+
+    <bean name="defaultEmailService" class="com.takeaseat.service.impl.EmailServiceImpl">
+        <constructor-arg name="mailSender" ref="mailSender"/>
+    </bean>
+
+    <alias name="defaultMailSender" alias="mailSender"/>
+    <bean name="defaultMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com"/>
+        <property name="port" value="587"/>
+        <property name="username" value="takeaseatro@gmail.com"/>
+        <property name="password" value="fvezsutbmkodewqk"/>
+        <property name="javaMailProperties" >
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.debug">true</prop>
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+                <prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+            </props>
+        </property>
+    </bean>
+
     <!-- DAO -->
     <alias name="defaultUserDao" alias="userDao"/>
     <bean name="defaultUserDao" class="com.takeaseat.dao.impl.UserDaoImpl"/>
@@ -110,6 +135,7 @@
         <constructor-arg name="registerFormUserConverter" ref="converter"/>
         <constructor-arg name="userUpdateProfileFormConverter" ref="converter"/>
         <constructor-arg name="bCryptPasswordEncoder" ref="bCrypt"/>
+        <constructor-arg name="emailService" ref="defaultEmailService"/>
     </bean>
 
     <alias name="defaultRestaurantService" alias="restaurantService"/>

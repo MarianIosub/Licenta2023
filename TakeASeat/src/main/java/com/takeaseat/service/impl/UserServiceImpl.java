@@ -6,6 +6,7 @@ import com.takeaseat.converter.Converter;
 import com.takeaseat.dao.UserDao;
 import com.takeaseat.model.User;
 import com.takeaseat.security.MyUserPrincipal;
+import com.takeaseat.service.EmailService;
 import com.takeaseat.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,15 +21,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final Converter<RegisterForm, User> registerFormUserConverter;
     private final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final EmailService emailService;
 
 
     public UserServiceImpl(final UserDao userDao, final Converter<RegisterForm, User> registerFormUserConverter,
                            final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter,
-                           final BCryptPasswordEncoder bCryptPasswordEncoder) {
+                           final BCryptPasswordEncoder bCryptPasswordEncoder, final EmailService emailService) {
         this.userDao = userDao;
         this.registerFormUserConverter = registerFormUserConverter;
         this.userUpdateProfileFormConverter = userUpdateProfileFormConverter;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.emailService = emailService;
     }
 
 
@@ -41,6 +44,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void registerUser(final RegisterForm form) {
         User user = getRegisterFormUserConverter().convert(form, User.class);
         encryptUserPassword(user);
+
+        getEmailService().sendWelcomeEmail(user);
 
         getUserDao().save(user);
     }
@@ -97,5 +102,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     protected BCryptPasswordEncoder getbCryptPasswordEncoder() {
         return bCryptPasswordEncoder;
+    }
+
+    protected EmailService getEmailService() {
+        return emailService;
     }
 }
