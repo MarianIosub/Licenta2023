@@ -39,7 +39,9 @@
     </authentication-manager>
 
     <beans:bean name="loginFailureHandler" class="com.takeaseat.security.LoginFailureHandler"/>
-    <beans:bean name="loginSuccessHandler" class="com.takeaseat.security.LoginSuccessHandler"/>
+    <beans:bean name="loginSuccessHandler" class="com.takeaseat.security.LoginSuccessHandler">
+        <beans:constructor-arg name="userService" ref="userService"/>
+    </beans:bean>
 
     <beans:bean name="bCrypt" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans:beans>

@@ -17,4 +17,6 @@ public interface UserService {
     User getCurrentUser();
 
     void updateCurrentUser(UpdateProfileForm updateProfileForm);
+
+    void updateLastLoginDate();
 }

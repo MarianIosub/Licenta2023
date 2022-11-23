@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import java.time.LocalDateTime;
+
 import static com.takeaseat.constants.StringConstants.USERS;
 import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
 
@@ -46,4 +48,14 @@ public class User {
 
     @NonNull
     private String role;
+
+    private LocalDateTime lastLoginDate;
+
+    public void setLastLoginDate(LocalDateTime lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
+    }
+
+    public LocalDateTime getLastLoginDate() {
+        return lastLoginDate;
+    }
 }

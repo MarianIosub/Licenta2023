@@ -38,6 +38,7 @@ import static com.takeaseat.constants.StringConstants.UPDATE_PROFILE_FORM;
 import static com.takeaseat.constants.ViewsConstants.LOGIN_PAGE;
 import static com.takeaseat.constants.ViewsConstants.REGISTER_PAGE;
 import static com.takeaseat.constants.ViewsConstants.UPDATE_PROFILE_PAGE;
+import static com.takeaseat.helper.CreateEndpointHelper.createEndpoint;
 import static java.util.Objects.nonNull;
 
 @Controller
@@ -74,7 +75,7 @@ public class UserController {
         }
         userService.registerUser(form);
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, REGISTER_SUCCESSFUL_MESSAGE);
-        return REDIRECT + LOGIN_ENDPOINT;
+        return createEndpoint(REDIRECT, LOGIN_ENDPOINT);
     }
 
     @RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)
@@ -106,7 +107,7 @@ public class UserController {
         }
         getUserService().updateCurrentUser(updateProfileForm);
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, UPDATE_PROFILE_SUCCESS_MESSAGE);
-        return REDIRECT + UPDATE_PROFILE_ENDPOINT;
+        return createEndpoint(REDIRECT, UPDATE_PROFILE_ENDPOINT);
     }
 
     protected RegisterFormValidator getRegisterFormValidator() {

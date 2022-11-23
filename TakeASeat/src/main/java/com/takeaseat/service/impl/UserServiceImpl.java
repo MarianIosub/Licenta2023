@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -70,6 +72,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setName(updateProfileForm.getName());
         user.setPassword(encryptPassword(updateProfileForm.getPassword()));
         getUserDao().update(user);
+    }
+
+    @Override
+    public void updateLastLoginDate() {
+        User user = getCurrentUser();
+        user.setLastLoginDate(LocalDateTime.now());
+        userDao.update(user);
     }
 
     @Override
