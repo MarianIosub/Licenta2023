@@ -13,8 +13,22 @@ import org.springframework.validation.Validator;
 import javax.persistence.NoResultException;
 
 import static com.takeaseat.constants.ExceptionMessages.NO_USER_FOUND;
-import static com.takeaseat.constants.MessagePropertiesConstants.*;
-import static com.takeaseat.constants.StringConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.ALREADY_USED_REGISTER_MAIL;
+import static com.takeaseat.constants.MessagePropertiesConstants.INCORRECT_FORMAT_MAIL;
+import static com.takeaseat.constants.MessagePropertiesConstants.INCORRECT_FORMAT_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_CONFIRM_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_MAIL;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_NAME;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_ROLE;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_SURNAME;
+import static com.takeaseat.constants.MessagePropertiesConstants.NO_MATCH_PASSWORD;
+import static com.takeaseat.constants.StringConstants.CONFIRM_PASSWORD;
+import static com.takeaseat.constants.StringConstants.MAIL;
+import static com.takeaseat.constants.StringConstants.NAME;
+import static com.takeaseat.constants.StringConstants.PASSWORD;
+import static com.takeaseat.constants.StringConstants.ROLE;
+import static com.takeaseat.constants.StringConstants.SURNAME;
 
 public class RegisterFormValidator implements Validator {
 

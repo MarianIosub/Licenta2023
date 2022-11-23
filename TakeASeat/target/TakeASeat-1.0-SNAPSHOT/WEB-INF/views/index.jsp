@@ -32,7 +32,7 @@
         <sec:authorize access="hasRole('ROLE_FOOD_LOVER')">
             <p>food</p>
         </sec:authorize>
-        <sec:authorize access="hasRole('ROLE_ADMIN')">
+        <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')">
             <p>admin</p>
         </sec:authorize>
     </div>

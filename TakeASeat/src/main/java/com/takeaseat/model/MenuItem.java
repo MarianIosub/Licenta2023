@@ -14,8 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import static com.takeaseat.constants.StringConstants.USERS;
-import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
+import static com.takeaseat.constants.StringConstants.MENU_ITEMS;
+import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID_COLUMN_NAME;
 
 @Entity
 @Getter
@@ -23,27 +23,21 @@ import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
 @NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Table(name = USERS)
-public class User {
+@Table(name = MENU_ITEMS)
+public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = USER_ID_COLUMN_NAME)
+    @Column(name = MENU_ITEM_ID_COLUMN_NAME)
     private Long id;
 
     @NonNull
-    @Column(unique = true)
-    private String mail;
-
-    @NonNull
     private String name;
-
     @NonNull
-    private String surname;
-
+    private String photoLink;
     @NonNull
-    private String password;
-
+    @Column(columnDefinition = "TEXT")
+    private String ingredients;
     @NonNull
-    private String role;
+    private Double price;
 }

@@ -7,8 +7,16 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import static com.takeaseat.constants.MessagePropertiesConstants.*;
-import static com.takeaseat.constants.StringConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.INCORRECT_FORMAT_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_NAME;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_SURNAME;
+import static com.takeaseat.constants.MessagePropertiesConstants.NO_MATCH_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.UPDATE_PROFILE_MAIL_FORBIDDEN;
+import static com.takeaseat.constants.StringConstants.MAIL;
+import static com.takeaseat.constants.StringConstants.NAME;
+import static com.takeaseat.constants.StringConstants.PASSWORD;
+import static com.takeaseat.constants.StringConstants.SURNAME;
 
 public class UpdateProfileFormValidator implements Validator {
 

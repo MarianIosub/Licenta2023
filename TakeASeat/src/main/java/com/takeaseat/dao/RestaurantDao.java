@@ -7,4 +7,6 @@ public interface RestaurantDao {
     void save(Restaurant restaurant);
 
     Restaurant findByUser(User user);
+
+    void update(Restaurant restaurant);
 }

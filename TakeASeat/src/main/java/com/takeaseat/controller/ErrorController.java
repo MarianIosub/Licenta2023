@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static com.takeaseat.constants.EndpointsConstants.ERROR_ENDPOINT;
-import static com.takeaseat.constants.ViewsConstants.*;
+import static com.takeaseat.constants.ViewsConstants.ERROR_403;
+import static com.takeaseat.constants.ViewsConstants.ERROR_404;
+import static com.takeaseat.constants.ViewsConstants.ERROR_DEFAULT;
 import static javax.servlet.RequestDispatcher.ERROR_STATUS_CODE;
 
 @Controller

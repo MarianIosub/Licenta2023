@@ -1,3 +1,4 @@
+com/takeaseat/dao/MenuItemDao.class
 com/takeaseat/service/UserService.class
 com/takeaseat/validator/PasswordValidator.class
 com/takeaseat/dao/UserDao.class
@@ -23,11 +24,13 @@ com/takeaseat/constants/MessagePropertiesConstants.class
 com/takeaseat/security/LoginFailureHandler.class
 com/takeaseat/dao/impl/UserDaoImpl.class
 com/takeaseat/controller/validator/UpdateProfileFormValidator.class
+com/takeaseat/model/MenuItem.class
 com/takeaseat/constants/StringConstants.class
 com/takeaseat/service/impl/RestaurantServiceImpl.class
 com/takeaseat/service/impl/UserServiceImpl.class
 com/takeaseat/validator/EmailValidator.class
 com/takeaseat/service/impl/EmailServiceImpl.class
+com/takeaseat/dao/impl/MenuItemDaoImpl.class
 com/takeaseat/constants/EndpointsConstants.class
 com/takeaseat/dao/RestaurantDao.class
 com/takeaseat/controller/form/CreateRestaurantForm.class

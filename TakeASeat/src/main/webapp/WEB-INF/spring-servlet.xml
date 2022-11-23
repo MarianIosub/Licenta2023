@@ -28,6 +28,12 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <bean id="contentNegotiationManager"
+          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorParameter" value="true"/>
+        <property name="ignoreAcceptHeader" value="false"/>
+    </bean>
+
     <!--    EMF & TRANSACTION   -->
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
@@ -54,6 +60,7 @@
     </bean>
 
     <!-- FORMS -->
+
     <alias name="defaultRegisterFormValidator" alias="registerFormValidator"/>
     <bean id="defaultRegisterFormValidator" class="com.takeaseat.controller.validator.RegisterFormValidator">
         <constructor-arg name="userService" ref="userService"/>
@@ -84,6 +91,7 @@
     <bean name="defaultCreateRestaurantForm" class="com.takeaseat.controller.form.CreateRestaurantForm"/>
 
     <!-- VALIDATORS -->
+
     <bean name="emailValidator" class="com.takeaseat.validator.EmailValidator"/>
 
     <bean name="passwordValidator" class="com.takeaseat.validator.PasswordValidator"/>
@@ -98,7 +106,6 @@
 
     <!-- MAIL -->
 
-
     <bean name="defaultEmailService" class="com.takeaseat.service.impl.EmailServiceImpl">
         <constructor-arg name="mailSender" ref="mailSender"/>
     </bean>
@@ -109,7 +116,7 @@
         <property name="port" value="587"/>
         <property name="username" value="takeaseatro@gmail.com"/>
         <property name="password" value="fvezsutbmkodewqk"/>
-        <property name="javaMailProperties" >
+        <property name="javaMailProperties">
             <props>
                 <prop key="mail.transport.protocol">smtp</prop>
                 <prop key="mail.smtp.auth">true</prop>
@@ -122,13 +129,18 @@
     </bean>
 
     <!-- DAO -->
+
     <alias name="defaultUserDao" alias="userDao"/>
     <bean name="defaultUserDao" class="com.takeaseat.dao.impl.UserDaoImpl"/>
 
     <alias name="defaultRestaurantDao" alias="restaurantDao"/>
     <bean name="defaultRestaurantDao" class="com.takeaseat.dao.impl.RestaurantDaoImpl"/>
 
+    <alias name="defaultMenuItemDao" alias="menuItemDao"/>
+    <bean name="defaultMenuItemDao" class="com.takeaseat.dao.impl.MenuItemDaoImpl"/>
+
     <!-- SERVICE -->
+
     <alias name="defaultUserService" alias="userService"/>
     <bean name="defaultUserService" class="com.takeaseat.service.impl.UserServiceImpl">
         <constructor-arg name="userDao" ref="userDao"/>
@@ -143,5 +155,6 @@
         <constructor-arg name="userService" ref="userService"/>
         <constructor-arg name="createRestaurantFormRestaurantConverter" ref="converter"/>
         <constructor-arg name="restaurantDao" ref="restaurantDao"/>
+        <constructor-arg name="menuItemDao" ref="menuItemDao"/>
     </bean>
 </beans>

@@ -16,6 +16,7 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
+    <script src="../resources/js/menuItemForm.js"></script>
 </head>
 <body>
 <c:set var="restaurant" value="${currentRestaurant}"/>
@@ -35,8 +36,66 @@
         <p>description : ${restaurant.description}</p>
         <p>city : ${restaurant.city}</p>
         <p>address : ${restaurant.address}</p>
-
     </div>
+    <br>
+    <div class="container is-hidden" id="add-food__form">
+        <form id="menu-item__form">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Name</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="Name" name="name" id="name" required/>
+                        </p>
+                    </div>
+                </div>
+                <div class="field-label is-normal">
+                    <label class="label">Photo Link</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="Photo Link" name="photoLink" id="photoLink"
+                                   required/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Ingredients</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="text" placeholder="water, flour, .." name="ingredients"
+                                   id="ingredients" required/>
+                        </p>
+                    </div>
+                </div>
+                <div class="field-label is-normal">
+                    <label class="label">Price</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control">
+                            <input class="input" type="number" placeholder="0" name="price" id="price" required/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="container">
+        <a class="button is-primary add-menu-item__btn" id="add-food__btn" onclick="changeMenuItemFormVisibility()">Add
+            menu item</a>
+    </div>
+</section>
+<section id="menuItems" class="section">
+    <jsp:include page="menuItems.jsp"/>
 </section>
 <st:footer/>
 </body>

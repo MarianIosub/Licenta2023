@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.takeaseat.constants.EndpointsConstants.*;
+import static com.takeaseat.constants.EndpointsConstants.HOME_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
+import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.StringConstants.ROLE_FOOD_LOVER;
 
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {

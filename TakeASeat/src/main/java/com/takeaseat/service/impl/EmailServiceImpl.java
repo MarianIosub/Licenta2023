@@ -19,12 +19,12 @@ public class EmailServiceImpl implements EmailService {
         getMailSender().send(message);
     }
 
-    private SimpleMailMessage composeWelcomeMessage(User user){
+    private SimpleMailMessage composeWelcomeMessage(User user) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("noreply@takeAsEAT.com");
         message.setTo(user.getMail());
         message.setSubject("Welcome to TakeAsEAT, " + user.getName() + " " + user.getSurname() + " :)");
-        message.setText("Dear " +user.getName()+",\n\nYou just created an account on TakeAsEAT, from now you can use our application!\n\n\nThank you,\nTakeAsEAT TEAM");
+        message.setText("Dear " + user.getName() + ",\n\nYou just created an account on TakeAsEAT, from now you can use our application!\n\n\nThank you,\nTakeAsEAT TEAM");
         return message;
     }
 

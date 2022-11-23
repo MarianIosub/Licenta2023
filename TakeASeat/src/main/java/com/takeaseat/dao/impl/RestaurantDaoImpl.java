@@ -27,6 +27,11 @@ public class RestaurantDaoImpl implements RestaurantDao {
         return (Restaurant) getManager().createQuery(format(RESTAURANT_BY_USER, user.getId())).getSingleResult();
     }
 
+    @Override
+    public void update(Restaurant restaurant) {
+        getManager().merge(restaurant);
+    }
+
     protected EntityManager getManager() {
         return manager;
     }

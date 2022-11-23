@@ -29,3 +29,8 @@
     transform: translateX(-50%);
     font-weight: bold;
 }
+
+.add-menu-item__btn {
+    left: 50%;
+    transform: translateX(-50%);
+}

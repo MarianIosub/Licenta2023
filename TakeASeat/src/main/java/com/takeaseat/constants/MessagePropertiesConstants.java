@@ -20,4 +20,5 @@ public interface MessagePropertiesConstants {
     String UPDATE_PROFILE_SUCCESS_MESSAGE = "UpdateProfile.Success";
     String RESTAURANT_NOT_CREATED_MESSAGE = "Restaurant.NotCreated";
     String RESTAURANT_ALREADY_CREATED_MESSAGE = "Restaurant.AlreadyCreated";
+    String MENU_ITEM_ADDED_MESSAGE = "MenuItem.Added";
 }

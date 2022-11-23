@@ -2,6 +2,7 @@ package com.takeaseat.controller;
 
 import com.takeaseat.controller.form.CreateRestaurantForm;
 import com.takeaseat.controller.validator.CreateRestaurantFormValidator;
+import com.takeaseat.model.MenuItem;
 import com.takeaseat.service.RestaurantService;
 import com.takeaseat.service.UserService;
 import lombok.AllArgsConstructor;
@@ -16,10 +17,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static com.takeaseat.constants.EndpointsConstants.*;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
+import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM;
+import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
+import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
+import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_ADDED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_ALREADY_CREATED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_NOT_CREATED_MESSAGE;
-import static com.takeaseat.constants.StringConstants.*;
+import static com.takeaseat.constants.StringConstants.CREATE_RESTAURANT_FORM;
+import static com.takeaseat.constants.StringConstants.CURRENT_RESTAURANT;
+import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
+import static com.takeaseat.constants.StringConstants.INGREDIENTS;
+import static com.takeaseat.constants.StringConstants.MENU_ITEMS;
+import static com.takeaseat.constants.StringConstants.MENU_ITEM_ADDED;
+import static com.takeaseat.constants.StringConstants.NAME;
+import static com.takeaseat.constants.StringConstants.PHOTO_LINK;
+import static com.takeaseat.constants.StringConstants.PRICE;
 import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
 import static com.takeaseat.constants.ViewsConstants.MANAGE_RESTAURANT_PAGE;
 
@@ -74,6 +91,24 @@ public class RestaurantController {
         model.addAttribute(CURRENT_RESTAURANT, getRestaurantService().getCurrentUserRestaurant());
 
         return MANAGE_RESTAURANT_PAGE;
+    }
+
+
+    @RequestMapping(value = MENU_ITEM, method = RequestMethod.POST)
+    public String addMenuItemToRestaurant(HttpServletRequest request, Model model) {
+        final MenuItem menuItem = createMenuItemFromRequest(request);
+
+        final List<MenuItem> menuItems = getRestaurantService().addMenuItemToRestaurant(restaurantService.getCurrentUserRestaurant(), menuItem);
+
+        model.addAttribute(MENU_ITEMS, menuItems);
+
+        model.addAttribute(MENU_ITEM_ADDED, MENU_ITEM_ADDED_MESSAGE);
+        return MENU_ITEMS;
+    }
+
+    private MenuItem createMenuItemFromRequest(HttpServletRequest request) {
+        return new MenuItem(request.getParameter(NAME), request.getParameter(PHOTO_LINK), request.getParameter(INGREDIENTS),
+                Double.valueOf(request.getParameter(PRICE)));
     }
 
     protected UserService getUserService() {

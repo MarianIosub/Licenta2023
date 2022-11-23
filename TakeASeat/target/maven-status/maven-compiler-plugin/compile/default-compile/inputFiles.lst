@@ -21,7 +21,10 @@
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/converter/Converter.java
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/controller/validator/UpdateProfileFormValidator.java
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/service/EmailService.java
+/Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/dao/MenuItemDao.java
+/Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/model/MenuItem.java
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/service/dtos/UpdateProfileDTO.java
+/Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/dao/impl/MenuItemDaoImpl.java
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/constants/StringConstants.java
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/constants/ViewsConstants.java
 /Users/maio2810/Documents/Marian/Licenta2023/TakeASeat/src/main/java/com/takeaseat/dao/impl/RestaurantDaoImpl.java

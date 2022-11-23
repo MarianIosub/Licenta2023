@@ -14,13 +14,30 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static com.takeaseat.constants.EndpointsConstants.*;
-import static com.takeaseat.constants.MessagePropertiesConstants.*;
-import static com.takeaseat.constants.StringConstants.*;
-import static com.takeaseat.constants.ViewsConstants.*;
+import static com.takeaseat.constants.EndpointsConstants.LOGIN_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
+import static com.takeaseat.constants.EndpointsConstants.REGISTER_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.UPDATE_PROFILE_ENDPOINT;
+import static com.takeaseat.constants.MessagePropertiesConstants.LOGOUT_SUCCESS_MESSAGE;
+import static com.takeaseat.constants.MessagePropertiesConstants.REGISTER_SUCCESSFUL_MESSAGE;
+import static com.takeaseat.constants.MessagePropertiesConstants.UPDATE_PROFILE_SUCCESS_MESSAGE;
+import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
+import static com.takeaseat.constants.StringConstants.LOGIN_ERROR;
+import static com.takeaseat.constants.StringConstants.LOGIN_FORM;
+import static com.takeaseat.constants.StringConstants.LOGOUT;
+import static com.takeaseat.constants.StringConstants.REGISTER_FORM;
+import static com.takeaseat.constants.StringConstants.UPDATE_PROFILE_FORM;
+import static com.takeaseat.constants.ViewsConstants.LOGIN_PAGE;
+import static com.takeaseat.constants.ViewsConstants.REGISTER_PAGE;
+import static com.takeaseat.constants.ViewsConstants.UPDATE_PROFILE_PAGE;
 import static java.util.Objects.nonNull;
 
 @Controller
@@ -89,7 +106,7 @@ public class UserController {
         }
         getUserService().updateCurrentUser(updateProfileForm);
         redirectAttributes.addFlashAttribute(FLASH_MESSAGE, UPDATE_PROFILE_SUCCESS_MESSAGE);
-        return REDIRECT + HOME_ENDPOINT;
+        return REDIRECT + UPDATE_PROFILE_ENDPOINT;
     }
 
     protected RegisterFormValidator getRegisterFormValidator() {

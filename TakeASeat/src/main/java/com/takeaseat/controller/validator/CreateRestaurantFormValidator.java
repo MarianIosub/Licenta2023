@@ -5,8 +5,20 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import static com.takeaseat.constants.MessagePropertiesConstants.*;
-import static com.takeaseat.constants.StringConstants.*;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_CITY;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_CONFIRM_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_MAIL;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_NAME;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_PASSWORD;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_ROLE;
+import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_SURNAME;
+import static com.takeaseat.constants.StringConstants.ADDRESS;
+import static com.takeaseat.constants.StringConstants.CITY;
+import static com.takeaseat.constants.StringConstants.DESCRIPTION;
+import static com.takeaseat.constants.StringConstants.MAIL;
+import static com.takeaseat.constants.StringConstants.NAME;
+import static com.takeaseat.constants.StringConstants.PHONE_NUMBER;
+import static com.takeaseat.constants.StringConstants.PRICE_REQUIRED;
 
 public class CreateRestaurantFormValidator implements Validator {
     @Override
