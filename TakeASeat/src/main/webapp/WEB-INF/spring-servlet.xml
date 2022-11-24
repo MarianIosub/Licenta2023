@@ -3,7 +3,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
-       xmlns="http://www.springframework.org/schema/beans"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
@@ -13,13 +13,14 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util
-        http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+        http://www.springframework.org/schema/util/spring-util-3.0.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <context:component-scan base-package="com.takeaseat"/>
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/"/>
     <util:properties id="properties" location="classpath:application.properties"/>
     <mvc:annotation-driven/>
+    <aop:aspectj-autoproxy />
 
     <!--    VIEWS    -->
 
@@ -45,7 +46,7 @@
     </bean>
 
     <tx:annotation-driven transaction-manager="tManager"/>
-
+    
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -108,6 +109,7 @@
 
     <bean name="defaultEmailService" class="com.takeaseat.service.impl.EmailServiceImpl">
         <constructor-arg name="mailSender" ref="mailSender"/>
+        <constructor-arg name="emailComposer" ref="emailComposer"/>
     </bean>
 
     <alias name="defaultMailSender" alias="mailSender"/>
@@ -127,6 +129,8 @@
             </props>
         </property>
     </bean>
+
+    <bean name="emailComposer" class="com.takeaseat.service.email.impl.EmailComposerImpl"/>
 
     <!-- DAO -->
 

@@ -15,7 +15,6 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.3.20" />
-          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.20" />
           <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.3.20" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:5.3.20" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.3.20" />
@@ -23,6 +22,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.3.20" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.3.20" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.2.8.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.3.20" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.9" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.8.9" />
           <element id="library" level="project" name="Maven: javax.mail:mail:1.4.7" />
           <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.6.3" />
@@ -63,7 +65,6 @@
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:2.4.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-orm:5.3.0" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.3.0" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.9.6" />
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.26" />
           <element id="library" level="project" name="Maven: javax.validation:validation-api:2.0.1.Final" />
         </element>

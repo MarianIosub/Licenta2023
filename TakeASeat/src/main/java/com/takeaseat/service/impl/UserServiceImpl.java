@@ -47,8 +47,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         User user = getRegisterFormUserConverter().convert(form, User.class);
         encryptUserPassword(user);
 
-        getEmailService().sendWelcomeEmail(user);
-
         getUserDao().save(user);
     }
 
