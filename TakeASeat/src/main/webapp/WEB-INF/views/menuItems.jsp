@@ -2,8 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <div class="container">
+    <div class="menu-item-search">
+        <label title="Menu Item name: ">
+            <input class="input" type="search" placeholder="Search.." id="menu-items-search" onchange="searchForMenuItem()"/>
+        </label>
+    </div>
     <c:if test="${menuItemAdded ne null}">
-        <h3><spring:message code="${menuItemAdded}"/></h3>
+        <div class="menu-items__title">
+            <h2><spring:message code="${menuItemAdded}"/></h2>
+        </div>
     </c:if>
     <c:if test="${menuItems eq null}">
         <c:set var="menuItems" value="${currentRestaurant.menuItems}"/>

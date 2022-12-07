@@ -31,6 +31,21 @@
 }
 
 .add-menu-item__btn {
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 2px;
+}
+
+.add-menu-item__error {
+    margin-bottom: 10px;
+}
+
+.menu-item-form__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-items__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

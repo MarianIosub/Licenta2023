@@ -31,6 +31,7 @@ public interface StringConstants {
     String PRICE_REQUIRED = "priceRequired";
     String UPDATE_PROFILE_DTO = "updateProfileDto";
     String LOGOUT = "logout";
+    String SEARCHED_ITEM = "searchedItem";
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";

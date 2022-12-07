@@ -3,31 +3,44 @@ function changeMenuItemFormVisibility() {
     if (form.classList.contains("is-hidden")) {
         displayForm(form);
     } else {
-        hideForm(form);
+        createMenuItemOrHideForm(form);
     }
-}
-
-function hideForm(form) {
-    createMenuItem();
-    form.classList.add("is-hidden");
 }
 
 function displayForm(form) {
     form.classList.remove("is-hidden");
 }
 
-function createMenuItem() {
+function hideForm(form) {
+    form.classList.add("is-hidden");
+}
+
+function createMenuItemOrHideForm(form) {
     let name = document.getElementById('name');
     let photoLink = document.getElementById('photoLink');
     let ingredients = document.getElementById('ingredients');
     let price = document.getElementById('price');
     if (name.value !== '' && photoLink.value !== '' && ingredients.value !== '' && price.value !== '') {
+        hideMenuItemError();
         postForm();
-        name.value = '';
-        photoLink.value = '';
-        ingredients.value = '';
-        price.value = '';
+        emptyFormInputs(name, photoLink, ingredients, price);
+        hideForm(form);
+    } else if (name.value === '' && photoLink.value === '' && ingredients.value === '' && price.value === '') {
+        hideMenuItemError();
+        hideForm(form);
+    } else {
+        showMenuItemError();
     }
+}
+
+function showMenuItemError() {
+    let menuItemErrorParagraph = document.getElementById("menu-item-error");
+    menuItemErrorParagraph.classList.remove("is-hidden");
+}
+
+function hideMenuItemError() {
+    let menuItemErrorParagraph = document.getElementById("menu-item-error");
+    menuItemErrorParagraph.classList.add("is-hidden");
 }
 
 function postForm() {
@@ -39,4 +52,11 @@ function postForm() {
     }).then(function (response) {
         $('#menuItems').html(response);
     });
+}
+
+function emptyFormInputs(name, photoLink, ingredients, price) {
+    name.value = '';
+    photoLink.value = '';
+    ingredients.value = '';
+    price.value = '';
 }

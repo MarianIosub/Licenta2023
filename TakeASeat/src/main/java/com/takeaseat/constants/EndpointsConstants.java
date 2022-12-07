@@ -12,4 +12,5 @@ public interface EndpointsConstants {
     String CREATE_RESTAURANT_ENDPOINT = "/create";
     String MANAGE_RESTAURANT_ENPOINT = "/manage";
     String MENU_ITEM = "/menu-item";
+    String MENU_ITEM_SEARCH = "menu-item/search";
 }

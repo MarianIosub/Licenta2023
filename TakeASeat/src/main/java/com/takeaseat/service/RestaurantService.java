@@ -15,4 +15,6 @@ public interface RestaurantService {
     Restaurant getCurrentUserRestaurant();
 
     List<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem);
+
+    List<MenuItem> searchForMenuItems(String searchedItem);
 }

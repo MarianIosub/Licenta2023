@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <%@ taglib prefix="st" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
             crossorigin="anonymous"
     ></script>
     <script src="../resources/js/menuItemForm.js"></script>
+    <script src="../resources/js/menuItemsSearch.js"></script>
 </head>
 <body>
 <c:set var="restaurant" value="${currentRestaurant}"/>
@@ -89,7 +91,8 @@
         </form>
     </div>
     <br>
-    <div class="container">
+    <div class="container menu-item-form__footer">
+        <p class="is-danger is-hidden is-primary add-menu-item__error" id="menu-item-error"><spring:message code="MenuItem.AllFieldRequired" htmlEscape="true"/></p>
         <a class="button is-primary add-menu-item__btn" id="add-food__btn" onclick="changeMenuItemFormVisibility()">Add
             menu item</a>
     </div>

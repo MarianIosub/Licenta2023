@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.NoResultException;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 public class RestaurantServiceImpl implements RestaurantService {
@@ -66,6 +67,15 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<MenuItem> menuItems = getMenuItemDao().getMenuItemsByRestaurant(restaurant);
         Collections.reverse(menuItems);
         return menuItems;
+    }
+
+    @Override
+    public List<MenuItem> searchForMenuItems(String searchedItem) {
+        List<MenuItem> menuItems = getCurrentUserRestaurant().getMenuItems();
+
+        return menuItems.stream()
+                .filter(menuItem -> menuItem.getName().contains(searchedItem))
+                .collect(Collectors.toList());
     }
 
     private void addMenuItemToRestaurantList(Restaurant restaurant, MenuItem menuItem) {

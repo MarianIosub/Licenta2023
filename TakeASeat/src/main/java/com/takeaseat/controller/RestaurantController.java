@@ -13,8 +13,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +25,7 @@ import java.util.List;
 import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM;
+import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM_SEARCH;
 import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
 import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_ADDED_MESSAGE;
@@ -37,6 +40,7 @@ import static com.takeaseat.constants.StringConstants.MENU_ITEM_ADDED;
 import static com.takeaseat.constants.StringConstants.NAME;
 import static com.takeaseat.constants.StringConstants.PHOTO_LINK;
 import static com.takeaseat.constants.StringConstants.PRICE;
+import static com.takeaseat.constants.StringConstants.SEARCHED_ITEM;
 import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
 import static com.takeaseat.constants.ViewsConstants.MANAGE_RESTAURANT_PAGE;
 import static com.takeaseat.helper.CreateEndpointHelper.createEndpoint;
@@ -104,6 +108,15 @@ public class RestaurantController {
         model.addAttribute(MENU_ITEMS, menuItems);
 
         model.addAttribute(MENU_ITEM_ADDED, MENU_ITEM_ADDED_MESSAGE);
+        return MENU_ITEMS;
+    }
+
+    @RequestMapping(value = MENU_ITEM, method = RequestMethod.GET)
+    public String searchForMenuItems(@RequestParam(value = SEARCHED_ITEM) String searchedItem, Model model){
+        final List<MenuItem> menuItems = getRestaurantService().searchForMenuItems(searchedItem);
+
+        model.addAttribute(MENU_ITEMS, menuItems);
+
         return MENU_ITEMS;
     }
 
