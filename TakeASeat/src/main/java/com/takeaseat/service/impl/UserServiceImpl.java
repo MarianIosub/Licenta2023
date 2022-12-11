@@ -23,17 +23,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final Converter<RegisterForm, User> registerFormUserConverter;
     private final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final EmailService emailService;
 
 
     public UserServiceImpl(final UserDao userDao, final Converter<RegisterForm, User> registerFormUserConverter,
                            final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter,
-                           final BCryptPasswordEncoder bCryptPasswordEncoder, final EmailService emailService) {
+                           final BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDao = userDao;
         this.registerFormUserConverter = registerFormUserConverter;
         this.userUpdateProfileFormConverter = userUpdateProfileFormConverter;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.emailService = emailService;
     }
 
 
@@ -109,9 +107,5 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     protected BCryptPasswordEncoder getbCryptPasswordEncoder() {
         return bCryptPasswordEncoder;
-    }
-
-    protected EmailService getEmailService() {
-        return emailService;
     }
 }

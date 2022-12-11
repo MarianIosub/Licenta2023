@@ -157,7 +157,6 @@
         <constructor-arg name="registerFormUserConverter" ref="converter"/>
         <constructor-arg name="userUpdateProfileFormConverter" ref="converter"/>
         <constructor-arg name="bCryptPasswordEncoder" ref="bCrypt"/>
-        <constructor-arg name="emailService" ref="defaultEmailService"/>
     </bean>
 
     <alias name="defaultRestaurantService" alias="restaurantService"/>

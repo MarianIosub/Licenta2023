@@ -12,9 +12,9 @@
         <intercept-url pattern="/register" access="!isAuthenticated()"/>
         <intercept-url pattern="/updateProfile" access="isAuthenticated()"/>
         <!--        <intercept-url pattern="/restaurant/create" access="hasRole('ROLE_ADMIN')"/>-->
-<!--        TODO stripe api for pay           -->
-<!--        https://stripe.com/docs/api       -->
-<!--        TODO: SAAS                        -->
+        <!--        TODO stripe api for pay           -->
+        <!--        https://stripe.com/docs/api       -->
+        <!--        TODO: SAAS                        -->
         <form-login
                 login-page="/login"
                 default-target-url="/"

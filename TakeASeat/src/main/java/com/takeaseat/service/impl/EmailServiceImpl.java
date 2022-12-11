@@ -17,7 +17,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendWelcomeEmail(User user) {
+    public void sendWelcomeEmail(final User user) {
         SimpleMailMessage message = getEmailComposer().composeWelcomeMessage(user);
         getMailSender().send(message);
     }

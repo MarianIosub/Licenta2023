@@ -28,7 +28,8 @@ public class RestaurantServiceImpl implements RestaurantService {
     private final MenuItemDao menuItemDao;
 
     public RestaurantServiceImpl(final RestaurantDao restaurantDao, final UserService userService,
-                                 final Converter<CreateRestaurantForm, Restaurant> createRestaurantFormRestaurantConverter, MenuItemDao menuItemDao) {
+                                 final Converter<CreateRestaurantForm, Restaurant> createRestaurantFormRestaurantConverter,
+                                 final MenuItemDao menuItemDao) {
         this.restaurantDao = restaurantDao;
         this.userService = userService;
         this.createRestaurantFormRestaurantConverter = createRestaurantFormRestaurantConverter;
@@ -70,7 +71,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<MenuItem> searchForMenuItems(String searchedItem) {
+    public List<MenuItem> searchForMenuItems(final String searchedItem) {
         List<MenuItem> menuItems = getCurrentUserRestaurant().getMenuItems();
 
         return menuItems.stream()

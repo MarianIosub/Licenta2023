@@ -12,7 +12,7 @@ public class EmailComposerImpl implements EmailComposer {
         message.setFrom("noreply@takeAsEAT.com");
         message.setTo(user.getMail());
         message.setSubject("Welcome to TakeAsEAT, " + user.getName() + " " + user.getSurname() + " :)");
-        message.setText("Dear " + user.getName() + ",\n\nYour account on TakeAsEAT has been created successfully, from now you can use our application!\n\n\nThank you,\nTakeAsEAT TEAM");
+        message.setText("Dear " + user.getName() + ",\n\nYour account on TakeAsEAT has been created successfully, from now you can use our services!\n\n\nThank you,\nTakeAsEAT TEAM");
         return message;
     }
 }

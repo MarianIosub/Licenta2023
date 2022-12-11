@@ -26,6 +26,7 @@ public class CreateRestaurantFormValidator implements Validator {
         return CreateRestaurantForm.class.equals(clazz);
     }
 
+    //TODO complete validation
     @Override
     public void validate(Object target, Errors errors) {
         CreateRestaurantForm form = (CreateRestaurantForm) target;

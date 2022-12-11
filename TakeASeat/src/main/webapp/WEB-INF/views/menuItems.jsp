@@ -13,7 +13,7 @@
     </c:if>
     <div class="menu-items-list">
         <c:forEach items="${menuItems}" var="menuItem">
-            <div class="menu-item">
+            <div class="menu-item" id="menuItem${menuItem.id}">
                 <div class="menu-item-photo">
                     <img src="data:image/jpeg;base64,${menuItem.photoLink}" alt="">
                 </div>
