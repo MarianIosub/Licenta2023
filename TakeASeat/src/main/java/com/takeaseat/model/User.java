@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import java.time.LocalDateTime;
 
 import static com.takeaseat.constants.StringConstants.USERS;
@@ -51,11 +50,11 @@ public class User {
 
     private LocalDateTime lastLoginDate;
 
-    public void setLastLoginDate(LocalDateTime lastLoginDate) {
-        this.lastLoginDate = lastLoginDate;
-    }
-
     public LocalDateTime getLastLoginDate() {
         return lastLoginDate;
+    }
+
+    public void setLastLoginDate(LocalDateTime lastLoginDate) {
+        this.lastLoginDate = lastLoginDate;
     }
 }
