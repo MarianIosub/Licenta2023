@@ -11,7 +11,5 @@ function searchMenuItemByInput(searchedItem) {
 function searchForMenuItem() {
     let menuItemSearch = document.getElementById("menu-items-search");
     let searchedItem = menuItemSearch.value;
-    if (searchedItem !== '') {
-        searchMenuItemByInput(searchedItem);
-    }
+    searchMenuItemByInput(searchedItem);
 }

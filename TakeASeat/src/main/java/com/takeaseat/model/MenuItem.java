@@ -34,10 +34,11 @@ public class MenuItem {
     @NonNull
     private String name;
     @NonNull
-    private String photoLink;
-    @NonNull
     @Column(columnDefinition = "TEXT")
     private String ingredients;
     @NonNull
     private Double price;
+    @NonNull
+    @Column(columnDefinition = "LONGBLOB")
+    private String photoLink;
 }

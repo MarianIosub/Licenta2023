@@ -49,3 +49,161 @@
     flex-direction: column;
     align-items: center;
 }
+
+.menu-item-search {
+    margin-top: 40px;
+    margin-right: 35%;
+    margin-left: 35%;
+}
+
+.manage-restaurant-header {
+    display: flex;
+    margin-left: 8%;
+    margin-right: 8%;
+    text-align: center;
+}
+
+.menu-items-helpers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    margin-top: 2rem;
+}
+
+.menu-item-form-title {
+    font-size: 1.8em;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+.menu-items-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1px;
+}
+
+.menu-item {
+    flex: 0 0 25%;
+    position: relative;
+    background: #fff;
+    max-width: 325px;
+    width: 325px;
+    height: auto;
+    margin: 25px;
+    box-shadow: 0 5px 25px rgb(1 1 1);
+    border-radius: 2.25rem;
+    overflow: hidden;
+    transition: all .5s;
+}
+
+.menu-item:hover {
+    box-shadow: 0 5px 25px rgb(1 1 1);
+    transform: scale(1.05);
+}
+
+.menu-item-photo {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.menu-item-photo img {
+    max-width: 100%;
+    max-height: 50%;
+}
+
+.menu-item-info {
+    position: relative;
+    color: #222;
+    padding: 10px 20px 20px;
+}
+
+.menu-item-name {
+    font-size: 1.8em;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.menu-item-ingredients {
+    font-size: 1em;
+    margin-bottom: 5px;
+}
+
+.menu-item-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.menu-item-price {
+    font-weight: bold;
+    margin-top: 0.7rem;
+}
+
+.menu-item-search-label {
+    font-size: 1.4em;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 0.8rem;
+}
+
+.restaurant-presentation {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    position: relative;
+    background: #fff;
+    height: 21rem;
+    margin: 25px;
+    box-shadow: 0 5px 25px rgb(1 1 1);
+    border-radius: 2.25rem;
+    overflow: hidden;
+    transition: all .5s;
+}
+
+.restaurant-middle-section {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+}
+
+.restaurant-phone-number {
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-address {
+    display: flex;
+    flex-direction: column;
+}
+
+.restaurant-name {
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 1.6rem;
+    margin-top: 0.3rem;
+}
+
+.restaurant-address{
+    font-size: 1.3em;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.restaurant-phone-number {
+    font-size: 1.3em;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.restaurant-description {
+    font-size: 0.95em;
+    font-weight: 700;
+    margin: 0 1rem;
+}
+
+.add-menu-item-form{
+    transition: all .5s;
+}

@@ -6,6 +6,7 @@ import com.takeaseat.model.MenuItem;
 import com.takeaseat.service.RestaurantService;
 import com.takeaseat.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,19 +14,22 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM;
-import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM_SEARCH;
 import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
 import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_ADDED_MESSAGE;
@@ -99,9 +103,13 @@ public class RestaurantController {
     }
 
 
-    @RequestMapping(value = MENU_ITEM, method = RequestMethod.POST)
-    public String addMenuItemToRestaurant(HttpServletRequest request, Model model) {
-        final MenuItem menuItem = createMenuItemFromRequest(request);
+    @RequestMapping(value = MENU_ITEM, method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public String addMenuItemToRestaurant(@RequestParam(value = NAME) String name,
+                                          @RequestParam(value = INGREDIENTS) String ingredients,
+                                          @RequestParam(value = PRICE) String price,
+                                          @RequestParam(value = PHOTO_LINK) MultipartFile photo,
+                                          Model model) throws IOException {
+        final MenuItem menuItem = createMenuItemFromRequest(name, ingredients, price, photo);
 
         final List<MenuItem> menuItems = getRestaurantService().addMenuItemToRestaurant(restaurantService.getCurrentUserRestaurant(), menuItem);
 
@@ -112,17 +120,16 @@ public class RestaurantController {
     }
 
     @RequestMapping(value = MENU_ITEM, method = RequestMethod.GET)
-    public String searchForMenuItems(@RequestParam(value = SEARCHED_ITEM) String searchedItem, Model model){
+    public String searchForMenuItems(@RequestParam(value = SEARCHED_ITEM) String searchedItem, Model model) {
         final List<MenuItem> menuItems = getRestaurantService().searchForMenuItems(searchedItem);
-
         model.addAttribute(MENU_ITEMS, menuItems);
 
         return MENU_ITEMS;
     }
 
-    private MenuItem createMenuItemFromRequest(HttpServletRequest request) {
-        return new MenuItem(request.getParameter(NAME), request.getParameter(PHOTO_LINK), request.getParameter(INGREDIENTS),
-                Double.valueOf(request.getParameter(PRICE)));
+    private MenuItem createMenuItemFromRequest(String name, String ingredients, String price, MultipartFile photo) throws IOException {
+        byte[] encodeBase64 = Base64.getEncoder().encode(photo.getBytes());
+        return new MenuItem(name, ingredients, Double.valueOf(price), new String(encodeBase64, StandardCharsets.UTF_8));
     }
 
     protected UserService getUserService() {

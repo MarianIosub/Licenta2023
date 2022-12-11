@@ -82,7 +82,7 @@
                         <form:select required="required" path="role">
                             <option value="" selected disabled hidden>Click me!</option>
                             <option value="ROLE_FOOD_LOVER">Food lover</option>
-                            <option value="ROLE_ADMIN">Administrator</option>
+                            <option value="ROLE_ADMINISTRATOR">Administrator</option>
                         </form:select>
                         <form:errors path="role" class="help is-danger"/>
                     </div>

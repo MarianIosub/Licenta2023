@@ -74,7 +74,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<MenuItem> menuItems = getCurrentUserRestaurant().getMenuItems();
 
         return menuItems.stream()
-                .filter(menuItem -> menuItem.getName().contains(searchedItem))
+                .filter(menuItem -> menuItem.getName().toLowerCase().contains(searchedItem.toLowerCase()))
                 .collect(Collectors.toList());
     }
 

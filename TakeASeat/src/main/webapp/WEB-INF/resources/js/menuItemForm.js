@@ -44,10 +44,12 @@ function hideMenuItemError() {
 }
 
 function postForm() {
-    let formData = $('#menu-item__form').serialize();
+    let formData = document.getElementById('menu-item__form');
     $.ajax({
         type: "POST",
-        data: formData,
+        data: new FormData(formData),
+        processData: false,
+        contentType: false,
         url: "/restaurant/menu-item",
     }).then(function (response) {
         $('#menuItems').html(response);
