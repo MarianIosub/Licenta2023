@@ -29,9 +29,9 @@ public interface StringConstants {
     String DESCRIPTION = "description";
     String ADDRESS = "address";
     String PRICE_REQUIRED = "priceRequired";
-    String UPDATE_PROFILE_DTO = "updateProfileDto";
     String LOGOUT = "logout";
     String SEARCHED_ITEM = "searchedItem";
+    String MENU_ITEM_ID = "menuItemId";
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";

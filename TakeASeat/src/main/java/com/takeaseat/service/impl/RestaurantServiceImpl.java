@@ -79,6 +79,31 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void changeMenuItemAvailability(Long menuItemId) {
+        Restaurant restaurant = getCurrentUserRestaurant();
+
+        restaurant.getMenuItems().stream()
+                .filter(menuItem -> menuItem.getId().equals(menuItemId))
+                .forEach(menuItem -> menuItem.setAvailable(!menuItem.isAvailable()));
+
+        getRestaurantDao().update(restaurant);
+    }
+
+    @Override
+    public void deleteMenuItem(Long menuItemId) {
+        Restaurant restaurant = getCurrentUserRestaurant();
+
+        restaurant.getMenuItems().stream()
+                .filter(menuItem -> menuItem.getId().equals(menuItemId))
+                .findFirst()
+                .ifPresent(menuItem -> {
+                    restaurant.getMenuItems().remove(menuItem);
+                    getRestaurantDao().update(restaurant);
+                });
+
+    }
+
     private void addMenuItemToRestaurantList(Restaurant restaurant, MenuItem menuItem) {
         restaurant.getMenuItems().add(menuItem);
     }

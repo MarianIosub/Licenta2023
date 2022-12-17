@@ -17,4 +17,8 @@ public interface RestaurantService {
     List<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem);
 
     List<MenuItem> searchForMenuItems(final String searchedItem);
+
+    void changeMenuItemAvailability(Long menuItemId);
+
+    void deleteMenuItem(Long menuItemId);
 }

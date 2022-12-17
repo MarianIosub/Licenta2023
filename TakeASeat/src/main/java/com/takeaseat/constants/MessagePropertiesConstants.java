@@ -21,4 +21,6 @@ public interface MessagePropertiesConstants {
     String RESTAURANT_NOT_CREATED_MESSAGE = "Restaurant.NotCreated";
     String RESTAURANT_ALREADY_CREATED_MESSAGE = "Restaurant.AlreadyCreated";
     String MENU_ITEM_ADDED_MESSAGE = "MenuItem.Added";
+    String MENU_ITEM_AVAILABILITY_MESSAGE = "MenuItem.Availability";
+    String MENU_ITEM_DELETED_MESSAGE = "MenuItem.Deleted";
 }

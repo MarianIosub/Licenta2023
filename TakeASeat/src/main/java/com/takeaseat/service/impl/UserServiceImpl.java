@@ -6,7 +6,6 @@ import com.takeaseat.converter.Converter;
 import com.takeaseat.dao.UserDao;
 import com.takeaseat.model.User;
 import com.takeaseat.security.MyUserPrincipal;
-import com.takeaseat.service.EmailService;
 import com.takeaseat.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;

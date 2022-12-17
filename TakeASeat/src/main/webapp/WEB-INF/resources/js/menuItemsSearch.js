@@ -13,3 +13,8 @@ function searchForMenuItem() {
     let searchedItem = menuItemSearch.value;
     searchMenuItemByInput(searchedItem);
 }
+
+function scrollForMenuItems() {
+    let menuItemSearchLabel = document.getElementById("menu-item-search-label");
+    menuItemSearchLabel.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+}

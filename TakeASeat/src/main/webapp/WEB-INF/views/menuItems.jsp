@@ -13,15 +13,42 @@
     </c:if>
     <div class="menu-items-list">
         <c:forEach items="${menuItems}" var="menuItem">
-            <div class="menu-item" id="menuItem${menuItem.id}">
+            <div class="menu-item" id="menuItem-${menuItem.id}" onmouseover="displayManageButtons(this.id)"
+                 onmouseleave="hideManageButton(this.id)">
                 <div class="menu-item-photo">
                     <img src="data:image/jpeg;base64,${menuItem.photoLink}" alt="">
                 </div>
-                <div class="menu-item-info">
-                    <p class="menu-item-name">${menuItem.name}</p>
-                    <p class="menu-item-ingredients"><strong>Ingredients: </strong>${menuItem.ingredients}</p>
-                    <div class="menu-item-footer">
-                        <p class="menu-item-price"><strong>Price: </strong> ${menuItem.price} RON</p>
+                <div class="menu-item-content">
+                    <div class="menu-item-info">
+                        <p class="menu-item-name">${menuItem.name}</p>
+                        <p class="menu-item-ingredients"><strong>Ingredients: </strong>${menuItem.ingredients}</p>
+                        <div class="menu-item-footer">
+                            <p class="menu-item-price"><strong>Price: </strong> ${menuItem.price} RON</p>
+                        </div>
+                    </div>
+                    <div class="menu-item-manage is-hidden">
+                        <div class="menu-item-buttons">
+                            <c:choose>
+                                <c:when test="${not menuItem.available}">
+                                    <button id="available-${menuItem.id}"
+                                            class="button is-small is-responsive is-success"
+                                            onclick="changeMenuItemAvailability(this.id)">
+                                        Available
+                                    </button>
+                                </c:when>
+                                <c:otherwise>
+                                    <button id="unavailable-${menuItem.id}"
+                                            onclick="changeMenuItemAvailability(this.id)"
+                                            class="button is-small is-responsive is-warning">
+                                        Unavailable
+                                    </button>
+                                </c:otherwise>
+                            </c:choose>
+                            <button id="delete-${menuItem.id}" onclick="deleteMenuItem(this.id)"
+                                    class="button is-small is-responsive is-danger">
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,9 +29,13 @@ import java.util.List;
 import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM;
+import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM_AVAILABILITY;
+import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM_DELETE;
 import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
 import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_ADDED_MESSAGE;
+import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_AVAILABILITY_MESSAGE;
+import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_DELETED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_ALREADY_CREATED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_NOT_CREATED_MESSAGE;
 import static com.takeaseat.constants.StringConstants.CREATE_RESTAURANT_FORM;
@@ -39,6 +44,7 @@ import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
 import static com.takeaseat.constants.StringConstants.INGREDIENTS;
 import static com.takeaseat.constants.StringConstants.MENU_ITEMS;
 import static com.takeaseat.constants.StringConstants.MENU_ITEM_ADDED;
+import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID;
 import static com.takeaseat.constants.StringConstants.NAME;
 import static com.takeaseat.constants.StringConstants.PHOTO_LINK;
 import static com.takeaseat.constants.StringConstants.PRICE;
@@ -122,6 +128,25 @@ public class RestaurantController {
         final List<MenuItem> menuItems = getRestaurantService().searchForMenuItems(searchedItem);
         model.addAttribute(MENU_ITEMS, menuItems);
 
+        return MENU_ITEMS;
+    }
+
+    @RequestMapping(value = MENU_ITEM_AVAILABILITY, method = RequestMethod.POST)
+    public String changeMenuItemAvailability(@PathVariable(value = MENU_ITEM_ID) String menuItem, Model model) {
+        getRestaurantService().changeMenuItemAvailability(Long.parseLong(menuItem));
+
+        model.addAttribute(MENU_ITEMS, getRestaurantService().getCurrentUserRestaurant().getMenuItems());
+
+        model.addAttribute(MENU_ITEM_ADDED, MENU_ITEM_AVAILABILITY_MESSAGE);
+        return MENU_ITEMS;
+    }
+
+    @RequestMapping(value = MENU_ITEM_DELETE, method = RequestMethod.POST)
+    public String deleteMenuItem(@PathVariable(value = MENU_ITEM_ID) String menuItem, Model model) {
+        getRestaurantService().deleteMenuItem(Long.parseLong(menuItem));
+
+        model.addAttribute(MENU_ITEMS, getRestaurantService().getCurrentUserRestaurant().getMenuItems());
+        model.addAttribute(MENU_ITEM_ADDED, MENU_ITEM_DELETED_MESSAGE);
         return MENU_ITEMS;
     }
 

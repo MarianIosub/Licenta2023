@@ -41,4 +41,29 @@ public class MenuItem {
     @NonNull
     @Column(columnDefinition = "LONGBLOB")
     private String photoLink;
+    private boolean available = true;
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getIngredients() {
+        return ingredients;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getPhotoLink() {
+        return photoLink;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
 }

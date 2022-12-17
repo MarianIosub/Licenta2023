@@ -9,25 +9,41 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Take a sEAT - Home</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <script
-            src="https://code.jquery.com/jquery-3.6.0.min.js"
-            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-            crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.0/gsap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
+    <link rel="stylesheet" href="../resources/css/error.css">
+    <script src="../resources/js/error.js"></script>
 </head>
 <body>
-<st:header/>
-<section class="section">
-    <div class="container">
-        <h1 class="title">
-            Hello World
-        </h1>
-        <p class="subtitle">
-            This is 404 page!
-        </p>
+<div class="container">
+    <h1 class="first-four">4</h1>
+    <div class="cog-wheel1">
+        <div class="cog1">
+            <div class="top"></div>
+            <div class="down"></div>
+            <div class="left-top"></div>
+            <div class="left-down"></div>
+            <div class="right-top"></div>
+            <div class="right-down"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
     </div>
-</section>
-<st:footer/>
+
+    <div class="cog-wheel2">
+        <div class="cog2">
+            <div class="top"></div>
+            <div class="down"></div>
+            <div class="left-top"></div>
+            <div class="left-down"></div>
+            <div class="right-top"></div>
+            <div class="right-down"></div>
+            <div class="left"></div>
+            <div class="right"></div>
+        </div>
+    </div>
+    <h1 class="second-four">4</h1>
+    <p class="wrong-para">Uh Oh! Page not found!</p>
+</div>
 </body>
 </html>

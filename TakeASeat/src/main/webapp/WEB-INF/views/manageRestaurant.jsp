@@ -20,6 +20,7 @@
     ></script>
     <script src="../resources/js/menuItemForm.js"></script>
     <script src="../resources/js/menuItemsSearch.js"></script>
+    <script src="../resources/js/menuItemsManage.js"></script>
 </head>
 <body>
 <c:set var="restaurant" value="${currentRestaurant}"/>
@@ -117,11 +118,11 @@
 <section>
     <div class="container">
         <div class="menu-item-search">
-            <h1 class="menu-item-search-label">Search for your menu items &darr;</h1>
+            <h1 id="menu-item-search-label" class="menu-item-search-label">Search for your menu items &darr;</h1>
             <label title="Menu Item name: ">
                 <input class="input" type="text"
                        placeholder="Search.."
-                       id="menu-items-search" onkeyup="searchForMenuItem()"/>
+                       id="menu-items-search" onkeyup="searchForMenuItem()" onclick="scrollForMenuItems()"/>
             </label>
         </div>
     </div>
