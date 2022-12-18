@@ -31,7 +31,10 @@ function changeMenuItemAvailability(id) {
 function deleteMenuItem(id) {
     let menuItemId = id.split('-')[1];
     let menuItemSearch = document.getElementById("menu-items-search");
+    setTimeout(sendDeleteCall(menuItemSearch, menuItemId), 2000);
+}
 
+function sendDeleteCall(menuItemSearch, menuItemId) {
     $.ajax({
         type: "POST",
         processData: false,

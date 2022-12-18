@@ -40,6 +40,9 @@ public class Restaurant {
     private User administrator;
 
     @NonNull
+    @Column(columnDefinition = "LONGBLOB")
+    private String image;
+    @NonNull
     private String name;
     @NonNull
     @Column(columnDefinition = "TEXT")

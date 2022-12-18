@@ -84,7 +84,7 @@ public class RestaurantController {
     //TODO to validate the form
     @RequestMapping(value = CREATE_RESTAURANT_ENDPOINT, method = RequestMethod.POST)
     public String createRestaurant(@ModelAttribute(CREATE_RESTAURANT_FORM) @Validated CreateRestaurantForm createRestaurantForm,
-                                   BindingResult bindingResult) {
+                                   BindingResult bindingResult) throws IOException {
         if (bindingResult.hasErrors()) {
             return CREATE_RESTAURANT_PAGE;
         }

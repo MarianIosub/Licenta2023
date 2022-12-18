@@ -27,38 +27,47 @@
      class="form-modal__create-restaurant is-flex is-flex-direction-column is-align-items-center is-align-content-space-between">
     <h3 class="title">Create your <strong>Take a sEAT!</strong> restaurant profile:</h3>
     <form:form method="POST" action="${createRestaurantUrl}" modelAttribute="createRestaurantForm"
-               cssClass="create-restaurant__form">
-        <div class="field is-horizontal">
-            <div class="field-body">
-                <spring:bind path="name">
-                    <div class="field-label">
-                        <form:label class="label" path="name">Name</form:label>
-                    </div>
-                    <div class="control">
-                        <form:input name="name" class="input" type="text" placeholder="Name" path="name"
-                                    required="required"/>
-                    </div>
-                </spring:bind>
-            </div>
-            <div class="field-body">
-                <spring:bind path="phoneNumber">
-                    <div class="field-label">
-                        <form:label class="label" path="phoneNumber">Phone Number</form:label>
-                    </div>
-                    <div class="control">
-                        <form:input name="phoneNumber" class="input" type="number" placeholder="Phone Number"
-                                    path="phoneNumber"
-                                    required="required"/>
-                    </div>
-                </spring:bind>
-            </div>
+               cssClass="create-restaurant__form" enctype="multipart/form-data">
+        <div class="field-body">
             <spring:bind path="name">
-                <form:errors path="name" class="help is-danger"/>
-            </spring:bind>
-            <spring:bind path="phoneNumber">
-                <form:errors path="phoneNumber" class="help is-danger"/>
+                <div class="field-label">
+                    <form:label class="label" path="name">Name</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="name" class="input" type="text" placeholder="Name" path="name"
+                                required="required"/>
+                </div>
             </spring:bind>
         </div>
+        <div class="field-body">
+            <spring:bind path="photo">
+                <div class="field-label">
+                    <form:label class="label" path="photo">Photo</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="photo" class="input" type="file" placeholder="Photo" path="photo"
+                                required="required"/>
+                </div>
+            </spring:bind>
+        </div>
+        <div class="field-body">
+            <spring:bind path="phoneNumber">
+                <div class="field-label">
+                    <form:label class="label" path="phoneNumber">Phone Number</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="phoneNumber" class="input" type="number" placeholder="Phone Number"
+                                path="phoneNumber"
+                                required="required"/>
+                </div>
+            </spring:bind>
+        </div>
+        <spring:bind path="name">
+            <form:errors path="name" class="help is-danger"/>
+        </spring:bind>
+        <spring:bind path="phoneNumber">
+            <form:errors path="phoneNumber" class="help is-danger"/>
+        </spring:bind>
         <spring:bind path="description">
             <div class="field is-flex is-flex-direction-column restaurant__description">
                 <div class="is-spaced">
@@ -75,47 +84,45 @@
                 </div>
             </div>
         </spring:bind>
-        <div class="field is-horizontal">
-            <div class="field-body">
-                <spring:bind path="mail">
-                    <div class="field-label">
-                        <form:label class="label" path="mail">Email</form:label>
-                    </div>
-                    <div class="control">
-                        <form:input name="mail" class="input" type="email" placeholder="Email" path="mail"
-                                    required="required"/>
-                    </div>
-                </spring:bind>
-            </div>
-            <div class="field-body">
-                <spring:bind path="city">
-                    <div class="field-label">
-                        <form:label class="label" path="city">City</form:label>
-                    </div>
-                    <div class="control">
-                        <form:input name="city" class="input" type="text" placeholder="City" path="city"
-                                    required="required"/>
-                    </div>
-                </spring:bind>
-            </div>
-            <div class="field-body">
-                <spring:bind path="address">
-                    <div class="field-label">
-                        <form:label class="label" path="address">Address</form:label>
-                    </div>
-                    <div class="control">
-                        <form:input name="phoneNumber" class="input" type="text" placeholder="Address"
-                                    path="address" required="required"/>
-                    </div>
-                </spring:bind>
-            </div>
+        <div class="field-body">
             <spring:bind path="mail">
-                <form:errors path="mail" class="help is-danger"/>
-            </spring:bind>
-            <spring:bind path="address">
-                <form:errors path="address" class="help is-danger"/>
+                <div class="field-label">
+                    <form:label class="label" path="mail">Email</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="mail" class="input" type="email" placeholder="Email" path="mail"
+                                required="required"/>
+                </div>
             </spring:bind>
         </div>
+        <div class="field-body">
+            <spring:bind path="city">
+                <div class="field-label">
+                    <form:label class="label" path="city">City</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="city" class="input" type="text" placeholder="City" path="city"
+                                required="required"/>
+                </div>
+            </spring:bind>
+        </div>
+        <div class="field-body">
+            <spring:bind path="address">
+                <div class="field-label">
+                    <form:label class="label" path="address">Address</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="phoneNumber" class="input" type="text" placeholder="Address"
+                                path="address" required="required"/>
+                </div>
+            </spring:bind>
+        </div>
+        <spring:bind path="mail">
+            <form:errors path="mail" class="help is-danger"/>
+        </spring:bind>
+        <spring:bind path="address">
+            <form:errors path="address" class="help is-danger"/>
+        </spring:bind>
         <div class="field is-horizontal is-align-content-space-between">
             <div class="field-body">
                 <spring:bind path="openingHour">
@@ -141,7 +148,7 @@
                     <div class="field-label">
                         <form:label class="label" path="closingHour">Close:</form:label>
                     </div>
-                    <div class="select ">
+                    <div class="select">
                         <form:select name="closingHour" class="select is-fullwidth" placeholder="Closing Hour"
                                      path="closingHour" required="required">
                             <form:option value="19.00">19:00</form:option>
@@ -154,32 +161,32 @@
                     </div>
                 </spring:bind>
             </div>
-            <div class="field-body">
-                <spring:bind path="priceRequired">
-                    <div class="field-label">
-                        <form:label class="label" path="priceRequired">Price</form:label>
-                    </div>
-                    <div class="control">
-                        <form:input name="priceRequired" class="input" placeholder="0.00"
-                                    path="priceRequired" required="required" type="number"/>
-                    </div>
-                    <p class="control">
-                        <a class="button is-static">
-                            RON
-                        </a>
-                    </p>
-                </spring:bind>
-            </div>
-            <spring:bind path="openingHour">
-                <form:errors path="openingHour" class="help is-danger"/>
-            </spring:bind>
-            <spring:bind path="closingHour">
-                <form:errors path="closingHour" class="help is-danger"/>
-            </spring:bind>
+        </div>
+        <div class="field-body">
             <spring:bind path="priceRequired">
-                <form:errors path="priceRequired" class="help is-danger"/>
+                <div class="field-label">
+                    <form:label class="label" path="priceRequired">Price</form:label>
+                </div>
+                <div class="field-body">
+                    <form:input name="priceRequired" class="input" placeholder="0.00"
+                                path="priceRequired" required="required" type="number"/>
+                </div>
+                <p class="control">
+                    <a class="button is-static">
+                        RON
+                    </a>
+                </p>
             </spring:bind>
         </div>
+        <spring:bind path="openingHour">
+            <form:errors path="openingHour" class="help is-danger"/>
+        </spring:bind>
+        <spring:bind path="closingHour">
+            <form:errors path="closingHour" class="help is-danger"/>
+        </spring:bind>
+        <spring:bind path="priceRequired">
+            <form:errors path="priceRequired" class="help is-danger"/>
+        </spring:bind>
 
         <div class="field is-grouped is-grouped-centered">
             <div class="control">

@@ -13,6 +13,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.NoResultException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,9 +40,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public void saveRestaurant(final CreateRestaurantForm createRestaurantForm) {
+    public void saveRestaurant(final CreateRestaurantForm createRestaurantForm) throws IOException {
         Restaurant restaurant = getCreateRestaurantFormRestaurantConverter().convert(createRestaurantForm, Restaurant.class);
         restaurant.setAdministrator(getUserService().getCurrentUser());
+        restaurant.setImage(new String(Base64.getEncoder().encode(
+                createRestaurantForm.getPhoto().getBytes()), StandardCharsets.UTF_8));
 
         getRestaurantDao().save(restaurant);
     }

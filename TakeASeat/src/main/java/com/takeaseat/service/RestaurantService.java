@@ -4,11 +4,12 @@ import com.takeaseat.controller.form.CreateRestaurantForm;
 import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Restaurant;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface RestaurantService {
 
-    void saveRestaurant(final CreateRestaurantForm createRestaurantForm);
+    void saveRestaurant(final CreateRestaurantForm createRestaurantForm) throws IOException;
 
     boolean hasCurrentUserRestaurantCreated();
 

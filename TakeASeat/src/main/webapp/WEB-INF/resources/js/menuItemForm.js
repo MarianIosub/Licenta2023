@@ -1,7 +1,6 @@
 function changeMenuItemFormVisibility() {
     let form = document.getElementById("add-food__form");
     if (form.classList.contains("is-hidden")) {
-        window.open("http://localhost:8080/restaurant/manage", null, "height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
         displayForm(form);
     } else {
         createMenuItemOrHideForm(form);

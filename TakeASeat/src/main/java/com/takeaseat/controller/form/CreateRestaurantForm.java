@@ -1,9 +1,12 @@
 package com.takeaseat.controller.form;
 
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class CreateRestaurantForm {
 
     public String name;
+    public MultipartFile photo;
     public String description;
     public String city;
     public String address;
@@ -83,5 +86,13 @@ public class CreateRestaurantForm {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public MultipartFile getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(MultipartFile photo) {
+        this.photo = photo;
     }
 }

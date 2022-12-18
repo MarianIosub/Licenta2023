@@ -14,7 +14,11 @@
 }
 
 .create-restaurant__form {
-    width: 700px;
+    width: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 600px;
 }
 
 .flash-message {
