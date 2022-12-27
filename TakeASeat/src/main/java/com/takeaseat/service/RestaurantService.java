@@ -22,4 +22,10 @@ public interface RestaurantService {
     void changeMenuItemAvailability(Long menuItemId);
 
     void deleteMenuItem(Long menuItemId);
+
+    List<Restaurant> getAllRestaurants();
+
+    List<Restaurant> searchForRestaurant(String searchedItem, String sortOption);
+
+    Restaurant getRestaurantById(String restaurantId);
 }

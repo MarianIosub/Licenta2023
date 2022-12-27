@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -107,6 +108,40 @@ public class RestaurantServiceImpl implements RestaurantService {
                     getRestaurantDao().update(restaurant);
                 });
 
+    }
+
+    @Override
+    public List<Restaurant> getAllRestaurants() {
+        return getRestaurantDao().findAll();
+    }
+
+    @Override
+    public List<Restaurant> searchForRestaurant(String searchedItem, String sortOption) {
+        List<Restaurant> searchedRestaurants = getAllRestaurants().stream()
+                .filter(r -> r.getName().toLowerCase().contains(searchedItem.toLowerCase()))
+                .collect(Collectors.toList());
+
+        if (sortOption == null) {
+            return searchedRestaurants;
+        }
+
+        switch (sortOption) {
+            case "ALPHABETICAL":
+                searchedRestaurants.sort((Comparator.comparing(Restaurant::getName)));
+                break;
+            case "INVERSE":
+                searchedRestaurants.sort((Comparator.comparing(Restaurant::getName)));
+                Collections.reverse(searchedRestaurants);
+                break;
+            default:
+                break;
+        }
+        return searchedRestaurants;
+    }
+
+    @Override
+    public Restaurant getRestaurantById(String restaurantId) {
+        return getRestaurantDao().findById(Long.parseLong(restaurantId));
     }
 
     private void addMenuItemToRestaurantList(Restaurant restaurant, MenuItem menuItem) {

@@ -6,7 +6,7 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a class="navbar-item" href="<c:url value="/"/>">
-            <img src="../resources/assets/logo.png" width="40" height="40">
+            <img src="../resources/assets/logo.png" width="40" height="40" alt="Logo">
         </a>
 
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -28,31 +28,11 @@
                     </a>
                 </c:when>
                 <c:otherwise>
-                    <a class="navbar-item" href="<c:url value="/"/> ">
+                    <a class="navbar-item" href="<c:url value="/restaurant/all"/> ">
                         Restaurants
                     </a>
                 </c:otherwise>
             </c:choose>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    More
-                </a>
-                <div class="navbar-dropdown">
-                    <a class="navbar-item">
-                        About
-                    </a>
-                    <a class="navbar-item">
-                        Jobs
-                    </a>
-                    <a class="navbar-item">
-                        Contact
-                    </a>
-                    <hr class="navbar-divider">
-                    <a class="navbar-item">
-                        Report an issue
-                    </a>
-                </div>
-            </div>
         </div>
 
         <div class="navbar-end">

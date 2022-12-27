@@ -237,3 +237,113 @@
     width: 80%;
     height: 100%;
 }
+
+.restaurants-header {
+    background-image: url('../assets/restaurants.jpeg');
+    height: 450px;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restaurants-title {
+    font-size: 3em;
+    font-weight: 900;
+    margin-top: 5.3rem;
+    color: #00d1b2;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+}
+
+.restaurants-search-input {
+    margin-top: 7rem;
+    width: 20rem;
+    height: 4rem;
+    border-radius: 10rem;
+    font-size: 1.5rem;
+    color: #00d1b2;
+    border: 3px solid;
+    font-weight: 400;
+    text-align: center;
+    transition: width 1s, font-weight 1s, border 1s;
+}
+
+.restaurants-search-input:focus {
+    width: 30rem;
+    border: 5px solid;
+    font-weight: 600;
+}
+
+.restaurants-manager {
+    height: 3rem;
+    margin-top: 2rem;
+}
+
+.restaurants-list{
+    margin-bottom: 5rem;
+}
+
+.restaurant-list-display {
+    display: flex;
+    height: 15rem;
+    margin-top: 3.5rem;
+    box-shadow: 0 5px 25px rgb(1 1 1);
+    border-radius: 2.25rem;
+    overflow: hidden;
+    transition: all .5s;
+}
+
+.restaurant-list-image {
+    width: 25%;
+}
+
+.restaurant-list-infos {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2rem;
+    align-items: center;
+    width: 70%;
+}
+
+.restaurant-list-name{
+    font-size: 2.5em;
+    font-weight: 800;
+    margin-bottom: 5px;
+}
+
+.restaurant-list-contact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restaurant-list-infos_first{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+    width: 200%;
+}
+
+.restaurant-list-program{
+    margin-top: 1rem;
+}
+
+.restaurant-list-price{
+    margin-top: 1rem;
+}
+
+.restaurant-list-redirect{
+    background: #00d1b2;
+    width: 10%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.restaurant-list-redirect div{
+    font-size: 2.5em;
+    font-weight: 800;
+}

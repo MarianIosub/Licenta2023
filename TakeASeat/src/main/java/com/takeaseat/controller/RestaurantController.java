@@ -3,6 +3,7 @@ package com.takeaseat.controller;
 import com.takeaseat.controller.form.CreateRestaurantForm;
 import com.takeaseat.controller.validator.CreateRestaurantFormValidator;
 import com.takeaseat.model.MenuItem;
+import com.takeaseat.model.Restaurant;
 import com.takeaseat.service.RestaurantService;
 import com.takeaseat.service.UserService;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
 
+import static com.takeaseat.constants.EndpointsConstants.ALL;
 import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM;
@@ -48,9 +50,14 @@ import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID;
 import static com.takeaseat.constants.StringConstants.NAME;
 import static com.takeaseat.constants.StringConstants.PHOTO_LINK;
 import static com.takeaseat.constants.StringConstants.PRICE;
+import static com.takeaseat.constants.StringConstants.RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.SEARCHED_ITEM;
+import static com.takeaseat.constants.StringConstants.SORT_OPTION;
 import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
 import static com.takeaseat.constants.ViewsConstants.MANAGE_RESTAURANT_PAGE;
+import static com.takeaseat.constants.ViewsConstants.RESTAURANTS_LIST;
+import static com.takeaseat.constants.ViewsConstants.RESTAURANTS_PAGE;
+import static com.takeaseat.constants.ViewsConstants.RESTAURANT_PAGE;
 import static com.takeaseat.helper.CreateEndpointHelper.createEndpoint;
 
 @Controller
@@ -67,6 +74,31 @@ public class RestaurantController {
         binder.setValidator(getCreateRestaurantFormValidator());
     }
 
+    @RequestMapping(value = ALL, method = RequestMethod.GET)
+    public String getRestaurantPage(Model model) {
+        model.addAttribute(RESTAURANTS, getRestaurantService().getAllRestaurants());
+
+        return RESTAURANTS_PAGE;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String searchForRestaurant(@RequestParam(value = SEARCHED_ITEM) String searchedItem,
+                                      @RequestParam(value = SORT_OPTION, required = false) String sortOption,
+                                      Model model) {
+        final List<Restaurant> restaurants = getRestaurantService().searchForRestaurant(searchedItem, sortOption);
+        model.addAttribute(RESTAURANTS, restaurants);
+
+        return RESTAURANTS_LIST;
+    }
+
+    @RequestMapping(value = "/{restaurantId}", method = RequestMethod.GET)
+    public String getRestaurantPage(@PathVariable String restaurantId, Model model) {
+        Restaurant restaurant = getRestaurantService().getRestaurantById(restaurantId);
+
+        model.addAttribute(CURRENT_RESTAURANT, restaurant);
+
+        return RESTAURANT_PAGE;
+    }
 
     @RequestMapping(value = CREATE_RESTAURANT_ENDPOINT, method = RequestMethod.GET)
     public String getNewRestaurantForm(@ModelAttribute(CREATE_RESTAURANT_FORM) CreateRestaurantForm createRestaurantForm,
