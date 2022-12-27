@@ -34,6 +34,21 @@
                     </a>
                 </c:otherwise>
             </c:choose>
+            <nav class="navbar" role="navigation" aria-label="dropdown navigation">
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a  class="navbar-link">
+                        Lang
+                    </a>
+                    <div class="navbar-dropdown">
+                        <a  href="?lang=en" class="navbar-item">
+                            English
+                        </a>
+                        <a href="?lang=fr" class="navbar-item">
+                            French
+                        </a>
+                    </div>
+                </div>
+            </nav>
         </div>
 
         <div class="navbar-end">
