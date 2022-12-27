@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpSession;
-
 import static com.takeaseat.constants.EndpointsConstants.ERROR_ENDPOINT;
 import static com.takeaseat.constants.ViewsConstants.ERROR_403;
 import static com.takeaseat.constants.ViewsConstants.ERROR_404;

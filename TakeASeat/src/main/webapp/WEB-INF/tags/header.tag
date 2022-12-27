@@ -36,11 +36,11 @@
             </c:choose>
             <nav class="navbar" role="navigation" aria-label="dropdown navigation">
                 <div class="navbar-item has-dropdown is-hoverable">
-                    <a  class="navbar-link">
+                    <a class="navbar-link">
                         Language
                     </a>
                     <div class="navbar-dropdown">
-                        <a  href="?lang=en" class="navbar-item">
+                        <a href="?lang=en" class="navbar-item">
                             English
                         </a>
                         <a href="?lang=fr" class="navbar-item">
