@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')" var="isAdmin"/>
 
@@ -19,17 +20,17 @@
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
             <a class="navbar-item" href="<c:url value="/"/>">
-                Home
+                <spring:message code="Header.Home" htmlEscape="true"/>
             </a>
             <c:choose>
                 <c:when test="${isAdmin}">
                     <a class="navbar-item" href="<c:url value="/restaurant/manage"/> ">
-                        My Restaurant
+                        <spring:message code="Header.MyRestaurant" htmlEscape="true"/>
                     </a>
                 </c:when>
                 <c:otherwise>
                     <a class="navbar-item" href="<c:url value="/restaurant/all"/> ">
-                        Restaurants
+                        <spring:message code="Header.Restaurants" htmlEscape="true"/>
                     </a>
                 </c:otherwise>
             </c:choose>
@@ -40,10 +41,11 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         <a class="button is-primary " href="<c:url value="/register"/>" id="nav-bar__register">
-                            <strong>Sign up</strong>
+                            <strong> <spring:message code="Header.SignUp" htmlEscape="true"/>
+                            </strong>
                         </a>
                         <a class="button is-light" href="<c:url value="/login"/>" id="nav-bar__login">
-                            Log in
+                            <spring:message code="Header.Login" htmlEscape="true"/>
                         </a>
                     </div>
                 </div>
@@ -52,10 +54,10 @@
                 <div class="navbar-item">
                     <div class="buttons">
                         <a class="button is-primary" href="<c:url value="/update-profile"/>" id="nav-bar__my-account">
-                            <strong>My account</strong>
+                            <strong><spring:message code="Header.MyAccount" htmlEscape="true"/></strong>
                         </a>
                         <a class="button is-light" href="<c:url value="/logout"/>" id="nav-bar__logout">
-                            Log out
+                            <spring:message code="Header.LogOut" htmlEscape="true"/>
                         </a>
                     </div>
                 </div>
