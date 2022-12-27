@@ -280,7 +280,7 @@
     margin-top: 2rem;
 }
 
-.restaurants-list{
+.restaurants-list {
     margin-bottom: 5rem;
 }
 
@@ -306,34 +306,34 @@
     width: 70%;
 }
 
-.restaurant-list-name{
+.restaurant-list-name {
     font-size: 2.5em;
     font-weight: 800;
     margin-bottom: 5px;
 }
 
-.restaurant-list-contact{
+.restaurant-list-contact {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.restaurant-list-infos_first{
+.restaurant-list-infos_first {
     margin-top: 1rem;
     display: flex;
     justify-content: space-evenly;
     width: 200%;
 }
 
-.restaurant-list-program{
+.restaurant-list-program {
     margin-top: 1rem;
 }
 
-.restaurant-list-price{
+.restaurant-list-price {
     margin-top: 1rem;
 }
 
-.restaurant-list-redirect{
+.restaurant-list-redirect {
     background: #00d1b2;
     width: 10%;
     overflow: hidden;
@@ -343,7 +343,7 @@
     justify-content: space-evenly;
 }
 
-.restaurant-list-redirect div{
+.restaurant-list-redirect div {
     font-size: 2.5em;
     font-weight: 800;
 }

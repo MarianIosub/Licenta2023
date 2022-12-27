@@ -21,9 +21,13 @@
                 <div class="menu-item-content">
                     <div class="menu-item-info">
                         <p class="menu-item-name">${menuItem.name}</p>
-                        <p class="menu-item-ingredients"><strong>Ingredients: </strong>${menuItem.ingredients}</p>
+                        <p class="menu-item-ingredients"><strong><spring:message
+                                code="ManageRestaurant.Items.Ingredients"
+                                htmlEscape="true"/> </strong>${menuItem.ingredients}</p>
                         <div class="menu-item-footer">
-                            <p class="menu-item-price"><strong>Price: </strong> ${menuItem.price} RON</p>
+                            <p class="menu-item-price"><strong><spring:message
+                                    code="ManageRestaurant.Items.Price"
+                                    htmlEscape="true"/> </strong> ${menuItem.price} RON</p>
                         </div>
                     </div>
                     <div class="menu-item-manage is-hidden">
@@ -33,20 +37,20 @@
                                     <button id="available-${menuItem.id}"
                                             class="button is-small is-responsive is-success"
                                             onclick="changeMenuItemAvailability(this.id)">
-                                        Available
+                                        <spring:message code="ManageRestaurant.Items.Available" htmlEscape="true"/>
                                     </button>
                                 </c:when>
                                 <c:otherwise>
                                     <button id="unavailable-${menuItem.id}"
                                             onclick="changeMenuItemAvailability(this.id)"
                                             class="button is-small is-responsive is-warning">
-                                        Unavailable
+                                        <spring:message code="ManageRestaurant.Items.Unavailable" htmlEscape="true"/>
                                     </button>
                                 </c:otherwise>
                             </c:choose>
                             <button id="delete-${menuItem.id}" onclick="deleteMenuItem(this.id)"
                                     class="button is-small is-responsive is-danger">
-                                Delete
+                                <spring:message code="ManageRestaurant.Items.Delete" htmlEscape="true"/>
                             </button>
                         </div>
                     </div>

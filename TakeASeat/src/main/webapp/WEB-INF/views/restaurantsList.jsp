@@ -34,7 +34,8 @@
                     </div>
                 </div>
                 <div class="restaurant-list-price">
-                    Price : ${restaurant.priceRequired} RON
+                    <spring:message code="Restaurants.Price" htmlEscape="true"/> : ${restaurant.priceRequired}
+                    <spring:message code="Restaurants.Price.Currency" htmlEscape="true"/>
                 </div>
             </div>
             <a class="restaurant-list-redirect is-hidden" href="/restaurant/${restaurant.id}">

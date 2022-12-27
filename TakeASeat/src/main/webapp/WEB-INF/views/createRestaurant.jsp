@@ -25,13 +25,15 @@
 <st:flashMessage/>
 <div id="create-restaurant-label"
      class="form-modal__create-restaurant is-flex is-flex-direction-column is-align-items-center is-align-content-space-between">
-    <h3 class="title">Create your <strong>Take a sEAT!</strong> restaurant profile:</h3>
+    <h3 class="title"><spring:message code="CreateRestaurant.Title.FirstPart" htmlEscape="true"/> <strong>Take a
+        sEAT!</strong> <spring:message code="CreateRestaurant.Title.SecondPart" htmlEscape="true"/>:</h3>
     <form:form method="POST" action="${createRestaurantUrl}" modelAttribute="createRestaurantForm"
                cssClass="create-restaurant__form" enctype="multipart/form-data">
         <div class="field-body">
             <spring:bind path="name">
                 <div class="field-label">
-                    <form:label class="label" path="name">Name</form:label>
+                    <form:label class="label" path="name"><spring:message code="CreateRestaurant.Name"
+                                                                          htmlEscape="true"/></form:label>
                 </div>
                 <div class="field-body">
                     <form:input name="name" class="input" type="text" placeholder="Name" path="name"
@@ -42,7 +44,8 @@
         <div class="field-body">
             <spring:bind path="photo">
                 <div class="field-label">
-                    <form:label class="label" path="photo">Photo</form:label>
+                    <form:label class="label" path="photo"><spring:message code="CreateRestaurant.Photo"
+                                                                           htmlEscape="true"/></form:label>
                 </div>
                 <div class="field-body">
                     <form:input name="photo" class="input" type="file" placeholder="Photo" path="photo"
@@ -53,7 +56,8 @@
         <div class="field-body">
             <spring:bind path="phoneNumber">
                 <div class="field-label">
-                    <form:label class="label" path="phoneNumber">Phone Number</form:label>
+                    <form:label class="label" path="phoneNumber"><spring:message code="CreateRestaurant.PhoneNumber"
+                                                                                 htmlEscape="true"/></form:label>
                 </div>
                 <div class="field-body">
                     <form:input name="phoneNumber" class="input" type="number" placeholder="Phone Number"
@@ -71,7 +75,8 @@
         <spring:bind path="description">
             <div class="field is-flex is-flex-direction-column restaurant__description">
                 <div class="is-spaced">
-                    <form:label class="label" path="description">Description</form:label>
+                    <form:label class="label" path="description"><spring:message code="CreateRestaurant.Description"
+                                                                                 htmlEscape="true"/></form:label>
                 </div>
                 <div class="is-expanded">
                     <div class="control ">
@@ -98,7 +103,8 @@
         <div class="field-body">
             <spring:bind path="city">
                 <div class="field-label">
-                    <form:label class="label" path="city">City</form:label>
+                    <form:label class="label" path="city"><spring:message code="CreateRestaurant.City"
+                                                                          htmlEscape="true"/></form:label>
                 </div>
                 <div class="field-body">
                     <form:input name="city" class="input" type="text" placeholder="City" path="city"
@@ -109,7 +115,8 @@
         <div class="field-body">
             <spring:bind path="address">
                 <div class="field-label">
-                    <form:label class="label" path="address">Address</form:label>
+                    <form:label class="label" path="address"><spring:message code="CreateRestaurant.Address"
+                                                                             htmlEscape="true"/></form:label>
                 </div>
                 <div class="field-body">
                     <form:input name="phoneNumber" class="input" type="text" placeholder="Address"
@@ -127,7 +134,8 @@
             <div class="field-body">
                 <spring:bind path="openingHour">
                     <div class="field-label">
-                        <form:label class="label" path="openingHour">Open:</form:label>
+                        <form:label class="label" path="openingHour"><spring:message code="CreateRestaurant.Open"
+                                                                                     htmlEscape="true"/>:</form:label>
                     </div>
                     <div class="select">
                         <form:select name="openingHour" class="select is-fullwidth" placeholder="Opening Hour"
@@ -146,7 +154,8 @@
             <div class="field-body">
                 <spring:bind path="closingHour">
                     <div class="field-label">
-                        <form:label class="label" path="closingHour">Close:</form:label>
+                        <form:label class="label" path="closingHour"><spring:message code="CreateRestaurant.Close"
+                                                                                     htmlEscape="true"/>:</form:label>
                     </div>
                     <div class="select">
                         <form:select name="closingHour" class="select is-fullwidth" placeholder="Closing Hour"
@@ -165,7 +174,8 @@
         <div class="field-body">
             <spring:bind path="priceRequired">
                 <div class="field-label">
-                    <form:label class="label" path="priceRequired">Price</form:label>
+                    <form:label class="label" path="priceRequired"><spring:message code="CreateRestaurant.Price"
+                                                                                   htmlEscape="true"/></form:label>
                 </div>
                 <div class="field-body">
                     <form:input name="priceRequired" class="input" placeholder="0.00"
@@ -173,7 +183,7 @@
                 </div>
                 <p class="control">
                     <a class="button is-static">
-                        RON
+                        <spring:message code="CreateRestaurant.Price.Currency" htmlEscape="true"/>
                     </a>
                 </p>
             </spring:bind>
@@ -190,7 +200,8 @@
 
         <div class="field is-grouped is-grouped-centered">
             <div class="control">
-                <button class="button is-link" type="submit">Create Restaurant</button>
+                <button class="button is-link" type="submit"><spring:message code="CreateRestaurant.Button"
+                                                                             htmlEscape="true"/></button>
             </div>
         </div>
     </form:form>

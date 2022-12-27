@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <%@ taglib prefix="st" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@
             <div class="right"></div>
         </div>
     </div>
-    <p class="wrong-para">Uh Oh! Page not found!</p>
+    <p class="wrong-para"><spring:message code="Error.500.Message" htmlEscape="true"/></p>
 </div>
 </body>
 </html>

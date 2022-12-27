@@ -31,11 +31,11 @@
         <h1 class="restaurant-name">${restaurant.name}</h1>
         <div class="restaurant-middle-section">
             <div class="restaurant-phone-number">
-                <h1>Phone Number: </h1>
+                <h1><spring:message code="ManageRestaurant.PhoneNumber" htmlEscape="true"/></h1>
                 <h1><strong>${restaurant.phoneNumber}</strong></h1>
             </div>
             <div class="restaurant-address">
-                <h3>Address: </h3>
+                <h3><spring:message code="ManageRestaurant.Address" htmlEscape="true"/></h3>
                 <h3><strong>${restaurant.address}</strong></h3>
                 <h3><strong>${restaurant.city}</strong></h3>
             </div>
@@ -44,13 +44,15 @@
     </div>
     <div class="menu-items-helpers">
         <div class="is-hidden add-menu-item-form" id="add-food__form">
-            <h1 class="menu-item-form-title">Create menu item: </h1>
+            <h1 class="menu-item-form-title"><spring:message code="ManageRestaurant.CreateItem.Title"
+                                                             htmlEscape="true"/></h1>
             <form id="menu-item__form">
 
                 <div class="field is-horizontal">
 
                     <div class="field-label is-normal">
-                        <label class="label">Name</label>
+                        <label class="label"><spring:message code="ManageRestaurant.CreateItem.Name"
+                                                             htmlEscape="true"/></label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -63,7 +65,8 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Photo Link</label>
+                        <label class="label"><spring:message code="ManageRestaurant.CreateItem.PhotoLink"
+                                                             htmlEscape="true"/></label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -78,7 +81,8 @@
 
                 <div class="field is-horizontal">
                     <div class="field-label is-normal">
-                        <label class="label">Ingredients</label>
+                        <label class="label"><spring:message code="ManageRestaurant.CreateItem.Ingredients"
+                                                             htmlEscape="true"/></label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -94,7 +98,8 @@
                 <div class="field is-horizontal">
 
                     <div class="field-label is-normal">
-                        <label class="label">Price</label>
+                        <label class="label"><spring:message code="ManageRestaurant.CreateItem.Price"
+                                                             htmlEscape="true"/></label>
                     </div>
                     <div class="field-body">
                         <div class="field">
@@ -118,7 +123,8 @@
 <section>
     <div class="container">
         <div class="menu-item-search">
-            <h1 id="menu-item-search-label" class="menu-item-search-label">Search for your menu items &darr;</h1>
+            <h1 id="menu-item-search-label" class="menu-item-search-label"><spring:message
+                    code="ManageRestaurant.SearchItem.Title" htmlEscape="true"/> &darr;</h1>
             <label title="Menu Item name: ">
                 <input class="input" type="text"
                        placeholder="Search.."

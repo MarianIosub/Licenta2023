@@ -24,17 +24,19 @@
 <st:flashMessage/>
 <spring:url value="/login" var="loginUrl"/>
 <div id="registration-label" class="form-modal">
-    <h3 class="title is-center">Login to <strong>Take a sEAT!</strong></h3>
+    <h3 class="title is-center"><spring:message code="Login.Title" htmlEscape="true"/> <strong>Take a sEAT!</strong>
+    </h3>
     <form:form method="post" action="${loginUrl}" modelAttribute="loginForm">
         <div class="field">
-            <form:label class="label" path="mail">Mail</form:label>
+            <form:label class="label" path="mail"><spring:message code="Login.Mail" htmlEscape="true"/></form:label>
             <div class="control">
                 <form:input class="input" type="text" placeholder="Email" required="true" path="mail"/>
                 <form:errors path="mail" class="help is-danger"/>
             </div>
         </div>
         <div class="field">
-            <form:label class="label" path="password">Password</form:label>
+            <form:label class="label" path="password"><spring:message code="Login.Password"
+                                                                      htmlEscape="true"/></form:label>
             <div class="control">
                 <form:input class="input" type="password" placeholder="Password" required="true"
                             path="password"/>
@@ -45,7 +47,7 @@
             <div class="control">
                 <form:label class="checkbox" path="rememberMe">
                     <form:checkbox path="rememberMe"/>
-                    Remember me!
+                    <spring:message code="Login.RememberMe" htmlEscape="true"/>!
                 </form:label>
                 <form:errors path="rememberMe" class="is-danger"/>
             </div>
@@ -56,7 +58,8 @@
 
         <div class="field is-grouped is-center is-10">
             <div class="control">
-                <button class="button is-link" type="submit">Let me in!</button>
+                <button class="button is-link" type="submit"><spring:message code="Login.Button"
+                                                                             htmlEscape="true"/></button>
             </div>
         </div>
     </form:form>
