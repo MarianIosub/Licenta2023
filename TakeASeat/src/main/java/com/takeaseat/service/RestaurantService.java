@@ -28,4 +28,10 @@ public interface RestaurantService {
     List<Restaurant> searchForRestaurant(String searchedItem, String sortOption);
 
     Restaurant getRestaurantById(String restaurantId);
+
+    List<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption);
+
+    boolean hasAvailableItems(List<MenuItem> menuItems);
+
+    boolean hasUnavailableItems(List<MenuItem> menuItems);
 }

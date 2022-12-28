@@ -42,7 +42,10 @@ import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_ALRE
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_NOT_CREATED_MESSAGE;
 import static com.takeaseat.constants.StringConstants.CREATE_RESTAURANT_FORM;
 import static com.takeaseat.constants.StringConstants.CURRENT_RESTAURANT;
+import static com.takeaseat.constants.StringConstants.CURRENT_USER;
 import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
+import static com.takeaseat.constants.StringConstants.HAS_AVAILABLE_ITEMS;
+import static com.takeaseat.constants.StringConstants.HAS_UNAVAILABLE_ITEMS;
 import static com.takeaseat.constants.StringConstants.INGREDIENTS;
 import static com.takeaseat.constants.StringConstants.MENU_ITEMS;
 import static com.takeaseat.constants.StringConstants.MENU_ITEM_ADDED;
@@ -54,9 +57,11 @@ import static com.takeaseat.constants.StringConstants.RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.SEARCHED_ITEM;
 import static com.takeaseat.constants.StringConstants.SORT_OPTION;
 import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
+import static com.takeaseat.constants.ViewsConstants.ERROR_404;
 import static com.takeaseat.constants.ViewsConstants.MANAGE_RESTAURANT_PAGE;
 import static com.takeaseat.constants.ViewsConstants.RESTAURANTS_LIST;
 import static com.takeaseat.constants.ViewsConstants.RESTAURANTS_PAGE;
+import static com.takeaseat.constants.ViewsConstants.RESTAURANT_MENU_ITEMS;
 import static com.takeaseat.constants.ViewsConstants.RESTAURANT_PAGE;
 import static com.takeaseat.helper.CreateEndpointHelper.createEndpoint;
 
@@ -94,10 +99,27 @@ public class RestaurantController {
     @RequestMapping(value = "/{restaurantId}", method = RequestMethod.GET)
     public String getRestaurantPage(@PathVariable String restaurantId, Model model) {
         Restaurant restaurant = getRestaurantService().getRestaurantById(restaurantId);
-
+        if (restaurant == null) {
+            return ERROR_404;
+        }
         model.addAttribute(CURRENT_RESTAURANT, restaurant);
-
+        model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
+        model.addAttribute(HAS_AVAILABLE_ITEMS, getRestaurantService().hasAvailableItems(restaurant.getMenuItems()));
+        model.addAttribute(HAS_UNAVAILABLE_ITEMS, getRestaurantService().hasUnavailableItems(restaurant.getMenuItems()));
         return RESTAURANT_PAGE;
+    }
+
+    @RequestMapping(value = "/{restaurantId}/menuItems", method = RequestMethod.GET)
+    public String getMenuItemsByRestaurant(@PathVariable String restaurantId,
+                                           @RequestParam(value = SEARCHED_ITEM) String searchedItem,
+                                           @RequestParam(value = SORT_OPTION, required = false) String sortOption,
+                                           Model model) {
+
+        List<MenuItem> menuItems = getRestaurantService().getMenuItemsForRestaurant(restaurantId, searchedItem, sortOption);
+        model.addAttribute(MENU_ITEMS, menuItems);
+        model.addAttribute(HAS_AVAILABLE_ITEMS, getRestaurantService().hasAvailableItems(menuItems));
+        model.addAttribute(HAS_UNAVAILABLE_ITEMS, getRestaurantService().hasUnavailableItems(menuItems));
+        return RESTAURANT_MENU_ITEMS;
     }
 
     @RequestMapping(value = CREATE_RESTAURANT_ENDPOINT, method = RequestMethod.GET)

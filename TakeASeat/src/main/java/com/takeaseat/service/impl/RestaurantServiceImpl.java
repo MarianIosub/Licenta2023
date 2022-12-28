@@ -144,6 +144,42 @@ public class RestaurantServiceImpl implements RestaurantService {
         return getRestaurantDao().findById(Long.parseLong(restaurantId));
     }
 
+    @Override
+    public List<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption) {
+        Restaurant restaurant = getRestaurantById(restaurantId);
+
+        List<MenuItem> menuItems = restaurant.getMenuItems().stream()
+                .filter(m -> m.getName().toLowerCase().contains(searchedItem.toLowerCase()))
+                .collect(Collectors.toList());
+
+        if (sortOption == null) {
+            return menuItems;
+        }
+
+        switch (sortOption) {
+            case "ALPHABETICAL":
+                menuItems.sort((Comparator.comparing(MenuItem::getName)));
+                break;
+            case "INVERSE":
+                menuItems.sort((Comparator.comparing(MenuItem::getName)));
+                Collections.reverse(menuItems);
+                break;
+            default:
+                break;
+        }
+        return menuItems;
+    }
+
+    @Override
+    public boolean hasAvailableItems(List<MenuItem> menuItems) {
+        return menuItems.stream().anyMatch(MenuItem::isAvailable);
+    }
+
+    @Override
+    public boolean hasUnavailableItems(List<MenuItem> menuItems) {
+        return !menuItems.stream().allMatch(MenuItem::isAvailable);
+    }
+
     private void addMenuItemToRestaurantList(Restaurant restaurant, MenuItem menuItem) {
         restaurant.getMenuItems().add(menuItem);
     }

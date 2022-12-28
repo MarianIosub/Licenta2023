@@ -10,6 +10,7 @@ public interface ViewsConstants {
     String RESTAURANTS_LIST = "restaurantsList";
     String RESTAURANTS_PAGE = "restaurants";
     String RESTAURANT_PAGE = "restaurant";
+    String RESTAURANT_MENU_ITEMS = "restaurantMenuItems";
 
     //ERRORS
     String ERROR_404 = "404";

@@ -33,10 +33,13 @@ public interface StringConstants {
     String SEARCHED_ITEM = "searchedItem";
     String SORT_OPTION = "sortOption";
     String MENU_ITEM_ID = "menuItemId";
+    String HAS_AVAILABLE_ITEMS = "hasAvailableItems";
+    String HAS_UNAVAILABLE_ITEMS = "hasUnavailableItems";
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
     String CURRENT_RESTAURANT = "currentRestaurant";
+    String CURRENT_USER = "currentUser";
     String MENU_ITEM_ADDED = "menuItemAdded";
 
     String FLASH_MESSAGE = "flashMessage";

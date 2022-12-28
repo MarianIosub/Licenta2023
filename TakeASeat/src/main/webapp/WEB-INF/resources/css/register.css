@@ -316,6 +316,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 4rem;
+    justify-content: space-between;
 }
 
 .restaurant-list-infos_first {
@@ -345,5 +347,100 @@
 
 .restaurant-list-redirect div {
     font-size: 2.5em;
+    font-weight: 800;
+}
+
+.display-restaurant-page {
+    margin-left: 10rem;
+    margin-top: 2rem;
+}
+
+.display-restaurant-left {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display-restaurant-presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(0, 209, 178, 0.4);
+    border-radius: 3rem;
+    width: 100%;
+
+}
+
+.restaurant-presentation-infos {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.restaurant-presentation-title {
+    font-size: 2.5em;
+    font-weight: 800;
+    margin-top: 1rem;
+    text-decoration: underline;
+}
+
+.restaurant-presentation-infos img {
+    height: 18rem;
+    margin-bottom: 1.5rem;
+    border-radius: 2rem;
+}
+
+.display-restaurant-order {
+    border: 1px solid black;
+    width: 30%;
+    height: 300px;
+    position: fixed;
+    right: 2rem;
+    top: 6rem;
+}
+
+.restaurant-presentation-description {
+    text-align: center;
+    margin-top: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.restaurant-presentation-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.restaurant-menu-items {
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.restaurant-menu-item-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.restaurant-menu-items-search-input {
+    margin-left: 20rem;
+    width: 30rem;
+    height: 3rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    color: #00d1b2;
+    border: 4px solid;
+    font-weight: 400;
+    text-align: center;
+    transition: width 1s, font-weight 1s, border 1s;
+}
+
+.menu-items-availability-groups {
+    margin-top: 2rem;
+    margin-right: 2em;
+    font-size: 1.5em;
     font-weight: 800;
 }

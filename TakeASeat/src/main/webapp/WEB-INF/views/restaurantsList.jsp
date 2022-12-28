@@ -26,10 +26,10 @@
                     </div>
                     <div class="restaurant-list-contact">
                         <div>
-                            <i class="material-icons">contact_mail</i> ${restaurant.phoneNumber}
+                            <i class="fa fa-phone" aria-hidden="true"></i> ${restaurant.phoneNumber}
                         </div>
                         <div>
-                            <i class="material-icons">contact_phone</i>${restaurant.mail}
+                            <i class="fa fa-envelope" aria-hidden="true"></i> ${restaurant.mail}
                         </div>
                     </div>
                 </div>
