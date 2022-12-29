@@ -36,3 +36,15 @@ function scrollForRestaurantMenuItems() {
     let search = document.getElementById("restaurant-menu-items-search");
     search.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
 }
+
+function displayCartButton(id) {
+    let menuItem = document.getElementById(id);
+    let manageButtons = menuItem.getElementsByClassName("menu-item-cart-button")[0];
+    manageButtons.classList.remove('is-hidden');
+}
+
+function hideCartButton(id) {
+    let menuItem = document.getElementById(id);
+    let manageButtons = menuItem.getElementsByClassName("menu-item-cart-button")[0];
+    manageButtons.classList.add('is-hidden');
+}

@@ -108,7 +108,7 @@
 
     </div>
     <div class="display-restaurant-order">
-
+        <%@include file="reservationComponent.jsp" %>
     </div>
 </div>
 <st:footer/>

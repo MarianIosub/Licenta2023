@@ -105,6 +105,8 @@
 .menu-item:hover {
     box-shadow: 0 5px 25px rgb(1 1 1);
     transform: scale(1.05);
+    white-space: unset;
+
 }
 
 .menu-item-photo {
@@ -360,6 +362,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 8rem;
 }
 
 .display-restaurant-presentation {
@@ -393,9 +396,7 @@
 }
 
 .display-restaurant-order {
-    border: 1px solid black;
     width: 30%;
-    height: 300px;
     position: fixed;
     right: 2rem;
     top: 6rem;
@@ -443,4 +444,86 @@
     margin-right: 2em;
     font-size: 1.5em;
     font-weight: 800;
+}
+
+.add-to-cart-button {
+    margin-top: 4.5rem;
+}
+
+.reservation-component {
+    border: 1px solid #00d1b2;
+    border-radius: 2rem;
+    height: 40rem;
+}
+
+.reservation-component-title {
+    height: 4rem;
+    background-color: #00d1b2;
+    color: white;
+    overflow: hidden;
+    border-radius: 2rem 2rem 0 0;
+    text-align: center;
+}
+
+.reservation-component-title h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.reservation-component-footer {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    height: 5rem;
+    background-color: #00d1b2;
+    color: white;
+    width: 100%;
+    justify-content: space-around;
+    border-radius: 0 0 2rem 2rem;
+    margin-left: -1px;
+}
+
+.reservation-total-price {
+    margin-top: 1.25rem;
+    font-size: 1.5rem;
+}
+
+.reservation-infos {
+    background: hwb(171deg 53% 5% / 20%);
+    height: 31rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservation-component-not-logged {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reservation-component-not-logged h1 {
+    margin-top: 13rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.reservation-component-not-logged a {
+    margin-top: 1rem;
+    width: 70%;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.footer {
+    background-color: #fafafa;
+    padding: 3rem 1.5rem 2rem !important;
+}
+
+.reservation-component-footer a {
+    width: 30%;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
 }

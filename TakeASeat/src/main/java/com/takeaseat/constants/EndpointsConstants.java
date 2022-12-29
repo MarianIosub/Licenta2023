@@ -15,4 +15,5 @@ public interface EndpointsConstants {
     String MENU_ITEM_AVAILABILITY = "/menu-item/availability/{menuItemId}";
     String MENU_ITEM_DELETE = "/menu-item/delete/{menuItemId}";
     String ALL = "/all";
+    String CART_ENDPOINT = "/cart";
 }

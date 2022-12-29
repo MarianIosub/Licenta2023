@@ -9,7 +9,8 @@
         <div class="menu-items-list">
             <c:forEach items="${menuItems}" var="menuItem">
                 <c:if test="${menuItem.available}">
-                    <div class="menu-item" id="menuItem-${menuItem.id}">
+                    <div class="menu-item" id="menuItem-${menuItem.id}" onmouseover="displayCartButton(this.id)"
+                         onmouseleave="hideCartButton(this.id)">
                         <div class="menu-item-photo">
                             <img src="data:image/jpeg;base64,${menuItem.photoLink}" alt="">
                         </div>
@@ -25,9 +26,9 @@
                                             htmlEscape="true"/> </strong> ${menuItem.price} RON</p>
                                 </div>
                             </div>
-                            <div class="menu-item-manage">
+                            <div class="menu-item-manage menu-item-cart-button is-hidden">
                                 <div class="menu-item-buttons">
-                                    <button class="button">
+                                    <button class="button add-to-cart-button">
                                         <img src="../resources/assets/cart.png" width="20px" height="20px"/>
                                     </button>
                                 </div>
@@ -57,13 +58,6 @@
                                     <p class="menu-item-price"><strong><spring:message
                                             code="ManageRestaurant.Items.Price"
                                             htmlEscape="true"/> </strong> ${menuItem.price} RON</p>
-                                </div>
-                            </div>
-                            <div class="menu-item-manage">
-                                <div class="menu-item-buttons">
-                                    <button class="button">
-                                        <img src="../resources/assets/cart.png" width="20px" height="20px"/>
-                                    </button>
                                 </div>
                             </div>
                         </div>
