@@ -1,5 +1,6 @@
 package com.takeaseat.controller;
 
+import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.controller.form.CreateRestaurantForm;
 import com.takeaseat.controller.validator.CreateRestaurantFormValidator;
 import com.takeaseat.model.MenuItem;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -40,6 +42,7 @@ import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_AVAIL
 import static com.takeaseat.constants.MessagePropertiesConstants.MENU_ITEM_DELETED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_ALREADY_CREATED_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.RESTAURANT_NOT_CREATED_MESSAGE;
+import static com.takeaseat.constants.StringConstants.CART;
 import static com.takeaseat.constants.StringConstants.CREATE_RESTAURANT_FORM;
 import static com.takeaseat.constants.StringConstants.CURRENT_RESTAURANT;
 import static com.takeaseat.constants.StringConstants.CURRENT_USER;
@@ -97,11 +100,12 @@ public class RestaurantController {
     }
 
     @RequestMapping(value = "/{restaurantId}", method = RequestMethod.GET)
-    public String getRestaurantPage(@PathVariable String restaurantId, Model model) {
+    public String getRestaurantPage(@PathVariable String restaurantId, Model model, HttpSession session) {
         Restaurant restaurant = getRestaurantService().getRestaurantById(restaurantId);
         if (restaurant == null) {
             return ERROR_404;
         }
+        setCartInSession(restaurant, session);
         model.addAttribute(CURRENT_RESTAURANT, restaurant);
         model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
         model.addAttribute(HAS_AVAILABLE_ITEMS, getRestaurantService().hasAvailableItems(restaurant.getMenuItems()));
@@ -207,6 +211,17 @@ public class RestaurantController {
     private MenuItem createMenuItemFromRequest(String name, String ingredients, String price, MultipartFile photo) throws IOException {
         byte[] encodeBase64 = Base64.getEncoder().encode(photo.getBytes());
         return new MenuItem(name, ingredients, Double.valueOf(price), new String(encodeBase64, StandardCharsets.UTF_8));
+    }
+
+    private void setCartInSession(Restaurant restaurant, HttpSession session) {
+        if (session.getAttribute(CART) == null ||
+                !((Cart) session.getAttribute(CART)).getRestaurant().getId().equals(restaurant.getId())) {
+            Cart cart = new Cart();
+            cart.setUser(getUserService().getCurrentUser());
+            cart.setRestaurant(restaurant);
+            cart.setTotalPrice(restaurant.getPriceRequired());
+            session.setAttribute(CART, cart);
+        }
     }
 
     protected UserService getUserService() {

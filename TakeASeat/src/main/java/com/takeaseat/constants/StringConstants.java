@@ -35,6 +35,7 @@ public interface StringConstants {
     String MENU_ITEM_ID = "menuItemId";
     String HAS_AVAILABLE_ITEMS = "hasAvailableItems";
     String HAS_UNAVAILABLE_ITEMS = "hasUnavailableItems";
+    String CART = "cart";
 
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
