@@ -11,6 +11,7 @@ public interface ViewsConstants {
     String RESTAURANTS_PAGE = "restaurants";
     String RESTAURANT_PAGE = "restaurant";
     String RESTAURANT_MENU_ITEMS = "restaurantMenuItems";
+    String RESERVATION_COMPONENT = "reservationComponent";
 
     //ERRORS
     String ERROR_404 = "404";

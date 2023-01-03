@@ -32,14 +32,52 @@
                                    min="<%=(LocalDate.now().plusDays(1)).format(DateTimeFormatter.ISO_DATE)%>"/>
                         </div>
                         <div class="reservation-start">
-                            <input type="number" min="${cart.restaurant.openingHour}" max="${cart.restaurant.closingHour - 1.0}" step="0.5" onkeydown="return false" value="${cart.restaurant.openingHour}"/>
+                            <input type="number" min="${cart.restaurant.openingHour}"
+                                   max="${cart.restaurant.closingHour - 1.0}" step="0.5" onkeydown="return false"
+                                   value="${cart.restaurant.openingHour}"/>
                         </div>
                         <div class="reservation-end">
-                            <input type="number" min="${cart.restaurant.openingHour + 1.0}" max="${cart.restaurant.closingHour}" step="0.5" onkeydown="return false" value="${cart.restaurant.closingHour}"/>
+                            <input type="number" min="${cart.restaurant.openingHour + 1.0}"
+                                   max="${cart.restaurant.closingHour}" step="0.5" onkeydown="return false"
+                                   value="${cart.restaurant.closingHour}"/>
                         </div>
                     </div>
                     <div class="reservation-component-menu-items">
+                        <c:forEach var="menuItem" items="${cart.menuItems}">
+                            <div class="cart-menu-item">
+                                <div class="cart-menu-item-infos">
+                                    <img src="data:image/jpeg;base64,${menuItem.key.photoLink}"
+                                         class="cart-menu-item-photo"/>
+                                    <div>
+                                        <div class="cart-menu-item-name">
+                                            <h1>${menuItem.key.name}</h1>
+                                        </div>
+                                        <div class="cart-menu-item-price">
+                                            <h1><strong>${menuItem.key.price} RON</strong></h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cart-menu-item-qty">
+                                    <button class="button is-normal is-warning" id="decrease-qty-${menuItem.key.id}"
+                                            onclick="decreaseQuantity(this.id)">
+                                        -
+                                    </button>
+                                    <h1> ${menuItem.value}</h1>
+                                    <button class="button is-normal is-warning" id="increase-qty-${menuItem.key.id}"
+                                            onclick="increaseQuantity(this.id)">
+                                        +
+                                    </button>
+                                </div>
 
+                                <div class="cart-menu-item-delete">
+                                    <button class="button is-small is-danger" id="delete-${menuItem.key.id}"
+                                            onclick="deleteFromCart(this.id)">
+                                        X
+                                    </button>
+                                </div>
+                            </div>
+
+                        </c:forEach>
                     </div>
                 </div>
             </c:otherwise>

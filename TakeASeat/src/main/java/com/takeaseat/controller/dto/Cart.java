@@ -6,6 +6,7 @@ import com.takeaseat.model.User;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @Data
@@ -16,7 +17,7 @@ public class Cart {
     private Double endingHour;
     private User user;
     private Restaurant restaurant;
-    private Map<MenuItem, Integer> menuItems;
+    private Map<MenuItem, Integer> menuItems = new HashMap<>();
     private Double totalPrice;
     private String error;
 }

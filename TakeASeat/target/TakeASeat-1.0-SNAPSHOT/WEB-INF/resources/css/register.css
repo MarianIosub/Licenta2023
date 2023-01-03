@@ -528,8 +528,99 @@
     font-weight: 600;
 }
 
-.reservation-component-time{
+.reservation-component-time {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
+
+.reservation-component-logged {
+    width: 100%;
+}
+
+.reservation-start input,
+.reservation-end input {
+    margin-top: 0.3rem;
+    height: 2rem;
+    width: 4rem;
+    text-align: center;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.reservation-component-menu-items {
+    border-top: 3px solid #227172;
+    height: 26.5rem;
+    overflow: hidden;
+}
+
+.reservation-component-menu-items:hover{
+    overflow-y:auto;
+}
+
+.cart-menu-item {
+    height: 7rem;
+    padding-top: 1rem;
+    border-bottom: 1px solid black;
+    display: flex;
+    padding-bottom: 1rem;
+}
+
+.cart-menu-item-photo {
+    height: auto;
+    width: auto;
+    max-width: 5rem;
+    max-height: 5rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+}
+
+.cart-menu-item-infos {
+    display: flex;
+    margin-left: 1.5rem;
+    width: 20rem;
+}
+
+.cart-menu-item-infos div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cart-menu-item-name{
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.cart-menu-item-price{
+    margin-bottom: 0.25rem;
+}
+
+.cart-menu-item-qty{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    margin-right: 3rem;
+    width: 9rem;
+}
+
+.cart-menu-item-qty h1{
+    font-size: 2rem;
+    font-weight: 800;
+    margin-left: 0.5rem;
+    margin-right: 0.25rem;
+    color: darkcyan;
+}
+
+.cart-menu-item-qty button{
+    margin-top: 0.5rem;
+}
+
+.cart-menu-item-delete{
+    margin-right: 1rem;
+    margin-top: 1.75rem;
+}
+

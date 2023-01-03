@@ -23,6 +23,7 @@
             crossorigin="anonymous"
     ></script>
     <script src="../resources/js/restaurant.js"></script>
+    <script src="../resources/js/reservation.js"></script>
 
 </head>
 <body>
@@ -107,7 +108,7 @@
         </div>
 
     </div>
-    <div class="display-restaurant-order">
+    <div class="display-restaurant-order" id="reservation-component">
         <%@include file="reservationComponent.jsp" %>
     </div>
 </div>
