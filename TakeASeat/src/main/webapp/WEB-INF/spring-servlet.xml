@@ -161,6 +161,12 @@
 
     <!-- SERVICE -->
 
+    <alias name="defaultOrderService" alias="orderService"/>
+    <bean id="defaultOrderService" class="com.takeaseat.service.impl.OrderServiceImpl"/>
+
+    <alias name="defaultPaymentService" alias="paymentService"/>
+    <bean id="defaultPaymentService" class="com.takeaseat.service.impl.PaymentServiceImpl"/>
+
     <alias name="defaultCartService" alias="cartService"/>
     <bean name="defaultCartService" class="com.takeaseat.service.impl.CartServiceImpl">
         <constructor-arg name="restaurantService" ref="restaurantService"/>

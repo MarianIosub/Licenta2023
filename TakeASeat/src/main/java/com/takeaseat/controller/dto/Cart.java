@@ -1,5 +1,6 @@
 package com.takeaseat.controller.dto;
 
+import com.stripe.model.Charge;
 import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Restaurant;
 import com.takeaseat.model.User;
@@ -20,4 +21,5 @@ public class Cart {
     private Map<MenuItem, Integer> menuItems = new HashMap<>();
     private Double totalPrice;
     private String error;
+    private Charge charge;
 }

@@ -44,4 +44,12 @@ public interface StringConstants {
     String MENU_ITEM_ADDED = "menuItemAdded";
 
     String FLASH_MESSAGE = "flashMessage";
+    String STRIPE_API_PUBLIC_KEY = "pk_test_51MMYzfIhG64WhrpmPJA8Q5tQssZc9H9ONN66QAXqY0YtAOaZ0EZ6wT63pUkmUthCb76TUqK1SNzPKfg4jSz9suRi00bzVm3PBo";
+    String STRIPE_API_SECRET_KEY = "sk_test_51MMYzfIhG64Whrpm9DJSndQSvzDzV3NDi8D7bknRXXDLszIrt795lGiyqQ26Vnb3GHjqnpYuObuWPAnNbU5tFWHe00XajprO0I";
+    String AMOUNT = "amount";
+    String CURRENCY = "currency";
+    String SOURCE = "source";
+    String STRIPE_EMAIL = "stripeEmail";
+    String STRIPE_TOKEN = "stripeToken";
+    String STRIPE_PUBLIC_KEY = "stripePublicKey";
 }

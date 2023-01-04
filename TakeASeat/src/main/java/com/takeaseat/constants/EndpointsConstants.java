@@ -20,4 +20,6 @@ public interface EndpointsConstants {
     String DELETE_FROM_CART_ENDPOINT = "/delete";
     String INCREASE_QTY_ENDPOINT = "/increase";
     String DECREASE_QTY_CART_ENDPOINT = "/decrease";
+    String CHECKOUT_ENDPOINT = "/checkout";
+    String CHARGE_ENDPOINT = "/charge";
 }

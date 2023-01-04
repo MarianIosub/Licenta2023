@@ -87,7 +87,7 @@
         <h1 class="reservation-total-price">
             Total price: ${cart.totalPrice} RON
         </h1>
-        <a class="button is-info is-rounded" href="" id="place-order">
+        <a class="button is-info is-rounded" href="" id="place-order" onclick="redirectToCheckout()">
             Place order
         </a>
     </div>
