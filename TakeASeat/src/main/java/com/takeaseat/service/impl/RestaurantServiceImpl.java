@@ -127,10 +127,14 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         switch (sortOption) {
             case "ALPHABETICAL":
-                searchedRestaurants.sort((Comparator.comparing(Restaurant::getName)));
+                searchedRestaurants.sort(Comparator.comparing(Restaurant::getName));
                 break;
             case "INVERSE":
-                searchedRestaurants.sort((Comparator.comparing(Restaurant::getName)));
+                searchedRestaurants.sort(Comparator.comparing(Restaurant::getName));
+                Collections.reverse(searchedRestaurants);
+                break;
+            case "POPULAR":
+                searchedRestaurants.sort(Comparator.comparing(Restaurant::getNoOfReservations));
                 Collections.reverse(searchedRestaurants);
                 break;
             default:
@@ -162,6 +166,10 @@ public class RestaurantServiceImpl implements RestaurantService {
                 break;
             case "INVERSE":
                 menuItems.sort((Comparator.comparing(MenuItem::getName)));
+                Collections.reverse(menuItems);
+                break;
+            case "POPULAR":
+                menuItems.sort(Comparator.comparing(MenuItem::getNoOfOrders));
                 Collections.reverse(menuItems);
                 break;
             default:

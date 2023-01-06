@@ -52,4 +52,13 @@ public interface StringConstants {
     String STRIPE_EMAIL = "stripeEmail";
     String STRIPE_TOKEN = "stripeToken";
     String STRIPE_PUBLIC_KEY = "stripePublicKey";
+
+    String ORDERS = "orders";
+    String ORDER = "order";
+    String ORDER_ID_COLUMN_NAME = "order_id";
+    String ORDER_ENTRIES = "order_entries";
+    String ORDER_ENTRY_ID_COLUMN_NAME = "order_entry_id";
+    String RESERVATION_DATE = "reservationDate";
+    String RESERVATION_START = "reservationStart";
+    String RESERVATION_END = "reservationEnd";
 }

@@ -7,7 +7,10 @@ import com.takeaseat.service.RestaurantService;
 import com.takeaseat.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicReference;
+
+import static java.util.Objects.nonNull;
 
 @Transactional
 public class CartServiceImpl implements CartService {
@@ -66,11 +69,33 @@ public class CartServiceImpl implements CartService {
         }
     }
 
+    @Override
+    public void setCartDate(Cart cart, String date) {
+        cart.setDate(LocalDate.parse(date));
+        checkIfOrderCanBePlaced(cart);
+    }
+
+    @Override
+    public void setCartReservationStart(Cart cart, String start) {
+        cart.setStartingHour(Double.parseDouble(start));
+        checkIfOrderCanBePlaced(cart);
+    }
+
+    @Override
+    public void setCartReservationEnd(Cart cart, String end) {
+        cart.setEndingHour(Double.parseDouble(end));
+        checkIfOrderCanBePlaced(cart);
+    }
+
     private MenuItem getMenuItemFromRestaurant(Cart cart, Long menuItemId) {
         return cart.getRestaurant().getMenuItems().stream()
                 .filter(m -> m.getId().equals(menuItemId))
                 .findFirst()
                 .orElse(null);
+    }
+
+    private void checkIfOrderCanBePlaced(Cart cart) {
+        cart.setCanBePlaced(nonNull(cart.getDate()) && nonNull(cart.getEndingHour()) && nonNull(cart.getStartingHour()));
     }
 
     protected UserService getUserService() {

@@ -41,6 +41,7 @@ public class MenuItem {
     @NonNull
     @Column(columnDefinition = "LONGBLOB")
     private String photoLink;
+    private Integer noOfOrders = 0;
     private boolean available = true;
 
     public Long getId() {

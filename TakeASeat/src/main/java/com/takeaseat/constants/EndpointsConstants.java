@@ -22,4 +22,7 @@ public interface EndpointsConstants {
     String DECREASE_QTY_CART_ENDPOINT = "/decrease";
     String CHECKOUT_ENDPOINT = "/checkout";
     String CHARGE_ENDPOINT = "/charge";
+    String DATE_CART_ENDPOINT = "/date";
+    String START_CART_ENDPOINT = "/start";
+    String END_CART_ENDPOINT = "/end";
 }

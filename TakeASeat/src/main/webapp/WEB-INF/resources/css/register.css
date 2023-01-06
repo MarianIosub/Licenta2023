@@ -674,3 +674,7 @@
     font-size: 1.2rem;
     font-weight: 900;
 }
+
+.dropdown-content {
+    width: 7rem;
+}

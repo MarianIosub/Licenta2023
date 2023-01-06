@@ -115,6 +115,8 @@
         <constructor-arg name="mapper" ref="mapper"/>
     </bean>
 
+    <bean name="cartToOrderConverter" class="com.takeaseat.converter.CartToOrderConverter"/>
+
     <!-- MAIL -->
 
     <bean name="defaultEmailService" class="com.takeaseat.service.impl.EmailServiceImpl">
@@ -159,10 +161,16 @@
     <alias name="defaultMenuItemDao" alias="menuItemDao"/>
     <bean name="defaultMenuItemDao" class="com.takeaseat.dao.impl.MenuItemDaoImpl"/>
 
+    <alias name="defaultOrderDao" alias="orderDao"/>
+    <bean name="defaultOrderDao" class="com.takeaseat.dao.impl.OrderDaoImpl"/>
+
     <!-- SERVICE -->
 
     <alias name="defaultOrderService" alias="orderService"/>
-    <bean id="defaultOrderService" class="com.takeaseat.service.impl.OrderServiceImpl"/>
+    <bean id="defaultOrderService" class="com.takeaseat.service.impl.OrderServiceImpl">
+        <constructor-arg name="orderDao" ref="orderDao"/>
+        <constructor-arg name="cartToOrderConverter" ref="cartToOrderConverter"/>
+    </bean>
 
     <alias name="defaultPaymentService" alias="paymentService"/>
     <bean id="defaultPaymentService" class="com.takeaseat.service.impl.PaymentServiceImpl"/>

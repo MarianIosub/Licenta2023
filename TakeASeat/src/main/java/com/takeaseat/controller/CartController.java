@@ -3,6 +3,7 @@ package com.takeaseat.controller;
 import com.stripe.exception.StripeException;
 import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.controller.dto.ChargeRequest;
+import com.takeaseat.model.Order;
 import com.takeaseat.service.CartService;
 import com.takeaseat.service.OrderService;
 import com.takeaseat.service.PaymentService;
@@ -17,18 +18,26 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import static com.takeaseat.constants.EndpointsConstants.ADD_TO_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.CHARGE_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.CHECKOUT_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.DATE_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.DECREASE_QTY_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.DELETE_FROM_CART_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.END_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.INCREASE_QTY_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.START_CART_ENDPOINT;
 import static com.takeaseat.constants.StringConstants.AMOUNT;
 import static com.takeaseat.constants.StringConstants.CART;
 import static com.takeaseat.constants.StringConstants.CURRENCY;
 import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID;
+import static com.takeaseat.constants.StringConstants.ORDER;
+import static com.takeaseat.constants.StringConstants.RESERVATION_DATE;
+import static com.takeaseat.constants.StringConstants.RESERVATION_END;
+import static com.takeaseat.constants.StringConstants.RESERVATION_START;
 import static com.takeaseat.constants.StringConstants.STRIPE_API_PUBLIC_KEY;
 import static com.takeaseat.constants.StringConstants.STRIPE_EMAIL;
 import static com.takeaseat.constants.StringConstants.STRIPE_PUBLIC_KEY;
@@ -76,6 +85,27 @@ public class CartController {
         return RESERVATION_COMPONENT;
     }
 
+    @RequestMapping(value = DATE_CART_ENDPOINT, method = RequestMethod.POST)
+    public String setCartDate(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_DATE) String date) {
+        getCartService().setCartDate(cart, date);
+
+        return RESERVATION_COMPONENT;
+    }
+
+    @RequestMapping(value = START_CART_ENDPOINT, method = RequestMethod.POST)
+    public String setCartStart(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_START) String start) {
+        getCartService().setCartReservationStart(cart, start);
+
+        return RESERVATION_COMPONENT;
+    }
+
+    @RequestMapping(value = END_CART_ENDPOINT, method = RequestMethod.POST)
+    public String setCartEnd(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_END) String end) {
+        getCartService().setCartReservationEnd(cart, end);
+
+        return RESERVATION_COMPONENT;
+    }
+
     @RequestMapping(value = CHECKOUT_ENDPOINT, method = RequestMethod.GET)
     public String checkout(Model model) {
         model.addAttribute(STRIPE_PUBLIC_KEY, STRIPE_API_PUBLIC_KEY);
@@ -84,11 +114,13 @@ public class CartController {
     }
 
     @RequestMapping(value = CHARGE_ENDPOINT, method = RequestMethod.POST)
-    public String charge(HttpServletRequest request, @SessionAttribute(CART) Cart cart) throws StripeException {
+    public String charge(HttpServletRequest request, @SessionAttribute(CART) Cart cart,
+                         HttpSession session, Model model) throws StripeException {
         ChargeRequest chargeRequest = getChargeRequest(request);
         cart.setCharge(getPaymentService().charge(chargeRequest));
-        getOrderService().placeOrder(cart);
-        cart = new Cart();
+        Order order = getOrderService().placeOrder(cart);
+        model.addAttribute(ORDER, order);
+        session.removeAttribute(CART);
         return CHECKOUT_CONFIRMATION_VIEW;
     }
 
@@ -101,7 +133,8 @@ public class CartController {
 
     private ChargeRequest getChargeRequest(HttpServletRequest request) {
         ChargeRequest chargeRequest = new ChargeRequest();
-        chargeRequest.setAmount(Double.valueOf(request.getParameter(AMOUNT)));
+        chargeRequest.setAmount((int) (Double.parseDouble(request.getParameter(AMOUNT)) * 100));
+        chargeRequest.setCurrency(ChargeRequest.Currency.RON);
         chargeRequest.setStripeEmail(request.getParameter(STRIPE_EMAIL));
         chargeRequest.setStripeToken(request.getParameter(STRIPE_TOKEN));
 

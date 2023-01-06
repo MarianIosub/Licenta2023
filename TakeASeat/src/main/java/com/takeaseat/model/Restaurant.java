@@ -62,6 +62,8 @@ public class Restaurant {
     @NonNull
     private Double priceRequired;
 
+    private Integer noOfReservations = 0;
+
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<MenuItem> menuItems;
 }

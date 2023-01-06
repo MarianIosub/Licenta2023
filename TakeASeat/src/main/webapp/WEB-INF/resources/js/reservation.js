@@ -48,6 +48,36 @@ function decreaseQuantity(id) {
     });
 }
 
+function setReservationDate(value) {
+    $.ajax({
+        type: "POST",
+        data: {reservationDate: value},
+        url: "/cart/date",
+    }).then(function (response) {
+        $('#reservation-component').html(response);
+    });
+}
+
+function setReservationStart(value) {
+    $.ajax({
+        type: "POST",
+        data: {reservationStart: value},
+        url: "/cart/start",
+    }).then(function (response) {
+        $('#reservation-component').html(response);
+    });
+}
+
+function setReservationEnd(value) {
+    $.ajax({
+        type: "POST",
+        data: {reservationEnd: value},
+        url: "/cart/end",
+    }).then(function (response) {
+        $('#reservation-component').html(response);
+    });
+}
+
 function redirectToCheckout() {
     const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
     const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;

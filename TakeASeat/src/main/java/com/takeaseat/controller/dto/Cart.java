@@ -6,13 +6,14 @@ import com.takeaseat.model.Restaurant;
 import com.takeaseat.model.User;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Data
 public class Cart {
-    private Date date;
+    private LocalDate date;
     private Date today = new Date(new Date().getTime() + (1000 * 60 * 60 * 24));
     private Double startingHour;
     private Double endingHour;
@@ -22,4 +23,5 @@ public class Cart {
     private Double totalPrice;
     private String error;
     private Charge charge;
+    private boolean canBePlaced = false;
 }

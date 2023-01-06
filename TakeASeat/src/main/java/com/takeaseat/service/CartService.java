@@ -12,4 +12,10 @@ public interface CartService {
     void increaseQuantityForMenuItem(Cart cart, Long menuItemId);
 
     void decreaseQuantityForMenuItem(Cart cart, Long menuItemId);
+
+    void setCartDate(Cart cart, String date);
+
+    void setCartReservationStart(Cart cart, String start);
+
+    void setCartReservationEnd(Cart cart, String end);
 }

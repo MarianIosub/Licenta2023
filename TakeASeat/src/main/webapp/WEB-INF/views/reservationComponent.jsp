@@ -28,18 +28,32 @@
                 <div class="reservation-component-logged">
                     <div class="reservation-component-time">
                         <div class="reservation-date">
-                            <input type="date" class="input"
-                                   min="<%=(LocalDate.now().plusDays(1)).format(DateTimeFormatter.ISO_DATE)%>"/>
+                            <c:choose>
+                                <c:when test="${cart.date ne null}">
+                                    <input type="date" class="input"
+                                           min="<%=(LocalDate.now().plusDays(1)).format(DateTimeFormatter.ISO_DATE)%>"
+                                           onchange="setReservationDate(this.value)" value="${cart.date}"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="date" class="input"
+                                           min="<%=(LocalDate.now().plusDays(1)).format(DateTimeFormatter.ISO_DATE)%>"
+                                           onchange="setReservationDate(this.value)"/>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="reservation-start">
                             <input type="number" min="${cart.restaurant.openingHour}"
-                                   max="${cart.restaurant.closingHour - 1.0}" step="0.5" onkeydown="return false"
-                                   value="${cart.restaurant.openingHour}"/>
+                                   max="${cart.endingHour eq null ? cart.restaurant.closingHour - 1.0 : cart.endingHour - 1.0}"
+                                   step="0.5" onkeydown="return false"
+                                   value="${cart.startingHour eq null ? cart.restaurant.openingHour : cart.startingHour}"
+                                   onchange="setReservationStart(this.value)"/>
                         </div>
                         <div class="reservation-end">
-                            <input type="number" min="${cart.restaurant.openingHour + 1.0}"
+                            <input type="number"
+                                   min="${cart.startingHour eq null ? cart.restaurant.openingHour + 1.0 : cart.startingHour + 1.0}"
                                    max="${cart.restaurant.closingHour}" step="0.5" onkeydown="return false"
-                                   value="${cart.restaurant.closingHour}"/>
+                                   value="${cart.endingHour eq null ? cart.restaurant.closingHour : cart.endingHour}"
+                                   onchange="setReservationEnd(this.value)"/>
                         </div>
                     </div>
                     <div class="reservation-component-menu-items">
@@ -87,8 +101,17 @@
         <h1 class="reservation-total-price">
             Total price: ${cart.totalPrice} RON
         </h1>
-        <a class="button is-info is-rounded" href="" id="place-order" onclick="redirectToCheckout()">
-            Place order
-        </a>
+        <c:choose>
+            <c:when test="${cart.canBePlaced and cart.user ne null}">
+                <a class="button is-info is-rounded" id="place-order" onclick="redirectToCheckout()">
+                    Place order
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a class="button is-info is-rounded" disabled="disabled" id="place-order">
+                    Place order
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>

@@ -91,12 +91,15 @@
                         </button>
                     </div>
                     <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                        <div class="dropdown-content">
+                        <div class="dropdown-content is-pulled-right">
                             <div class="dropdown-item">
-                                <a onclick="sortMenuItemsBy('ALPHABETICAL')">Alphabetical</a>
+                                <a onclick="sortMenuItemsBy('ALPHABETICAL')">A <span>&#8594;</span> Z</a>
                             </div>
                             <div class="dropdown-item">
-                                <a onclick="sortMenuItemsBy('INVERSE')">Inverse</a>
+                                <a onclick="sortMenuItemsBy('INVERSE')">Z <span>&#8594;</span> A</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a onclick="sortMenuItemsBy('POPULAR')">Popular</a>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -22,7 +23,8 @@
                 </div>
                 <div class="restaurant-list-infos_first">
                     <div class="restaurant-list-program">
-                        <span class="fas fa-clock"></span> ${restaurant.openingHour} -> ${restaurant.closingHour}
+                        <span class="fas fa-clock"></span> ${fn:replace(restaurant.openingHour, '.', ':')}0
+                        -> ${fn:replace(restaurant.closingHour, '.', ':')}0
                     </div>
                     <div class="restaurant-list-contact">
                         <div>

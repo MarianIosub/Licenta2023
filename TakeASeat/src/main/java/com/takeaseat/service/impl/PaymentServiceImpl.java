@@ -26,7 +26,7 @@ public class PaymentServiceImpl implements PaymentService {
     public Charge charge(ChargeRequest chargeRequest) throws StripeException {
         Map<String, Object> chargeParams = new HashMap<>();
         chargeParams.put(AMOUNT, chargeRequest.getAmount());
-        chargeParams.put(CURRENCY, chargeRequest.getCurrency());
+        chargeParams.put(CURRENCY, chargeRequest.getCurrency().toString().toLowerCase());
         chargeParams.put(DESCRIPTION, chargeRequest.getDescription());
         chargeParams.put(SOURCE, chargeRequest.getStripeToken());
         return Charge.create(chargeParams);

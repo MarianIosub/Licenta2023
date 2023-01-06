@@ -21,10 +21,10 @@
 <body>
 <div class="checkout-confirmation">
     <div class="checkout-confirmation-restaurant">
-        <img src="data:image/jpeg;base64,${cart.restaurant.image}"/>
-        <h1><strong>${cart.restaurant.name}</strong></h1>
+        <img src="data:image/jpeg;base64,${order.restaurant.image}"/>
+        <h1><strong>${order.restaurant.name}</strong></h1>
     </div>
-    <h1 class="checkout-confirmation-price">Total price: <strong>${cart.totalPrice}</strong> RON</h1>
+    <h1 class="checkout-confirmation-price">Total price: <strong>${order.totalPrice}</strong> RON</h1>
     <h1 class="checkout-confirmation-message">Transaction was successfully!</h1>
 </div>
 <script>
