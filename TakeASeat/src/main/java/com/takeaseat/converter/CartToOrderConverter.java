@@ -1,6 +1,7 @@
 package com.takeaseat.converter;
 
 
+import com.stripe.model.Card;
 import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Order;
@@ -18,10 +19,10 @@ public class CartToOrderConverter {
         return Order.builder()
                 .user(cart.getUser())
                 .restaurant(cart.getRestaurant())
-                .cardExpirationMonth(12)
-                .cardExpirationYear(23)
-                .cardLastDigits("1111")
-                .cardPaymentNetwork("VISA")
+                .cardExpirationMonth(((Card) cart.getCharge().getSource()).getExpMonth())
+                .cardExpirationYear(((Card) cart.getCharge().getSource()).getExpYear())
+                .cardLastDigits(((Card) cart.getCharge().getSource()).getLast4())
+                .cardPaymentNetwork(((Card) cart.getCharge().getSource()).getBrand())
                 .chargeId(cart.getCharge().getId())
                 .startingHour(cart.getStartingHour())
                 .endingHour(cart.getEndingHour())

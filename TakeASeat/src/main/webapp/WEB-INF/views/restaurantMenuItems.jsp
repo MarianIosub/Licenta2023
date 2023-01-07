@@ -3,7 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <div>
-    <sec:authorize var="isAuthenticated" access="isAuthenticated()"/>
+    <c:set var="cart" value="${sessionScope.cart}"/>
+    <c:set var="isAuthenticated" value="${cart.user ne null}"/>
     <c:set var="menuItems" value="${menuItems ne null ? menuItems : currentRestaurant.menuItems}"/>
     <c:if test="${hasAvailableItems}">
     <h1 class="menu-items-availability-groups"> Available products &darr; </h1>
@@ -13,7 +14,8 @@
         <c:choose>
         <c:when test="${isAuthenticated}">
         <div class="menu-item" id="menuItem-${menuItem.id}" onmouseover="displayCartButton(this.id)"
-             onmouseleave="hideCartButton(this.id)"></c:when>
+             onmouseleave="hideCartButton(this.id)">
+            </c:when>
             <c:otherwise>
             <div class="menu-item" id="menuItem-${menuItem.id}">
                 </c:otherwise>

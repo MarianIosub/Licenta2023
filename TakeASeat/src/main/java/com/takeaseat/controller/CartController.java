@@ -1,6 +1,7 @@
 package com.takeaseat.controller;
 
 import com.stripe.exception.StripeException;
+import com.stripe.model.Charge;
 import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.controller.dto.ChargeRequest;
 import com.takeaseat.model.Order;
@@ -117,7 +118,8 @@ public class CartController {
     public String charge(HttpServletRequest request, @SessionAttribute(CART) Cart cart,
                          HttpSession session, Model model) throws StripeException {
         ChargeRequest chargeRequest = getChargeRequest(request);
-        cart.setCharge(getPaymentService().charge(chargeRequest));
+        Charge charge = getPaymentService().charge(chargeRequest);
+        cart.setCharge(charge);
         Order order = getOrderService().placeOrder(cart);
         model.addAttribute(ORDER, order);
         session.removeAttribute(CART);
