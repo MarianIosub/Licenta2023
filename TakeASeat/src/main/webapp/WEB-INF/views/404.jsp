@@ -14,7 +14,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TimelineLite.min.js"></script>
     <link rel="stylesheet" href="../resources/css/error.css">
     <script src="../resources/js/error.js"></script>
-    <base href="/">
+
 </head>
 <body>
 <div class="container">

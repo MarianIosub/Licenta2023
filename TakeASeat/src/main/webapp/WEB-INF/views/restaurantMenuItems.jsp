@@ -7,7 +7,7 @@
     <c:set var="isAuthenticated" value="${cart.user ne null}"/>
     <c:set var="menuItems" value="${menuItems ne null ? menuItems : currentRestaurant.menuItems}"/>
     <c:if test="${hasAvailableItems}">
-    <h1 class="menu-items-availability-groups"> Available products &darr; </h1>
+    <h1 class="menu-items-availability-groups"><spring:message code="MenuItems.Available.Products.Label"/> &darr; </h1>
     <div class="menu-items-list">
         <c:forEach items="${menuItems}" var="menuItem">
         <c:if test="${menuItem.available}">
@@ -50,7 +50,8 @@
         </div>
         </c:if>
         <c:if test="${hasUnavailableItems}">
-            <h1 class="menu-items-availability-groups"> Unavailable products &darr; </h1>
+            <h1 class="menu-items-availability-groups"><spring:message code="MenuItems.Unavailable.Products.Label"/>
+                &darr; </h1>
             <div class="menu-items-list">
                 <c:forEach items="${menuItems}" var="menuItem">
                     <c:if test="${not menuItem.available}">

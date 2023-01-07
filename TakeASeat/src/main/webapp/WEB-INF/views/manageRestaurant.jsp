@@ -21,10 +21,11 @@
     <script src="../resources/js/menuItemForm.js"></script>
     <script src="../resources/js/menuItemsSearch.js"></script>
     <script src="../resources/js/menuItemsManage.js"></script>
-    <base href="/">
+
 </head>
 <body>
 <c:set var="restaurant" value="${currentRestaurant}"/>
+<spring:message code="Search.Label" var="searchLabel"/>
 <st:header/>
 <st:flashMessage/>
 <section class="section manage-restaurant-header">
@@ -128,7 +129,7 @@
                     code="ManageRestaurant.SearchItem.Title" htmlEscape="true"/> &darr;</h1>
             <label title="Menu Item name: ">
                 <input class="input" type="text"
-                       placeholder="Search.."
+                       placeholder="${searchLabel}.."
                        id="menu-items-search" onkeyup="searchForMenuItem()" onclick="scrollForMenuItems()"/>
             </label>
         </div>

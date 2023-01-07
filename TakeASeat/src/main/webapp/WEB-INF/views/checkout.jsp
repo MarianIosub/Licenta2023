@@ -17,10 +17,11 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
-    <base href="/">
+
 </head>
 <body>
 <c:set var="cart" value="${sessionScope.cart}"/>
+<spring:message var="payMessage" code="Checkout.Pay.Message"/>
 <form action='${pageContext.request.contextPath}/cart/charge' method='POST' id='checkout-form' class="checkout-form">
     <input type='hidden' value='${cart.totalPrice}' name='amount'/>
     <div class="checkout-restaurant">
@@ -31,7 +32,7 @@
     <script src='https://checkout.stripe.com/checkout.js'
             class='stripe-button' data-key='${stripePublicKey}'
             data-amount='${cart.totalPrice*100}' data-currency='${currency}'
-            data-name='${cart.restaurant.name}' data-description='Pay your reservation'
+            data-name='${cart.restaurant.name}' data-description='${payMessage}'
             data-image='https://img.freepik.com/free-vector/sticker-design-with-hamburger-isolated_1308-62485.jpg?w=1380&t=st=1672852651~exp=1672853251~hmac=23a129f25a6e099af42ed994f89b31ea6aed7517b3c6129ed78d5b07ee738d30'
             data-locale='auto' data-zip-code='false' data-email="${cart.user.mail}">
     </script>

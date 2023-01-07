@@ -10,7 +10,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register | Take a sEAT</title>
+    <title>Login | Take a sEAT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="../resources/css/register.css">
     <script
@@ -18,13 +18,13 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
-    <base href="/">
+
 </head>
-<body>
+<body class="login-body">
 <st:header/>
 <st:flashMessage/>
 <spring:url value="/login" var="loginUrl"/>
-<div id="registration-label" class="form-modal">
+<div id="login-label" class="login-modal">
     <h3 class="title is-center"><spring:message code="Login.Title" htmlEscape="true"/> <strong>Take a sEAT!</strong>
     </h3>
     <form:form method="post" action="${loginUrl}" modelAttribute="loginForm">

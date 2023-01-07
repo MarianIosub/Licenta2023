@@ -25,9 +25,10 @@
     <script src="../resources/js/restaurant.js"></script>
     <script src="../resources/js/reservation.js"></script>
 
-    <base href="/">
+
 </head>
 <body>
+<spring:message code="Search.Label" var="searchLabel"/>
 <st:header/>
 <div class="display-restaurant-page">
     <div class="display-restaurant-left">
@@ -45,32 +46,32 @@
                 <img src="data:image/jpeg;base64,${currentRestaurant.image}" alt="restaurant-image"/>
                 <div class="restaurant-presentation-details">
                     <div class="">
-                        Where?
+                        <spring:message code="Restaurant.Where.Label"/>?
                         <strong>
                             <span class="fas fa-location-arrow"></span> ${currentRestaurant.address}, ${currentRestaurant.city}
                         </strong>
                     </div>
                     <div class="">
-                        When?
+                        <spring:message code="Restaurant.When.Label"/>?
                         <strong>
                             <span class="fas fa-clock"></span> ${fn:replace(currentRestaurant.openingHour, '.', ':')}0
                             -> ${fn:replace(currentRestaurant.closingHour, '.', ':')}0
                         </strong>
                     </div>
                     <div>
-                        Phone number?
+                        <spring:message code="Restaurant.Phone.Number.Label"/>?
                         <strong>
                             <i class="fa fa-phone" aria-hidden="true"></i> ${currentRestaurant.phoneNumber}
                         </strong>
                     </div>
                     <div>
-                        Mail address?
+                        <spring:message code="Restaurant.Mail.Address.Label"/>?
                         <strong>
                             <i class="fa fa-envelope" aria-hidden="true"></i> ${currentRestaurant.mail}
                         </strong>
                     </div>
                     <div>
-                        Price <strong>&dollar;</strong>?
+                        <spring:message code="Restaurant.Price.Label"/> <strong>&dollar;</strong>?
                         <strong>
                             ${currentRestaurant.priceRequired} RON
                         </strong>
@@ -82,13 +83,13 @@
             <div class="restaurant-menu-item-header">
                 <label id="restaurant-menu-items-search-label" class="label restaurant-menu-items-search-label">
                     <input id="restaurant-menu-items-search" class="input restaurant-menu-items-search-input"
-                           placeholder="Search.." type="text"
+                           placeholder="${searchLabel}.." type="text"
                            onkeyup="searchForRestaurantMenuItems()" onclick="scrollForRestaurantMenuItems()">
                 </label>
                 <div class="dropdown is-hoverable is-pulled-right is-right">
                     <div class="dropdown-trigger">
                         <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                            <span>Order by</span>
+                            <span><spring:message code="Restaurants.Order.Dropdown"/></span>
                             <span class="icon is-small">
                         &#10225;
                     </span>
@@ -103,7 +104,8 @@
                                 <a onclick="sortMenuItemsBy('INVERSE')">Z <span>&#8594;</span> A</a>
                             </div>
                             <div class="dropdown-item">
-                                <a onclick="sortMenuItemsBy('POPULAR')">Popular</a>
+                                <a onclick="sortMenuItemsBy('POPULAR')"><spring:message
+                                        code="Restaurant.Order.Dropdown.Popular"/></a>
                             </div>
                         </div>
                     </div>

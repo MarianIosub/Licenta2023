@@ -17,7 +17,7 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
-    <base href="/">
+
 </head>
 <body>
 <div class="checkout-confirmation">
@@ -25,8 +25,9 @@
         <img src="data:image/jpeg;base64,${order.restaurant.image}"/>
         <h1><strong>${order.restaurant.name}</strong></h1>
     </div>
-    <h1 class="checkout-confirmation-price">Total price: <strong>${order.totalPrice}</strong> RON</h1>
-    <h1 class="checkout-confirmation-message">Transaction was successfully!</h1>
+    <h1 class="checkout-confirmation-price"><spring:message code="Checkout.Confirmation.Total.Price"/>:
+        <strong>${order.totalPrice}</strong> RON</h1>
+    <h1 class="checkout-confirmation-message"><spring:message code="Checkout.Confirmation.Successful.Transaction"/></h1>
 </div>
 <script>
     setTimeout(function () {

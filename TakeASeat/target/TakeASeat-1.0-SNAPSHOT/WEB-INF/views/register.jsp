@@ -18,18 +18,18 @@
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
-    <base href="/">
+
 </head>
 <body>
 <st:header/>
 <st:flashMessage/>
 <spring:url value="/register" var="registerUrl"/>
 <div id="registration-label" class="form-modal">
-    <h3 class="title is-center">Register to <strong>Take a sEAT!</strong></h3>
+    <h3 class="title is-center"><spring:message code="Register.Title"/> <strong>Take a sEAT!</strong></h3>
     <form:form method="post" action="${registerUrl}" modelAttribute="registerForm">
         <spring:bind path="name">
             <div class="field">
-                <form:label class="label" path="name">Name</form:label>
+                <form:label class="label" path="name"><spring:message code="Register.Name"/></form:label>
                 <div class="control">
                     <form:input name="registerForm.name" class="input" type="text" placeholder="Name" path="name"
                                 required="required"/>
@@ -39,7 +39,7 @@
         </spring:bind>
         <spring:bind path="surname">
             <div class="field">
-                <form:label class="label" path="surname">Surname</form:label>
+                <form:label class="label" path="surname"><spring:message code="Register.Surname"/></form:label>
                 <div class="control">
                     <form:input class="input" type="text" placeholder="Surname" required="true" path="surname"/>
                     <form:errors path="surname" class="help is-danger"/>
@@ -48,7 +48,7 @@
         </spring:bind>
         <spring:bind path="mail">
             <div class="field">
-                <form:label class="label" path="mail">Mail</form:label>
+                <form:label class="label" path="mail"><spring:message code="Register.Mail"/></form:label>
                 <div class="control">
                     <form:input class="input" type="email" placeholder="Email" required="true" path="mail"/>
                     <form:errors path="mail" class="help is-danger"/>
@@ -57,7 +57,7 @@
         </spring:bind>
         <spring:bind path="password">
             <div class="field">
-                <form:label class="label" path="password">Password</form:label>
+                <form:label class="label" path="password"><spring:message code="Register.Password"/></form:label>
                 <div class="control ">
                     <form:input class="input" type="password" placeholder="Password" required="true"
                                 path="password"/>
@@ -67,7 +67,8 @@
         </spring:bind>
         <spring:bind path="confirmPassword">
             <div class="field">
-                <form:label class="label" path="confirmPassword">Confirm Password</form:label>
+                <form:label class="label" path="confirmPassword"><spring:message
+                        code="Register.Confirm.Password"/></form:label>
                 <div class="control">
                     <form:input class="input" type="password" placeholder="Confirm Password" required="true"
                                 path="confirmPassword"/>
@@ -77,13 +78,14 @@
         </spring:bind>
         <spring:bind path="role">
             <div class="field">
-                <form:label class="label" path="role">You are a:</form:label>
+                <form:label class="label" path="role"><spring:message code="Register.Role.Label"/>:</form:label>
                 <div class="control">
                     <div class="select">
                         <form:select required="required" path="role">
                             <option value="" selected disabled hidden>Click me!</option>
-                            <option value="ROLE_FOOD_LOVER">Food lover</option>
-                            <option value="ROLE_ADMINISTRATOR">Administrator</option>
+                            <option value="ROLE_FOOD_LOVER"><spring:message code="Register.Food.Lover.Role"/></option>
+                            <option value="ROLE_ADMINISTRATOR"><spring:message
+                                    code="Register.Administrator.Role"/></option>
                         </form:select>
                         <form:errors path="role" class="help is-danger"/>
                     </div>
@@ -95,7 +97,8 @@
                 <div class="control">
                     <form:label class="checkbox" path="terms">
                         <form:checkbox required="true" path="terms"/>
-                        I agree to the <a href="#">terms and conditions</a>
+                        <spring:message code="Register.Terms.And.Conditions.First"/> <a href="#"><spring:message
+                            code="Register.Terms.And.Conditions.Second"/></a>
                     </form:label>
                     <form:errors path="role" class="help is-danger"/>
                 </div>
@@ -103,7 +106,7 @@
         </spring:bind>
         <div class="field is-grouped is-center is-10">
             <div class="control">
-                <button class="button is-link" type="submit">Let's eat!</button>
+                <button class="button is-link" type="submit"><spring:message code="Register.Button"/></button>
             </div>
         </div>
     </form:form>

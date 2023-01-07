@@ -37,20 +37,23 @@
             </c:choose>
             <c:if test="${isAuthenticated}">
                 <a class="navbar-item" href="<c:url value="/order/orders"/> ">
-                    Orders
+                    <spring:message code="Header.Orders"/>
                 </a>
             </c:if>
             <nav class="navbar" role="navigation" aria-label="dropdown navigation">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">
-                        Language
+                        <spring:message code="Header.Language.Dropdown.Label"/>
                     </a>
                     <div class="navbar-dropdown">
                         <a href="?lang=en" class="navbar-item">
-                            English
+                            <spring:message code="Header.Language.Dropdown.English"/>
                         </a>
                         <a href="?lang=fr" class="navbar-item">
-                            French
+                            <spring:message code="Header.Language.Dropdown.French"/>
+                        </a>
+                        <a href="?lang=ro" class="navbar-item">
+                            <spring:message code="Header.Language.Dropdown.Romanian"/>
                         </a>
                     </div>
                 </div>

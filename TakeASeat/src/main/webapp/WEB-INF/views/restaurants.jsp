@@ -23,14 +23,15 @@
     ></script>
     <script src="../resources/js/restaurants.js"></script>
 
-    <base href="/">
+
 </head>
 <body>
 <st:header/>
+<spring:message code="Search.Label" var="searchLabel"/>
 <div class="restaurants-header">
-    <h1 class="restaurants-title">Choose your favorite restaurant &darr;</h1>
+    <h1 class="restaurants-title"><spring:message code="Restaurants.Title"/> &darr;</h1>
     <label id="restaurants-search-label" class="label restaurants-search-label">
-        <input id="restaurants-search" class="input restaurants-search-input" placeholder="Search.." type="text"
+        <input id="restaurants-search" class="input restaurants-search-input" placeholder="${searchLabel}.." type="text"
                onkeyup="searchForRestaurants()" onclick="scrollForRestaurants()">
     </label>
 </div>
@@ -38,7 +39,7 @@
     <div class="dropdown is-hoverable is-pulled-right is-right">
         <div class="dropdown-trigger">
             <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                <span>Order by</span>
+                <span><spring:message code="Restaurant.Order.Dropdown.Label"/></span>
                 <span class="icon is-small">
                         &#10225;
                     </span>
@@ -53,7 +54,7 @@
                     <a onclick="sortBy('INVERSE')">Z <span>&#8594;</span> A</a>
                 </div>
                 <div class="dropdown-item">
-                    <a onclick="sortBy('POPULAR')">Popular</a>
+                    <a onclick="sortBy('POPULAR')"><spring:message code="Restaurant.Order.Dropdown.Popular"/></a>
                 </div>
             </div>
         </div>

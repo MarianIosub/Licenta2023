@@ -12,13 +12,13 @@
     <c:set var="cart" value="${sessionScope.cart}" scope="page"/>
     <sec:authorize access="isAnonymous()" var="isAnonymous"/>
     <div class="reservation-component-title">
-        <h1>&darr; Your reservation &darr;</h1>
+        <h1>&darr; <spring:message code="Reservation.Title"/> &darr;</h1>
     </div>
     <div class="reservation-infos">
         <c:choose>
             <c:when test="${isAnonymous}">
                 <div class="reservation-component-not-logged">
-                    <h1>Please login to make reservations</h1>
+                    <h1><spring:message code="Reservation.Login.Message"/></h1>
                     <a class="button is-primary" href="<c:url value="/login"/>">
                         <spring:message code="Header.Login" htmlEscape="true"/>
                     </a>
@@ -112,17 +112,17 @@
     </div>
     <div class="reservation-component-footer">
         <h1 class="reservation-total-price">
-            Total price: ${cart.totalPrice} RON
+            <spring:message code="Reservation.Total.Price"/>: ${cart.totalPrice} RON
         </h1>
         <c:choose>
             <c:when test="${cart.canBePlaced and cart.user ne null}">
                 <a class="button is-info is-rounded" id="place-order" onclick="redirectToCheckout()">
-                    Place order
+                    <spring:message code="Reservation.Place.Order.Button"/>
                 </a>
             </c:when>
             <c:otherwise>
                 <a class="button is-info is-rounded" disabled="disabled" id="place-order">
-                    Place order
+                    <spring:message code="Reservation.Place.Order.Button"/>
                 </a>
             </c:otherwise>
         </c:choose>
