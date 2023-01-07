@@ -59,6 +59,7 @@ function setReservationDate(value) {
 }
 
 function setReservationStart(value) {
+    value = parseFloat(value.replace(':', '.'));
     $.ajax({
         type: "POST",
         data: {reservationStart: value},
@@ -69,6 +70,7 @@ function setReservationStart(value) {
 }
 
 function setReservationEnd(value) {
+    value = parseFloat(value.replace(':', '.'));
     $.ajax({
         type: "POST",
         data: {reservationEnd: value},

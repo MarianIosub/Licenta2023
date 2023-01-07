@@ -1,7 +1,7 @@
 <%@ page import="java.time.LocalDate" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
-<%@ page import="static com.takeaseat.constants.StringConstants.CART" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="st" tagdir="/WEB-INF/tags" %>
@@ -42,17 +42,30 @@
                             </c:choose>
                         </div>
                         <div class="reservation-start">
-                            <input type="number" min="${cart.restaurant.openingHour}"
-                                   max="${cart.endingHour eq null ? cart.restaurant.closingHour - 1.0 : cart.endingHour - 1.0}"
-                                   step="0.5" onkeydown="return false"
-                                   value="${cart.startingHour eq null ? cart.restaurant.openingHour : cart.startingHour}"
-                                   onchange="setReservationStart(this.value)"/>
+                            <c:choose>
+                                <c:when test="${(cart.startingHour eq null and cart.restaurant.openingHour < 10.0) || (cart.startingHour ne null and cart.startingHour <10.0)}">
+                                    <input type="time" min="${fn:replace(cart.restaurant.openingHour, '.', ':')}0"
+                                           max="${fn:replace(cart.endingHour eq null ? cart.restaurant.closingHour - 1.0 : cart.endingHour - 1.0, '.', ':')}0"
+                                           step="1800" onkeydown="return false"
+                                           value="0${fn:replace(cart.startingHour eq null ? cart.restaurant.openingHour : cart.startingHour, '.', ':')}0"
+                                           onchange="setReservationStart(this.value)"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="time" min="${fn:replace(cart.restaurant.openingHour, '.', ':')}0"
+                                           max="${fn:replace(cart.endingHour eq null ? cart.restaurant.closingHour - 1.0 : cart.endingHour - 1.0, '.', ':')}0"
+                                           step="1800" onkeydown="return false"
+                                           value="${fn:replace(cart.startingHour eq null ? cart.restaurant.openingHour : cart.startingHour, '.', ':')}0"
+                                           onchange="setReservationStart(this.value)"/>
+                                </c:otherwise>
+                            </c:choose>
+
                         </div>
                         <div class="reservation-end">
-                            <input type="number"
-                                   min="${cart.startingHour eq null ? cart.restaurant.openingHour + 1.0 : cart.startingHour + 1.0}"
-                                   max="${cart.restaurant.closingHour}" step="0.5" onkeydown="return false"
-                                   value="${cart.endingHour eq null ? cart.restaurant.closingHour : cart.endingHour}"
+                            <input type="time"
+                                   min="${fn:replace(cart.startingHour eq null ? cart.restaurant.openingHour + 1.0 : cart.startingHour + 1.0, '.', ':')}0"
+                                   max="${fn:replace(cart.restaurant.closingHour, '.', ':')}0" step="1800"
+                                   onkeydown="return false"
+                                   value="${fn:replace(cart.endingHour eq null ? cart.restaurant.closingHour : cart.endingHour, '.', ':')}0"
                                    onchange="setReservationEnd(this.value)"/>
                         </div>
                     </div>

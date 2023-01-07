@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicReference;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Transactional
@@ -77,13 +78,33 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public void setCartReservationStart(Cart cart, String start) {
-        cart.setStartingHour(Double.parseDouble(start));
+        Double startHour = Double.parseDouble(start);
+        if (cart.getRestaurant().getOpeningHour() > startHour) {
+            startHour = cart.getRestaurant().getOpeningHour();
+        }
+        if (nonNull(cart.getEndingHour()) && cart.getEndingHour() < (startHour + 0.2)) {
+            startHour = cart.getEndingHour() - 1.0;
+        }
+        if (isNull(cart.getEndingHour()) && cart.getRestaurant().getClosingHour() < (startHour + 1.0)) {
+            startHour = cart.getRestaurant().getClosingHour() - 1.0;
+        }
+        cart.setStartingHour(startHour);
         checkIfOrderCanBePlaced(cart);
     }
 
     @Override
     public void setCartReservationEnd(Cart cart, String end) {
-        cart.setEndingHour(Double.parseDouble(end));
+        Double endHour = Double.parseDouble(end);
+        if (cart.getRestaurant().getClosingHour() < endHour) {
+            endHour = cart.getRestaurant().getClosingHour();
+        }
+        if (nonNull(cart.getStartingHour()) && cart.getStartingHour() > (endHour - 0.2)) {
+            endHour = cart.getStartingHour() + 1.0;
+        }
+        if (isNull(cart.getStartingHour()) && cart.getRestaurant().getOpeningHour() > (endHour - 1.0)) {
+            endHour = cart.getRestaurant().getOpeningHour() + 1.0;
+        }
+        cart.setEndingHour(endHour);
         checkIfOrderCanBePlaced(cart);
     }
 
