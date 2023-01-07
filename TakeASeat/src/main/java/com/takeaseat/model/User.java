@@ -57,4 +57,9 @@ public class User {
     public void setLastLoginDate(LocalDateTime lastLoginDate) {
         this.lastLoginDate = lastLoginDate;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof User && this.getMail().equals(((User) obj).getMail());
+    }
 }

@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <sec:authorize access="hasRole('ROLE_ADMINISTRATOR')" var="isAdmin"/>
+<sec:authorize access="isAuthenticated()" var="isAuthenticated"/>
 
 <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -34,6 +35,11 @@
                     </a>
                 </c:otherwise>
             </c:choose>
+            <c:if test="${isAuthenticated}">
+                <a class="navbar-item" href="<c:url value="/order/orders"/> ">
+                    Orders
+                </a>
+            </c:if>
             <nav class="navbar" role="navigation" aria-label="dropdown navigation">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a class="navbar-link">

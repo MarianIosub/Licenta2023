@@ -23,6 +23,7 @@
     ></script>
     <script src="../resources/js/restaurants.js"></script>
 
+    <base href="/">
 </head>
 <body>
 <st:header/>

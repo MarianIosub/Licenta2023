@@ -55,6 +55,7 @@ public interface StringConstants {
 
     String ORDERS = "orders";
     String ORDER = "order";
+    String ORDER_ID = "orderId";
     String ORDER_ID_COLUMN_NAME = "order_id";
     String ORDER_ENTRIES = "order_entries";
     String ORDER_ENTRY_ID_COLUMN_NAME = "order_entry_id";

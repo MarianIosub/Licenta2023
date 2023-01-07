@@ -25,12 +25,16 @@
     <script src="../resources/js/restaurant.js"></script>
     <script src="../resources/js/reservation.js"></script>
 
+    <base href="/">
 </head>
 <body>
 <st:header/>
 <div class="display-restaurant-page">
     <div class="display-restaurant-left">
         <div class="display-restaurant-presentation">
+            <div class="back-to-restaurants">
+                <a href="${pageContext.request.contextPath}/restaurant/all"><span>&#8592;</span></a>
+            </div>
             <div class="restaurant-presentation-title">
                 ${currentRestaurant.name}
             </div>

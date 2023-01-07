@@ -21,6 +21,7 @@
     <script src="../resources/js/menuItemForm.js"></script>
     <script src="../resources/js/menuItemsSearch.js"></script>
     <script src="../resources/js/menuItemsManage.js"></script>
+    <base href="/">
 </head>
 <body>
 <c:set var="restaurant" value="${currentRestaurant}"/>

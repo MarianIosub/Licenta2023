@@ -380,7 +380,7 @@
     background: rgba(0, 209, 178, 0.4);
     border-radius: 3rem;
     width: 100%;
-
+    position: relative;
 }
 
 .restaurant-presentation-infos {
@@ -677,4 +677,17 @@
 
 .dropdown-content {
     width: 7rem;
+}
+
+.back-to-restaurants{
+    position: absolute;
+    left: 2rem;
+    top: 1rem;
+    font-size: 2rem;
+    font-weight: 800;
+    border: 1px solid hwb(192deg 0% 42% / 70%);
+    border-radius: 3rem;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
 }
