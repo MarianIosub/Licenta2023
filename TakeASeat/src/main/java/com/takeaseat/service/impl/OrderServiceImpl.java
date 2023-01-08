@@ -10,7 +10,12 @@ import com.takeaseat.service.OrderService;
 import com.takeaseat.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Transactional
 public class OrderServiceImpl implements OrderService {
@@ -42,8 +47,42 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> getCurrentUserOrders() {
-        return getOrderDao().getOrdersByUser(getUserService().getCurrentUser());
+    public List<Order> getCurrentUserOrders(String orderStatus) {
+        List<Order> orders = getOrderDao().getOrdersByUser(getUserService().getCurrentUser());
+        if (isNull(orderStatus)) {
+            return orders;
+        }
+
+        switch (orderStatus.toLowerCase()) {
+            case "approved":
+                return orders.stream().filter(o -> nonNull(o.getApproved()) && o.getApproved()).collect(Collectors.toList());
+            case "unapproved":
+                return orders.stream().filter(o -> nonNull(o.getApproved()) && !o.getApproved()).collect(Collectors.toList());
+            case "waiting":
+                return orders.stream().filter(o -> isNull(o.getApproved())).collect(Collectors.toList());
+            case "past":
+                return orders.stream().filter(o -> o.getDate().isBefore(LocalDate.now())).collect(Collectors.toList());
+            case "future":
+                return orders.stream().filter(o -> o.getDate().isAfter(LocalDate.now())).collect(Collectors.toList());
+            default:
+                return orders;
+        }
+    }
+
+    @Override
+    public void acceptOrder(Long orderId, String message) {
+        Order order = getOrderForId(orderId);
+        order.setApproved(Boolean.TRUE);
+        order.setMessage(message);
+        getOrderDao().updateOrder(order);
+    }
+
+    @Override
+    public void refuseOrder(Long orderId, String message) {
+        Order order = getOrderForId(orderId);
+        order.setApproved(Boolean.FALSE);
+        order.setMessage(message);
+        getOrderDao().updateOrder(order);
     }
 
     private void increaseRestaurantOrders(final Cart cart) {

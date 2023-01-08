@@ -28,4 +28,8 @@ public interface EndpointsConstants {
     String ORDER_ENDPOINT = "/order";
     String ORDER_CONFIRMATION_ENDPOINT = "/confirmation/{orderId}";
     String ORDERS_ENDPOINT = "/orders";
+    String RESERVATIONS_ENDPOINT = "/reservations";
+    String RESERVATIONS_LIST_ENDPOINT = "/reservations/filter";
+    String RESERVATIONS_ACCEPT_ENDPOINT = "/reservations/accept";
+    String RESERVATIONS_REFUSE_ENDPOINT = "/reservations/refuse";
 }

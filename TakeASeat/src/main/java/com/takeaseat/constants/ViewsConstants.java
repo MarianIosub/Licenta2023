@@ -16,6 +16,8 @@ public interface ViewsConstants {
     String CHECKOUT_CONFIRMATION_VIEW = "checkoutConfirmation";
     String ORDER_CONFIRMATION_VIEW = "orderConfirmation";
     String ORDERS_VIEW = "orders";
+    String RESERVATIONS_VIEW = "reservations";
+    String RESERVATIONS_LIST_VIEW = "reservationsList";
 
     //ERRORS
     String ERROR_404 = "404";

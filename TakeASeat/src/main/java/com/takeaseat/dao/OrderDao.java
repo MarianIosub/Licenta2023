@@ -11,4 +11,6 @@ public interface OrderDao {
     Order findById(final Long orderId);
 
     List<Order> getOrdersByUser(final User currentUser);
+
+    void updateOrder(Order order);
 }

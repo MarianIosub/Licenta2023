@@ -10,5 +10,9 @@ public interface OrderService {
 
     Order getOrderForId(final Long orderId);
 
-    List<Order> getCurrentUserOrders();
+    List<Order> getCurrentUserOrders(String orderStatus);
+
+    void acceptOrder(Long orderId, String message);
+
+    void refuseOrder(Long orderId, String message);
 }

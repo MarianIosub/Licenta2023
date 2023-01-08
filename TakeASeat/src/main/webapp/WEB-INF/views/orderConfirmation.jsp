@@ -24,7 +24,7 @@
     ></script>
     <script src="../resources/js/restaurant.js"></script>
     <script src="../resources/js/reservation.js"></script>
-
+    <base href="/">
 </head>
 <body>
 <st:header/>

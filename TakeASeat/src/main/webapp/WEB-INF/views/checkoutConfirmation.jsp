@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
@@ -22,7 +22,7 @@
 <body>
 <div class="checkout-confirmation">
     <div class="checkout-confirmation-restaurant">
-        <img src="data:image/jpeg;base64,${order.restaurant.image}"/>
+        <img src="data:image/jpeg;base64,${order.restaurant.image}" alt="Restaurant image"/>
         <h1><strong>${order.restaurant.name}</strong></h1>
     </div>
     <h1 class="checkout-confirmation-price"><spring:message code="Checkout.Confirmation.Total.Price"/>:

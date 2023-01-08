@@ -40,6 +40,11 @@ public class OrderDaoImpl implements OrderDao {
         return getManager().createQuery(format(ORDERS_BY_RESTAURANT_QUERY, currentUser.getId()), Order.class).getResultList();
     }
 
+    @Override
+    public void updateOrder(Order order) {
+        getManager().merge(order);
+    }
+
     protected EntityManager getManager() {
         return manager;
     }

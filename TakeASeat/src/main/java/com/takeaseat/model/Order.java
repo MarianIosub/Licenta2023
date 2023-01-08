@@ -72,4 +72,7 @@ public class Order {
     private String transactionStatus;
     @NonNull
     private LocalDateTime creationDate = LocalDateTime.now();
+
+    private Boolean approved = null;
+    private String message;
 }

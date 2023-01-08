@@ -36,9 +36,18 @@
                 </c:otherwise>
             </c:choose>
             <c:if test="${isAuthenticated}">
-                <a class="navbar-item" href="<c:url value="/order/orders"/> ">
-                    <spring:message code="Header.Orders"/>
-                </a>
+                <c:choose>
+                    <c:when test="${isAdmin}">
+                        <a class="navbar-item" href="<c:url value="/order/reservations"/> ">
+                            <spring:message code="Header.Orders"/>
+                        </a>
+                    </c:when>
+                    <c:otherwise>
+                        <a class="navbar-item" href="<c:url value="/order/orders"/> ">
+                            <spring:message code="Header.Orders"/>
+                        </a>
+                    </c:otherwise>
+                </c:choose>
             </c:if>
             <nav class="navbar" role="navigation" aria-label="dropdown navigation">
                 <div class="navbar-item has-dropdown is-hoverable">
