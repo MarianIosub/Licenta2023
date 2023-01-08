@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static com.takeaseat.constants.EndpointsConstants.ORDERS_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.ORDERS_LIST_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.ORDER_CONFIRMATION_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.ORDER_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
@@ -22,14 +24,19 @@ import static com.takeaseat.constants.EndpointsConstants.RESERVATIONS_ACCEPT_END
 import static com.takeaseat.constants.EndpointsConstants.RESERVATIONS_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.RESERVATIONS_LIST_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.RESERVATIONS_REFUSE_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.REVIEW_ENDPOINT;
 import static com.takeaseat.constants.StringConstants.CURRENT_RESTAURANT;
+import static com.takeaseat.constants.StringConstants.CURRENT_USER;
 import static com.takeaseat.constants.StringConstants.MESSAGE;
 import static com.takeaseat.constants.StringConstants.ORDER;
 import static com.takeaseat.constants.StringConstants.ORDERS;
 import static com.takeaseat.constants.StringConstants.ORDER_ID;
 import static com.takeaseat.constants.StringConstants.ORDER_STATUS;
+import static com.takeaseat.constants.StringConstants.RATING;
+import static com.takeaseat.constants.StringConstants.TODAY;
 import static com.takeaseat.constants.ViewsConstants.ERROR_403;
 import static com.takeaseat.constants.ViewsConstants.ERROR_404;
+import static com.takeaseat.constants.ViewsConstants.ORDERS_LIST_VIEW;
 import static com.takeaseat.constants.ViewsConstants.ORDERS_VIEW;
 import static com.takeaseat.constants.ViewsConstants.ORDER_CONFIRMATION_VIEW;
 import static com.takeaseat.constants.ViewsConstants.RESERVATIONS_LIST_VIEW;
@@ -61,12 +68,23 @@ public class OrderController {
     }
 
     @RequestMapping(ORDERS_ENDPOINT)
-    public String getCurrentUserOrders(Model model, @RequestParam(value = ORDER_STATUS, required = false) String orderStatus) {
+    public String getCurrentUserOrders(Model model, @RequestParam(value = ORDER_STATUS, required = false, defaultValue = "Waiting") String orderStatus) {
         final List<Order> orders = getOrderService().getCurrentUserOrders(orderStatus);
         model.addAttribute(ORDERS, orders);
-
+        model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
+        model.addAttribute(TODAY, LocalDate.now());
         return ORDERS_VIEW;
     }
+
+    @RequestMapping(ORDERS_LIST_ENDPOINT)
+    public String getCurrentUserOrdersFiltered(Model model, @RequestParam(value = ORDER_STATUS, required = false, defaultValue = "Waiting") String orderStatus) {
+        final List<Order> orders = getOrderService().getCurrentUserOrders(orderStatus);
+        model.addAttribute(ORDERS, orders);
+        model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
+        model.addAttribute(TODAY, LocalDate.now());
+        return ORDERS_LIST_VIEW;
+    }
+
 
     @RequestMapping(RESERVATIONS_ENDPOINT)
     public String getCurrentAdministratorReservations(Model model) {
@@ -100,6 +118,13 @@ public class OrderController {
         getOrderService().refuseOrder(orderId, message);
 
         return createEndpoint(REDIRECT, ORDER_ENDPOINT, RESERVATIONS_LIST_ENDPOINT);
+    }
+
+    @RequestMapping(value = REVIEW_ENDPOINT, method = RequestMethod.POST)
+    public String reviewRestaurant(@RequestParam(ORDER_ID) Long orderId, @RequestParam(MESSAGE) String message, @RequestParam(RATING) Integer rating) {
+        getOrderService().placeReview(orderId, message, rating);
+
+        return createEndpoint(REDIRECT, ORDER_ENDPOINT, ORDERS_LIST_ENDPOINT);
     }
 
     protected RestaurantService getRestaurantService() {

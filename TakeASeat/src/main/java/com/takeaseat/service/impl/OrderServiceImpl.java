@@ -6,6 +6,7 @@ import com.takeaseat.dao.OrderDao;
 import com.takeaseat.dao.RestaurantDao;
 import com.takeaseat.model.Order;
 import com.takeaseat.model.Restaurant;
+import com.takeaseat.model.Review;
 import com.takeaseat.service.OrderService;
 import com.takeaseat.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
@@ -83,6 +84,31 @@ public class OrderServiceImpl implements OrderService {
         order.setApproved(Boolean.FALSE);
         order.setMessage(message);
         getOrderDao().updateOrder(order);
+    }
+
+    @Override
+    public void placeReview(Long orderId, String message, Integer rating) {
+        Order order = getOrderForId(orderId);
+        Restaurant restaurant = order.getRestaurant();
+        Review review = Review.builder()
+                .grade(rating)
+                .comment(message)
+                .user(order.getUser().getName() + " " + order.getUser().getSurname())
+                .localDate(order.getDate())
+                .build();
+        restaurant.addReview(review);
+        calculateRestaurantRating(restaurant);
+        order.setReviewed(true);
+        getRestaurantDao().update(restaurant);
+        getOrderDao().updateOrder(order);
+    }
+
+    private void calculateRestaurantRating(Restaurant restaurant) {
+        double rating = 0.0;
+        for (Review review : restaurant.getReviews()) {
+            rating = rating + review.getGrade();
+        }
+        restaurant.setRating(rating / restaurant.getReviews().size());
     }
 
     private void increaseRestaurantOrders(final Cart cart) {

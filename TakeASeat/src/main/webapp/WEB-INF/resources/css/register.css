@@ -860,3 +860,73 @@
     font-weight: 600;
 }
 
+.order-review {
+    margin-top: 0.5rem;
+    width: 90%;
+    border-top: 1px solid black;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.review-message {
+    margin-left: 3rem;
+    width: 40rem;
+    height: 2.5rem;
+    border-radius: 10rem;
+    font-size: 1.4rem;
+    color: #00d1b2;
+    border: 3px solid;
+    font-weight: 400;
+    text-align: center;
+}
+
+.review-select {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    width: 10rem;
+    height: 1.5rem;
+    border-radius: 10rem;
+    font-size: 1rem;
+    color: #00d1b2;
+    border: 3px solid;
+    font-weight: 400;
+    text-align: center;
+}
+
+.restaurant-reviews {
+    margin-top: 3rem;
+    margin-left: 2rem;
+}
+
+.restaurant-reviews-title {
+    font-size: 1.5em;
+    font-weight: 800;
+}
+
+.restaurant-review {
+    margin-top: 2rem;
+    width: 80%;
+    border: 5px solid #00d1b2;
+    border-radius: 2rem;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-around;
+    margin-top:0.3rem;
+}
+
+.review-title,
+.review-rating {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.review-comment{
+    text-align: center;
+    width: 80%;
+    text-wrap: normal;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem auto 0.3rem;
+}

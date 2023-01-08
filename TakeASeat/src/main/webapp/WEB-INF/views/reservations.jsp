@@ -33,20 +33,20 @@
     <h2 class="reservations-title">Reservations board</h2>
     <div class="reservations-filter-option">
         <button class="button is-primary order-status-btn" id="status-approved"
-                onclick="showOrdersByStatus('Approved', this.id)">Approved
+                onclick="showReservationsByStatus('Approved', this.id)">Approved
         </button>
         <button class="button is-primary order-status-btn" id="status-unapproved"
-                onclick="showOrdersByStatus('Unapproved', this.id)">Unapproved
+                onclick="showReservationsByStatus('Unapproved', this.id)">Unapproved
         </button>
         <button class="button is-primary order-status-btn" id="status-waiting" disabled
-                onclick="showOrdersByStatus('Waiting', this.id)">
+                onclick="showReservationsByStatus('Waiting', this.id)">
             Waiting for approval
         </button>
         <button class="button is-primary order-status-btn" id="status-past"
-                onclick="showOrdersByStatus('Past', this.id)">From past
+                onclick="showReservationsByStatus('Past', this.id)">From past
         </button>
         <button class="button is-primary order-status-btn" id="status-future"
-                onclick="showOrdersByStatus('Future', this.id)">In future
+                onclick="showReservationsByStatus('Future', this.id)">In future
         </button>
     </div>
 </div>

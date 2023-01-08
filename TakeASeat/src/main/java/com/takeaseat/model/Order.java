@@ -75,4 +75,5 @@ public class Order {
 
     private Boolean approved = null;
     private String message;
+    private boolean reviewed = false;
 }

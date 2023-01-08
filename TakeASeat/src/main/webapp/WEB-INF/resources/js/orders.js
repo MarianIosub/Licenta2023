@@ -1,3 +1,33 @@
+function enableReviewButton(id) {
+    let orderId = id.split('-').pop();
+    let message = document.getElementById('review-message-' + orderId);
+    let select = document.getElementById('review-select-' + orderId);
+    let button = document.getElementById('review-' + orderId);
+    button.disabled = !(message.value !== '' && select.value !== '');
+}
+
+function placeReview(id) {
+    if (document.getElementById(id).disabled) {
+        return false;
+    }
+    let orderId = id.split('-').pop();
+    let message = document.getElementById('review-message-' + orderId).value;
+    let rating = document.getElementById('review-select-' + orderId).value;
+
+    $.ajax({
+        type: "post",
+        data: {orderId: orderId, message: message, rating: rating},
+        url: "/order/review",
+    }).then(function (response) {
+        $('#reservationsList').html(response);
+    });
+}
+
+function showReservationsByStatus(status, element) {
+    showReservations(status);
+    changeButtonsAvailability(element);
+}
+
 function showOrdersByStatus(status, element) {
     showOrders(status);
     changeButtonsAvailability(element);
@@ -55,11 +85,21 @@ function refuseOrder(id) {
     });
 }
 
-function showOrders(status) {
+function showReservations(status) {
     $.ajax({
         type: "GET",
         data: {orderStatus: status},
         url: '/order/reservations/filter',
+    }).then(function (response) {
+        $('#reservationsList').html(response);
+    });
+}
+
+function showOrders(status) {
+    $.ajax({
+        type: "GET",
+        data: {orderStatus: status},
+        url: '/order/orders/filter',
     }).then(function (response) {
         $('#reservationsList').html(response);
     });

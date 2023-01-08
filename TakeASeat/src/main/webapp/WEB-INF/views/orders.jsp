@@ -24,17 +24,36 @@
     ></script>
     <script src="../resources/js/restaurant.js"></script>
     <script src="../resources/js/reservation.js"></script>
+    <script src="../resources/js/orders.js"></script>
 
 
 </head>
 <body>
 <st:header/>
-<div class="container">
-    <c:forEach var="order" items="${orders}">
-        <div class="section">
-            <h1>Order number ${order.id} for restaurant ${order.restaurant.name}</h1>
-        </div>
-    </c:forEach>
+<div class="reservations-header">
+    <h1 class="reservations-restaurant-name">${currentUser.name} ${currentUser.surname}</h1>
+    <h2 class="reservations-title">Reservations board</h2>
+    <div class="reservations-filter-option">
+        <button class="button is-primary order-status-btn" id="status-approved"
+                onclick="showOrdersByStatus('Approved', this.id)">Approved
+        </button>
+        <button class="button is-primary order-status-btn" id="status-unapproved"
+                onclick="showOrdersByStatus('Unapproved', this.id)">Unapproved
+        </button>
+        <button class="button is-primary order-status-btn" id="status-waiting" disabled
+                onclick="showOrdersByStatus('Waiting', this.id)">
+            Waiting for approval
+        </button>
+        <button class="button is-primary order-status-btn" id="status-past"
+                onclick="showOrdersByStatus('Past', this.id)">From past
+        </button>
+        <button class="button is-primary order-status-btn" id="status-future"
+                onclick="showOrdersByStatus('Future', this.id)">In future
+        </button>
+    </div>
+</div>
+<div class="container reservations-list" id="reservationsList">
+    <%@include file="ordersList.jsp" %>
 </div>
 <st:footer/>
 </body>

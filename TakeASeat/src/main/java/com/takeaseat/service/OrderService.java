@@ -15,4 +15,6 @@ public interface OrderService {
     void acceptOrder(Long orderId, String message);
 
     void refuseOrder(Long orderId, String message);
+
+    void placeReview(Long orderId, String message, Integer rating);
 }

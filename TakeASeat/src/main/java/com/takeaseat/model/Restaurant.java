@@ -17,7 +17,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static com.takeaseat.constants.StringConstants.RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.RESTAURANT_ID_COLUMN_NAME;
@@ -65,5 +68,17 @@ public class Restaurant {
     private Integer noOfReservations = 0;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<MenuItem> menuItems;
+    private Set<MenuItem> menuItems;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<Review> reviews = new HashSet<>();
+
+    private Double rating = 0.0;
+
+    public void addReview(final Review review) {
+        reviews.add(review);
+    }
+
+    public List<MenuItem> getMenuItems() {
+        return new ArrayList<>(menuItems);
+    }
 }

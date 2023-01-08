@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ taglib prefix="st" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -36,9 +37,20 @@
             <div class="back-to-restaurants">
                 <a href="${pageContext.request.contextPath}/restaurant/all"><span>&#8592;</span></a>
             </div>
-            <div class="restaurant-presentation-title">
-                ${currentRestaurant.name}
-            </div>
+            <c:choose>
+                <c:when test="${currentRestaurant.rating>0}">
+                    <div class="restaurant-presentation-title">
+                            ${currentRestaurant.name} &#9733;<fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                               value="${currentRestaurant.rating}"/>
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <div class="restaurant-presentation-title">
+                            ${currentRestaurant.name}
+                    </div>
+                </c:otherwise>
+            </c:choose>
+
             <div class="restaurant-presentation-description">
                 ${currentRestaurant.description}
             </div>
@@ -114,6 +126,26 @@
             <div class="restaurant-menu-items-list" id="restaurant-menu-items">
                 <%@ include file="restaurantMenuItems.jsp" %>
             </div>
+            <c:if test="${currentRestaurant.reviews.size()>0}">
+                <div class="restaurant-reviews">
+                    <h1 class="restaurant-reviews-title">Reviews &darr;</h1>
+                    <c:forEach var="review" items="${currentRestaurant.reviews}">
+                        <div class="restaurant-review">
+                            <div class="review-header">
+                                <h1 class="review-title"><strong>${review.user}</strong> was here on
+                                    <strong>${review.localDate}</strong></h1>
+                                <h1 class="review-rating">
+                                    <c:forEach begin="1" end="${review.grade}" step="1">
+                                        &#9733;
+                                    </c:forEach>
+                                </h1>
+                            </div>
+                            <h1 class="review-comment">
+                                <q>${review.comment}</q></h1>
+                        </div>
+                    </c:forEach>
+                </div>
+            </c:if>
         </div>
 
     </div>

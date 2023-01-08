@@ -64,4 +64,9 @@ public interface StringConstants {
     String RESERVATION_END = "reservationEnd";
     String ORDER_STATUS = "orderStatus";
     String MESSAGE = "message";
+
+    String REVIEWS = "reviews";
+    String REVIEW_ID_COLUMN_NAME = "review";
+    String TODAY = "today";
+    String RATING = "rating";
 }

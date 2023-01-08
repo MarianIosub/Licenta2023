@@ -2,7 +2,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="st" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
@@ -14,10 +14,18 @@
                 <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
             </div>
             <div class="restaurant-list-infos">
-
-                <div class="restaurant-list-name">
-                        ${restaurant.name}
-                </div>
+                <c:choose>
+                    <c:when test="${restaurant.rating>0}">
+                        <div class="restaurant-list-name">
+                                ${restaurant.name}  &#9733;<fmt:formatNumber type="number" maxFractionDigits="2" value="${restaurant.rating}"/>
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="restaurant-list-name">
+                                ${restaurant.name}
+                        </div>
+                    </c:otherwise>
+                </c:choose>
                 <div class="restaurant-list-address">
                     <span class="fas fa-location-arrow"></span> ${restaurant.address}, ${restaurant.city}
                 </div>
