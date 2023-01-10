@@ -31,7 +31,7 @@
 </div>
 <script>
     setTimeout(function () {
-        window.opener.location.href = '/order/confirmation/${order.id}';
+        window.opener.location.replace('/order/confirmation/${order.id}');
         self.close();
     }, 2000);
 </script>

@@ -16,6 +16,9 @@
         <c:otherwise>
             <c:forEach var="order" items="${orders}">
                 <div class="container order-item">
+                    <div class="order-details-redirect">
+                        <a href="${pageContext.request.contextPath}/order/confirmation/${order.id}"><span>&#8594;</span></a>
+                    </div>
                     <h1 class="order-title">Order #${order.id} - ${order.restaurant.name}</h1>
                     <div class="order-description">
                         <div>
@@ -74,7 +77,8 @@
                         </c:when>
                         <c:when test="${order.approved ne null}">
                             <div class="order-review">
-                                <h1 class="approval-message">Restaurant's response: <strong>${order.message}</strong></h1>
+                                <h1 class="approval-message">Restaurant's response: <strong>${order.message}</strong>
+                                </h1>
                             </div>
                         </c:when>
                     </c:choose>

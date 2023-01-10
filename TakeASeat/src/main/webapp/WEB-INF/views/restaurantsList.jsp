@@ -17,7 +17,8 @@
                 <c:choose>
                     <c:when test="${restaurant.rating>0}">
                         <div class="restaurant-list-name">
-                                ${restaurant.name}  &#9733;<fmt:formatNumber type="number" maxFractionDigits="2" value="${restaurant.rating}"/>
+                                ${restaurant.name} &#9733;<fmt:formatNumber type="number" maxFractionDigits="2"
+                                                                            value="${restaurant.rating}"/>
                         </div>
                     </c:when>
                     <c:otherwise>

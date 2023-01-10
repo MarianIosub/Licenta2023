@@ -137,6 +137,10 @@ public class RestaurantServiceImpl implements RestaurantService {
                 searchedRestaurants.sort(Comparator.comparing(Restaurant::getNoOfReservations));
                 Collections.reverse(searchedRestaurants);
                 break;
+            case "RATING":
+                searchedRestaurants.sort(Comparator.comparingDouble(Restaurant::getRating));
+                Collections.reverse(searchedRestaurants);
+                break;
             default:
                 break;
         }

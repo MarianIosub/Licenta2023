@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -54,7 +55,7 @@ public class OrderController {
     private final RestaurantService restaurantService;
 
     @RequestMapping(ORDER_CONFIRMATION_ENDPOINT)
-    public String getOrderConfirmationPage(@PathVariable(ORDER_ID) Long orderId, Model model) {
+    public String getOrderConfirmationPage(@PathVariable(ORDER_ID) Long orderId, Model model, RedirectAttributes redirectAttributes) {
         Order order = getOrderService().getOrderForId(orderId);
         if (isNull(order)) {
             return ERROR_404;
@@ -63,7 +64,7 @@ public class OrderController {
             return ERROR_403;
         }
         model.addAttribute(ORDER, order);
-
+        model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
         return ORDER_CONFIRMATION_VIEW;
     }
 

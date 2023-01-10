@@ -56,6 +56,9 @@
                 <div class="dropdown-item">
                     <a onclick="sortBy('POPULAR')"><spring:message code="Restaurant.Order.Dropdown.Popular"/></a>
                 </div>
+                <div class="dropdown-item">
+                    <a onclick="sortBy('RATING')">Rating</a>
+                </div>
             </div>
         </div>
     </div>
