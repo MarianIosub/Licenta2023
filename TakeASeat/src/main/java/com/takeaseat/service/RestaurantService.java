@@ -6,6 +6,7 @@ import com.takeaseat.model.Restaurant;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public interface RestaurantService {
 
@@ -34,4 +35,10 @@ public interface RestaurantService {
     boolean hasAvailableItems(List<MenuItem> menuItems);
 
     boolean hasUnavailableItems(List<MenuItem> menuItems);
+
+    List<Restaurant> getMostRatedRestaurants();
+
+    List<Restaurant> getMostOrderedRestaurants();
+
+    Map<MenuItem, Restaurant> getMostOrderedMenuItems();
 }

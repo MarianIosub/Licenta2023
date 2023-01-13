@@ -69,4 +69,7 @@ public interface StringConstants {
     String REVIEW_ID_COLUMN_NAME = "review";
     String TODAY = "today";
     String RATING = "rating";
+    String HOME_RATED_RESTAURANTS = "ratedRestaurants";
+    String HOME_ORDERED_RESTAURANTS = "orderedRestaurants";
+    String HOME_MENU_ITEMS = "menuItems";
 }

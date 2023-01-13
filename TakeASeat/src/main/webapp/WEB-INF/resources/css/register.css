@@ -808,12 +808,9 @@
 .order-entries {
     display: flex;
     width: 90%;
-    margin-top: 0.5rem;
     padding-top: 1rem;
     border-top: 1px solid black;
-    margin-left: 3rem;
-    margin-right: 3rem;
-    margin-bottom: 1rem;
+    margin: 0.5rem 3rem 1rem;
 }
 
 .order-entry {
@@ -1038,3 +1035,140 @@
     font-size: 1.5rem;
     line-height: 3rem;
 }
+
+.home-header {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.home-header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.home-header h3 {
+    font-size: 1.5rem;
+    margin-top: 0.7rem;
+    font-weight: 500;
+}
+
+.home-content {
+    width: 85%;
+    height: 32rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 4rem auto;
+    overflow: hidden;
+}
+
+.home-rating {
+    width: 35%;
+    height: 100%;
+    background: hwb(171deg 53% 5% / 40%);
+    border-radius: 5rem;
+    overflow: hidden;
+
+}
+
+.home-rating h1 {
+    text-align: center;
+    margin-top: 0.8rem;
+    font-size: 2rem;
+    width: 100%;
+    border-bottom: 3px solid black;
+    font-weight: 700;
+}
+
+
+.home-ordered {
+    width: 28%;
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: hwb(171deg 53% 5% / 40%);
+    border-radius: 3rem;
+    overflow: hidden;
+
+}
+
+.home-ordered h1 {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    width: 100%;
+    border-bottom: 3px solid black;
+    font-weight: 400;
+}
+
+.home-items {
+    width: 28%;
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    background: hwb(171deg 53% 5% / 40%);
+    border-radius: 3rem;
+    overflow: hidden;
+}
+
+.home-items h1 {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    width: 100%;
+    border-bottom: 3px solid black;
+    font-weight: 400;
+}
+
+.small-items-list {
+    /*noinspection CssInvalidPropertyValue*/
+    height: -webkit-fill-available;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.big-items-list {
+    /*noinspection CssInvalidPropertyValue*/
+    height: -webkit-fill-available;
+    margin-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.small-item {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 28%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid black;
+}
+
+.small-item div{
+    display: flex;
+}
+
+.small-item div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 1rem;
+}
+
+.big-item {
+    margin-top: 1rem;
+    height: 33%;
+}
+
+.small-item img {
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1rem;
+    border-radius: 1rem;
+}
+

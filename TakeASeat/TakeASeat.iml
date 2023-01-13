@@ -8,7 +8,9 @@
         <datasource-mapping>
           <factory-entry name="TakeASeat" />
         </datasource-mapping>
-        <naming-strategy-map />
+        <naming-strategy-map>
+          <unit-entry name="TakeASeat" />
+        </naming-strategy-map>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>

@@ -8,4 +8,7 @@ import java.util.List;
 public interface MenuItemDao {
     List<MenuItem> getMenuItemsByRestaurant(Restaurant restaurant);
 
+    List<MenuItem> getMostOrderedMenuItems();
+
+    void delete(MenuItem menuItem);
 }

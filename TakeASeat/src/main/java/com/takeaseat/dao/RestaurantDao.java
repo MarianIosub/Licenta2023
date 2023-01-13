@@ -1,5 +1,6 @@
 package com.takeaseat.dao;
 
+import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Restaurant;
 import com.takeaseat.model.User;
 
@@ -15,4 +16,10 @@ public interface RestaurantDao {
     List<Restaurant> findAll();
 
     Restaurant findById(long id);
+
+    List<Restaurant> getRestaurantsByHighestRating();
+
+    List<Restaurant> getRestaurantsByNoOfOrders();
+
+    Restaurant findRestaurantByMenuItem(MenuItem menuItem);
 }

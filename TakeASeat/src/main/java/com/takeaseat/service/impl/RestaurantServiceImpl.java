@@ -18,7 +18,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -105,6 +107,7 @@ public class RestaurantServiceImpl implements RestaurantService {
                 .findFirst()
                 .ifPresent(menuItem -> {
                     restaurant.getMenuItems().remove(menuItem);
+                    getMenuItemDao().delete(menuItem);
                     getRestaurantDao().update(restaurant);
                 });
 
@@ -190,6 +193,25 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public boolean hasUnavailableItems(List<MenuItem> menuItems) {
         return !menuItems.stream().allMatch(MenuItem::isAvailable);
+    }
+
+    @Override
+    public List<Restaurant> getMostRatedRestaurants() {
+        return getRestaurantDao().getRestaurantsByHighestRating();
+    }
+
+    @Override
+    public List<Restaurant> getMostOrderedRestaurants() {
+        return getRestaurantDao().getRestaurantsByNoOfOrders();
+    }
+
+    @Override
+    public Map<MenuItem, Restaurant> getMostOrderedMenuItems() {
+        List<MenuItem> menuItems = getMenuItemDao().getMostOrderedMenuItems();
+        Map<MenuItem, Restaurant> menuItemsRestaurants = new HashMap<>();
+        menuItems.forEach(m -> menuItemsRestaurants.put(m, getRestaurantDao().findRestaurantByMenuItem(m)));
+
+        return menuItemsRestaurants;
     }
 
     private void addMenuItemToRestaurantList(Restaurant restaurant, MenuItem menuItem) {

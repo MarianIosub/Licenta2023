@@ -1,6 +1,7 @@
 package com.takeaseat.dao.impl;
 
 import com.takeaseat.dao.RestaurantDao;
+import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Restaurant;
 import com.takeaseat.model.User;
 
@@ -13,9 +14,11 @@ import static java.lang.String.format;
 
 public class RestaurantDaoImpl implements RestaurantDao {
 
-    String RESTAURANT_BY_USER = "SELECT a FROM Restaurant a WHERE a.administrator.id='%s'";
-    String FIND_ALL_RESTAURANTS = "SELECT a FROM Restaurant a";
-
+    private static final String RESTAURANT_BY_USER = "SELECT a FROM Restaurant a WHERE a.administrator.id='%s'";
+    private static final String FIND_ALL_RESTAURANTS = "SELECT a FROM Restaurant a";
+    private static final String MOST_RATED_RESTAURANT = "SELECT a FROM Restaurant a ORDER BY a.rating DESC";
+    private static final String MOST_ORDERED_RESTAURANT = "SELECT a FROM Restaurant a ORDER BY a.noOfReservations DESC";
+    private static final String RESTAURANT_BY_MENU_ITEM = "SELECT a from Restaurant a where '%s' in (SELECT m.id from a.menuItems m)";
     @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManager manager;
 
@@ -42,6 +45,23 @@ public class RestaurantDaoImpl implements RestaurantDao {
     @Override
     public Restaurant findById(long id) {
         return getManager().find(Restaurant.class, id);
+    }
+
+    @Override
+    public List<Restaurant> getRestaurantsByHighestRating() {
+        List<Restaurant> restaurants = getManager().createQuery(MOST_RATED_RESTAURANT, Restaurant.class).getResultList();
+        return restaurants.subList(0, Math.min(restaurants.size(), 3));
+    }
+
+    @Override
+    public List<Restaurant> getRestaurantsByNoOfOrders() {
+        List<Restaurant> restaurants = getManager().createQuery(MOST_ORDERED_RESTAURANT, Restaurant.class).getResultList();
+        return restaurants.subList(0, Math.min(restaurants.size(), 3));
+    }
+
+    @Override
+    public Restaurant findRestaurantByMenuItem(MenuItem menuItem) {
+        return getManager().createQuery(format(RESTAURANT_BY_MENU_ITEM, menuItem.getId()), Restaurant.class).getSingleResult();
     }
 
     protected EntityManager getManager() {
