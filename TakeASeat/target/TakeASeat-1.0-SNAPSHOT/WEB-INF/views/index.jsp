@@ -46,12 +46,12 @@
                             <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
                             <div>
                                 <h2>${restaurant.name}</h2>
-                                <h5><span class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
-                                </h5>
+                                <h4><span class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
+                                </h4>
                             </div>
                         </div>
 
-                        <h7> ${restaurant.noOfReservations}</h7>
+                        <h6> ${restaurant.noOfReservations}</h6>
                     </a>
                 </c:forEach>
             </div>
@@ -61,12 +61,16 @@
             <div class="big-items-list">
                 <c:forEach var="restaurant" items="${ratedRestaurants}">
                     <a class="big-item" href="/restaurant/${restaurant.id}">
-                        <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
-                        <h2>${restaurant.name}</h2>
-                        <h5><span class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}</h5>
-
-                        <h7>&#9733;<fmt:formatNumber type="number" maxFractionDigits="1"
-                                                     value="${restaurant.rating}"/></h7>
+                        <div>
+                            <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
+                            <div>
+                                <h2>${restaurant.name}</h2>
+                                <h4><span class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
+                                </h4>
+                            </div>
+                        </div>
+                        <h6>&#9733;<fmt:formatNumber type="number" maxFractionDigits="1"
+                                                     value="${restaurant.rating}"/></h6>
                     </a>
                 </c:forEach>
             </div>
@@ -79,12 +83,12 @@
                         <div>
                             <img src="data:image/jpeg;base64,${menuItem.key.photoLink}" alt=""/>
                             <div>
-                                <h3> ${menuItem.key.name}</h3>
-                                <h5> ${menuItem.key.price} RON</h5>
+                                <h2> ${menuItem.key.name}</h2>
+                                <h4> ${menuItem.key.price} RON</h4>
                             </div>
                         </div>
 
-                        <h7> ${menuItem.key.noOfOrders}</h7>
+                        <h6> ${menuItem.key.noOfOrders}</h6>
                     </a>
                 </c:forEach>
             </div>

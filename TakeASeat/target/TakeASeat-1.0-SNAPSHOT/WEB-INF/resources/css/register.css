@@ -1038,7 +1038,9 @@
 
 .home-header {
     text-align: center;
-    margin-top: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    background: hwb(171deg 53% 5% / 70%);
 }
 
 .home-header h1 {
@@ -1138,8 +1140,8 @@
 
 .small-item {
     margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    height: 28%;
+    padding-bottom: 0.5rem;
+    height: 30%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -1170,5 +1172,84 @@
     margin-bottom: auto;
     margin-left: 1rem;
     border-radius: 1rem;
+}
+
+.small-item h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.small-item h4 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.small-item h6 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 0.5rem;
+}
+
+
+.big-item {
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid black;
+}
+
+.big-item div{
+    display: flex;
+}
+
+.big-item div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: 1rem;
+}
+
+.big-item {
+    height: 30%;
+}
+
+.big-item img {
+    height: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 1rem;
+    border-radius: 1rem;
+}
+
+.big-item h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.small-item h4 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.big-item h6 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 0.5rem;
+}
+
+.small-item:hover,
+.big-item:hover{
+    background: hwb(171deg 53% 5% / 70%);
 }
 
