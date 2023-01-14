@@ -3,12 +3,12 @@ package com.takeaseat.dao;
 import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Restaurant;
 
-import java.util.List;
+import java.util.Set;
 
 public interface MenuItemDao {
-    List<MenuItem> getMenuItemsByRestaurant(Restaurant restaurant);
+    Set<MenuItem> getMenuItemsByRestaurant(Restaurant restaurant);
 
-    List<MenuItem> getMostOrderedMenuItems();
+    Set<MenuItem> getMostOrderedMenuItems();
 
     void delete(MenuItem menuItem);
 }

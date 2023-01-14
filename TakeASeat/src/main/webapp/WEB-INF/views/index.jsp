@@ -22,6 +22,7 @@
 <body>
 <st:header/>
 <st:flashMessage/>
+<sec:authorize var="isAdmin" access="hasRole('ROLE_ADMINISTRATOR')"/>
 <div class="">
     <div class="home-header">
         <c:choose>
@@ -37,62 +38,108 @@
     </div>
 
     <div class="home-content">
-        <div class="home-ordered">
-            <h1>Most orders &darr;</h1>
-            <div class="small-items-list">
-                <c:forEach var="restaurant" items="${orderedRestaurants}">
-                    <a class="small-item" href="/restaurant/${restaurant.id}">
+        <c:choose>
+            <c:when test="${isAdmin}">
+                <div class="home-manage">
+                    <h1>Manage restaurant</h1>
+                    <div class="home-text-content">
                         <div>
-                            <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
-                            <div>
-                                <h2>${restaurant.name}</h2>
-                                <h4><span class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
-                                </h4>
-                            </div>
+                            <p>✓ Create Restaurant</p>
+                            <p>✓ Price for reservation</p>
+                            <p>✓ Zero taxes</p>
+                            <p>✓ Set program</p>
                         </div>
+                        <div>
+                            <p>✓ Create Menu Items</p>
+                            <p>✓ Change availability</p>
+                            <p>✓ Delete from menu</p>
+                            <p>✓ Set prices for each</p>
+                        </div>
+                    </div>
+                    <a class="button is-large is-warning is-centered"
+                       href="${pageContext.request.contextPath}/restaurant/manage">Manage restaurant</a>
+                </div>
+                <div class="home-orders">
+                    <h1>Manage orders</h1>
+                    <div class="home-text-content">
+                        <div>
+                            <p>✓ Online orders</p>
+                            <p>✓ Accept/Deny orders</p>
+                            <p>✓ Message for client</p>
+                            <p>✓ Instant emails</p>
+                        </div>
+                        <div>
+                            <p>✓ Online pays</p>
+                            <p>✓ Users' review</p>
+                            <p>✓ No phone calls</p>
+                            <p>✓ Easy to use</p>
+                        </div>
+                    </div>
+                    <a class="button is-large is-warning is-centered"
+                       href="${pageContext.request.contextPath}/order/reservations">Accept orders</a>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div class="home-ordered">
+                    <h1>Most orders &darr;</h1>
+                    <div class="small-items-list">
+                        <c:forEach var="restaurant" items="${orderedRestaurants}">
+                            <a class="small-item" href="/restaurant/${restaurant.id}">
+                                <div>
+                                    <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
+                                    <div>
+                                        <h2>${restaurant.name}</h2>
+                                        <h4><span
+                                                class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
+                                        </h4>
+                                    </div>
+                                </div>
 
-                        <h6> ${restaurant.noOfReservations}</h6>
-                    </a>
-                </c:forEach>
-            </div>
-        </div>
-        <div class="home-rating">
-            <h1>Best rated &darr;</h1>
-            <div class="big-items-list">
-                <c:forEach var="restaurant" items="${ratedRestaurants}">
-                    <a class="big-item" href="/restaurant/${restaurant.id}">
-                        <div>
-                            <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
-                            <div>
-                                <h2>${restaurant.name}</h2>
-                                <h4><span class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
-                                </h4>
-                            </div>
-                        </div>
-                        <h6>&#9733;<fmt:formatNumber type="number" maxFractionDigits="1"
-                                                     value="${restaurant.rating}"/></h6>
-                    </a>
-                </c:forEach>
-            </div>
-        </div>
-        <div class="home-items">
-            <h1>Most delicious &darr;</h1>
-            <div class="small-items-list">
-                <c:forEach var="menuItem" items="${menuItems}">
-                    <a class="small-item" href="/restaurant/${menuItem.value.id}">
-                        <div>
-                            <img src="data:image/jpeg;base64,${menuItem.key.photoLink}" alt=""/>
-                            <div>
-                                <h2> ${menuItem.key.name}</h2>
-                                <h4> ${menuItem.key.price} RON</h4>
-                            </div>
-                        </div>
+                                <h6> ${restaurant.noOfReservations}</h6>
+                            </a>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="home-rating">
+                    <h1>Best rated &darr;</h1>
+                    <div class="big-items-list">
+                        <c:forEach var="restaurant" items="${ratedRestaurants}">
+                            <a class="big-item" href="/restaurant/${restaurant.id}">
+                                <div>
+                                    <img src="data:image/jpeg;base64,${restaurant.image}" alt="">
+                                    <div>
+                                        <h2>${restaurant.name}</h2>
+                                        <h4><span
+                                                class="fas fa-location-arrow"></span> ${restaurant.address} ${restaurant.city}
+                                        </h4>
+                                    </div>
+                                </div>
+                                <h6>&#9733;<fmt:formatNumber type="number" maxFractionDigits="1"
+                                                             value="${restaurant.rating}"/></h6>
+                            </a>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="home-items">
+                    <h1>Most delicious &darr;</h1>
+                    <div class="small-items-list">
+                        <c:forEach var="menuItem" items="${menuItems}">
+                            <a class="small-item" href="/restaurant/${menuItem.value.id}">
+                                <div>
+                                    <img src="data:image/jpeg;base64,${menuItem.key.photoLink}" alt=""/>
+                                    <div>
+                                        <h2> ${menuItem.key.name}</h2>
+                                        <h4> ${menuItem.key.price} RON</h4>
+                                    </div>
+                                </div>
 
-                        <h6> ${menuItem.key.noOfOrders}</h6>
-                    </a>
-                </c:forEach>
-            </div>
-        </div>
+                                <h6> ${menuItem.key.noOfOrders}</h6>
+                            </a>
+                        </c:forEach>
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 <st:footer/>

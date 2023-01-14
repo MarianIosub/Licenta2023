@@ -6,8 +6,9 @@ import com.takeaseat.model.Restaurant;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static com.takeaseat.constants.StringConstants.PERSISTENCE_UNIT_NAME;
 
@@ -19,15 +20,19 @@ public class MenuItemDaoImpl implements MenuItemDao {
     private EntityManager manager;
 
     @Override
-    public List<MenuItem> getMenuItemsByRestaurant(Restaurant restaurant) {
-        return new ArrayList<>(getManager().find(Restaurant.class, restaurant.getId()).getMenuItems());
+    public Set<MenuItem> getMenuItemsByRestaurant(Restaurant restaurant) {
+        return getManager().find(Restaurant.class, restaurant.getId()).getMenuItems();
     }
 
     @Override
-    public List<MenuItem> getMostOrderedMenuItems() {
-        List<MenuItem> menuItems = getManager().createQuery(MOST_ORDERED_ITEMS, MenuItem.class).getResultList();
+    public Set<MenuItem> getMostOrderedMenuItems() {
+        Set<MenuItem> menuItems = getManager().createQuery(MOST_ORDERED_ITEMS, MenuItem.class).getResultStream().collect(Collectors.toSet());
 
-        return menuItems.subList(0, Math.min(menuItems.size(), 3));
+        return menuItems.stream()
+                .sorted(Comparator.comparing(MenuItem::getNoOfOrders).reversed())
+                .skip(0)
+                .limit(Math.min(menuItems.size(), 3))
+                .collect(Collectors.toSet());
     }
 
     @Override

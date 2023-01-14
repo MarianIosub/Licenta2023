@@ -7,6 +7,7 @@ import com.takeaseat.model.Restaurant;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public interface RestaurantService {
 
@@ -16,9 +17,9 @@ public interface RestaurantService {
 
     Restaurant getCurrentUserRestaurant();
 
-    List<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem);
+    Set<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem);
 
-    List<MenuItem> searchForMenuItems(final String searchedItem);
+    Set<MenuItem> searchForMenuItems(final String searchedItem);
 
     void changeMenuItemAvailability(Long menuItemId);
 
@@ -30,11 +31,11 @@ public interface RestaurantService {
 
     Restaurant getRestaurantById(String restaurantId);
 
-    List<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption);
+    Set<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption);
 
-    boolean hasAvailableItems(List<MenuItem> menuItems);
+    boolean hasAvailableItems(Set<MenuItem> menuItems);
 
-    boolean hasUnavailableItems(List<MenuItem> menuItems);
+    boolean hasUnavailableItems(Set<MenuItem> menuItems);
 
     List<Restaurant> getMostRatedRestaurants();
 

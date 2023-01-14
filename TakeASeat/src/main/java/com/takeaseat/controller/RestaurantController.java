@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 
 import static com.takeaseat.constants.EndpointsConstants.ALL;
 import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
@@ -119,7 +120,7 @@ public class RestaurantController {
                                            @RequestParam(value = SORT_OPTION, required = false) String sortOption,
                                            Model model) {
 
-        List<MenuItem> menuItems = getRestaurantService().getMenuItemsForRestaurant(restaurantId, searchedItem, sortOption);
+        Set<MenuItem> menuItems = getRestaurantService().getMenuItemsForRestaurant(restaurantId, searchedItem, sortOption);
         model.addAttribute(MENU_ITEMS, menuItems);
         model.addAttribute(HAS_AVAILABLE_ITEMS, getRestaurantService().hasAvailableItems(menuItems));
         model.addAttribute(HAS_UNAVAILABLE_ITEMS, getRestaurantService().hasUnavailableItems(menuItems));
@@ -173,7 +174,7 @@ public class RestaurantController {
                                           Model model) throws IOException {
         final MenuItem menuItem = createMenuItemFromRequest(name, ingredients, price, photo);
 
-        final List<MenuItem> menuItems = getRestaurantService().addMenuItemToRestaurant(restaurantService.getCurrentUserRestaurant(), menuItem);
+        final Set<MenuItem> menuItems = getRestaurantService().addMenuItemToRestaurant(restaurantService.getCurrentUserRestaurant(), menuItem);
 
         model.addAttribute(MENU_ITEMS, menuItems);
 
@@ -183,7 +184,7 @@ public class RestaurantController {
 
     @RequestMapping(value = MENU_ITEM, method = RequestMethod.GET)
     public String searchForMenuItems(@RequestParam(value = SEARCHED_ITEM) String searchedItem, Model model) {
-        final List<MenuItem> menuItems = getRestaurantService().searchForMenuItems(searchedItem);
+        final Set<MenuItem> menuItems = getRestaurantService().searchForMenuItems(searchedItem);
         model.addAttribute(MENU_ITEMS, menuItems);
 
         return MENU_ITEMS;

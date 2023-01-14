@@ -17,9 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static com.takeaseat.constants.StringConstants.RESTAURANTS;
@@ -76,9 +74,5 @@ public class Restaurant {
 
     public void addReview(final Review review) {
         reviews.add(review);
-    }
-
-    public List<MenuItem> getMenuItems() {
-        return new ArrayList<>(menuItems);
     }
 }

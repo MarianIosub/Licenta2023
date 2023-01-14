@@ -19,8 +19,10 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Transactional
@@ -69,22 +71,20 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem) {
+    public Set<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem) {
         addMenuItemToRestaurantList(restaurant, menuItem);
         getRestaurantDao().update(restaurant);
 
-        List<MenuItem> menuItems = getMenuItemDao().getMenuItemsByRestaurant(restaurant);
-        Collections.reverse(menuItems);
-        return menuItems;
+        return getMenuItemDao().getMenuItemsByRestaurant(restaurant);
     }
 
     @Override
-    public List<MenuItem> searchForMenuItems(final String searchedItem) {
-        List<MenuItem> menuItems = getCurrentUserRestaurant().getMenuItems();
+    public Set<MenuItem> searchForMenuItems(final String searchedItem) {
+        Set<MenuItem> menuItems = getCurrentUserRestaurant().getMenuItems();
 
         return menuItems.stream()
                 .filter(menuItem -> menuItem.getName().toLowerCase().contains(searchedItem.toLowerCase()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -156,12 +156,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public List<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption) {
+    public Set<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption) {
         Restaurant restaurant = getRestaurantById(restaurantId);
 
-        List<MenuItem> menuItems = restaurant.getMenuItems().stream()
+        Set<MenuItem> menuItems = restaurant.getMenuItems().stream()
                 .filter(m -> m.getName().toLowerCase().contains(searchedItem.toLowerCase()))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
         if (sortOption == null) {
             return menuItems;
@@ -169,15 +169,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         switch (sortOption) {
             case "ALPHABETICAL":
-                menuItems.sort((Comparator.comparing(MenuItem::getName)));
+                menuItems = menuItems.stream().sorted(Comparator.comparing(MenuItem::getName)).collect(Collectors.toCollection(LinkedHashSet::new));
                 break;
             case "INVERSE":
-                menuItems.sort((Comparator.comparing(MenuItem::getName)));
-                Collections.reverse(menuItems);
+                menuItems = menuItems.stream().sorted(Comparator.comparing(MenuItem::getName).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
                 break;
             case "POPULAR":
-                menuItems.sort(Comparator.comparing(MenuItem::getNoOfOrders));
-                Collections.reverse(menuItems);
+                menuItems = menuItems.stream().sorted(Comparator.comparing(MenuItem::getNoOfOrders).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
                 break;
             default:
                 break;
@@ -186,12 +184,12 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public boolean hasAvailableItems(List<MenuItem> menuItems) {
+    public boolean hasAvailableItems(Set<MenuItem> menuItems) {
         return menuItems.stream().anyMatch(MenuItem::isAvailable);
     }
 
     @Override
-    public boolean hasUnavailableItems(List<MenuItem> menuItems) {
+    public boolean hasUnavailableItems(Set<MenuItem> menuItems) {
         return !menuItems.stream().allMatch(MenuItem::isAvailable);
     }
 
@@ -207,9 +205,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Map<MenuItem, Restaurant> getMostOrderedMenuItems() {
-        List<MenuItem> menuItems = getMenuItemDao().getMostOrderedMenuItems();
+        Set<MenuItem> menuItems = getMenuItemDao().getMostOrderedMenuItems();
         Map<MenuItem, Restaurant> menuItemsRestaurants = new HashMap<>();
-        menuItems.forEach(m -> menuItemsRestaurants.put(m, getRestaurantDao().findRestaurantByMenuItem(m)));
+        menuItems.forEach(m -> {
+            Restaurant restaurant = getRestaurantDao().findRestaurantByMenuItem(m);
+            menuItemsRestaurants.put(m, restaurant);
+        });
 
         return menuItemsRestaurants;
     }
