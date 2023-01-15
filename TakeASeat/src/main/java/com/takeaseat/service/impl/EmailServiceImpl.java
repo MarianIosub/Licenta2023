@@ -1,5 +1,7 @@
 package com.takeaseat.service.impl;
 
+import com.takeaseat.controller.dto.Cart;
+import com.takeaseat.model.Order;
 import com.takeaseat.model.User;
 import com.takeaseat.service.EmailService;
 import com.takeaseat.service.email.EmailComposer;
@@ -19,6 +21,34 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendWelcomeEmail(final User user) {
         SimpleMailMessage message = getEmailComposer().composeWelcomeMessage(user);
+        getMailSender().send(message);
+    }
+
+    @Override
+    public void sendOrderConfirmationEmail(final Order order) {
+        SimpleMailMessage message = getEmailComposer().composeOrderConfirmationMessage(order);
+
+        getMailSender().send(message);
+    }
+
+    @Override
+    public void sendReservationEmail(final Order order) {
+        SimpleMailMessage message = getEmailComposer().composeReservationMessage(order);
+
+        getMailSender().send(message);
+    }
+
+    @Override
+    public void sendAcceptOrderEmail(final Order order) {
+        SimpleMailMessage message = getEmailComposer().composeAcceptOrderMessage(order);
+
+        getMailSender().send(message);
+    }
+
+    @Override
+    public void sendRefuseOrderEmail(Order order) {
+        SimpleMailMessage message = getEmailComposer().composeRefuseOrderMessage(order);
+
         getMailSender().send(message);
     }
 

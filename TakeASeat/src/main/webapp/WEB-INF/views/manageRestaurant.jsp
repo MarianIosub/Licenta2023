@@ -138,6 +138,28 @@
 <section id="menuItems" class="section">
     <jsp:include page="menuItems.jsp"/>
 </section>
+<c:if test="${currentRestaurant.reviews.size()>0}">
+    <div class="container">
+        <div class="restaurant-reviews">
+            <h1 class="restaurant-reviews-title">Reviews &darr;</h1>
+            <c:forEach var="review" items="${currentRestaurant.reviews}">
+                <div class="restaurant-review">
+                    <div class="review-header">
+                        <h1 class="review-title"><strong>${review.user}</strong> visited on
+                            <strong>${review.localDate}</strong></h1>
+                        <h1 class="review-rating">
+                            <c:forEach begin="1" end="${review.grade}" step="1">
+                                &#9733;
+                            </c:forEach>
+                        </h1>
+                    </div>
+                    <h1 class="review-comment">
+                        <q>${review.comment}</q></h1>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</c:if>
 <st:footer/>
 </body>
 </html>

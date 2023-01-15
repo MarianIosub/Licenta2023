@@ -23,7 +23,13 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
+
+import static com.takeaseat.constants.StringConstants.ALPHABETICAL;
+import static com.takeaseat.constants.StringConstants.INVERSE;
+import static com.takeaseat.constants.StringConstants.POPULAR;
+import static com.takeaseat.constants.StringConstants.RATING_UPPER_CASED;
 
 @Transactional
 public class RestaurantServiceImpl implements RestaurantService {
@@ -129,18 +135,18 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
 
         switch (sortOption) {
-            case "ALPHABETICAL":
+            case ALPHABETICAL:
                 searchedRestaurants.sort(Comparator.comparing(Restaurant::getName));
                 break;
-            case "INVERSE":
+            case INVERSE:
                 searchedRestaurants.sort(Comparator.comparing(Restaurant::getName));
                 Collections.reverse(searchedRestaurants);
                 break;
-            case "POPULAR":
+            case POPULAR:
                 searchedRestaurants.sort(Comparator.comparing(Restaurant::getNoOfReservations));
                 Collections.reverse(searchedRestaurants);
                 break;
-            case "RATING":
+            case RATING_UPPER_CASED:
                 searchedRestaurants.sort(Comparator.comparingDouble(Restaurant::getRating));
                 Collections.reverse(searchedRestaurants);
                 break;
@@ -168,13 +174,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         }
 
         switch (sortOption) {
-            case "ALPHABETICAL":
+            case ALPHABETICAL:
                 menuItems = menuItems.stream().sorted(Comparator.comparing(MenuItem::getName)).collect(Collectors.toCollection(LinkedHashSet::new));
                 break;
-            case "INVERSE":
+            case INVERSE:
                 menuItems = menuItems.stream().sorted(Comparator.comparing(MenuItem::getName).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
                 break;
-            case "POPULAR":
+            case POPULAR:
                 menuItems = menuItems.stream().sorted(Comparator.comparing(MenuItem::getNoOfOrders).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
                 break;
             default:
@@ -206,7 +212,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public Map<MenuItem, Restaurant> getMostOrderedMenuItems() {
         Set<MenuItem> menuItems = getMenuItemDao().getMostOrderedMenuItems();
-        Map<MenuItem, Restaurant> menuItemsRestaurants = new HashMap<>();
+        Map<MenuItem, Restaurant> menuItemsRestaurants = new TreeMap<>(Comparator.comparing(MenuItem::getNoOfOrders).reversed());
         menuItems.forEach(m -> {
             Restaurant restaurant = getRestaurantDao().findRestaurantByMenuItem(m);
             menuItemsRestaurants.put(m, restaurant);

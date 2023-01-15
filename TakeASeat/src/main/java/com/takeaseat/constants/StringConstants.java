@@ -5,9 +5,7 @@ public interface StringConstants {
     String LOGIN_FORM = "loginForm";
     String UPDATE_PROFILE_FORM = "updateProfileForm";
     String CREATE_RESTAURANT_FORM = "createRestaurantForm";
-
     String PERSISTENCE_UNIT_NAME = "TakeASeat";
-
     String NAME = "name";
     String PRICE = "price";
     String PHOTO_LINK = "photoLink";
@@ -36,13 +34,11 @@ public interface StringConstants {
     String HAS_AVAILABLE_ITEMS = "hasAvailableItems";
     String HAS_UNAVAILABLE_ITEMS = "hasUnavailableItems";
     String CART = "cart";
-
     String ROLE_FOOD_LOVER = "ROLE_FOOD_LOVER";
     String ROLE_ADMINISTRATOR = "ROLE_ADMINISTRATOR";
     String CURRENT_RESTAURANT = "currentRestaurant";
     String CURRENT_USER = "currentUser";
     String MENU_ITEM_ADDED = "menuItemAdded";
-
     String FLASH_MESSAGE = "flashMessage";
     String STRIPE_API_PUBLIC_KEY = "pk_test_51MMYzfIhG64WhrpmPJA8Q5tQssZc9H9ONN66QAXqY0YtAOaZ0EZ6wT63pUkmUthCb76TUqK1SNzPKfg4jSz9suRi00bzVm3PBo";
     String STRIPE_API_SECRET_KEY = "sk_test_51MMYzfIhG64Whrpm9DJSndQSvzDzV3NDi8D7bknRXXDLszIrt795lGiyqQ26Vnb3GHjqnpYuObuWPAnNbU5tFWHe00XajprO0I";
@@ -52,7 +48,6 @@ public interface StringConstants {
     String STRIPE_EMAIL = "stripeEmail";
     String STRIPE_TOKEN = "stripeToken";
     String STRIPE_PUBLIC_KEY = "stripePublicKey";
-
     String ORDERS = "orders";
     String ORDER = "order";
     String ORDER_ID = "orderId";
@@ -64,7 +59,6 @@ public interface StringConstants {
     String RESERVATION_END = "reservationEnd";
     String ORDER_STATUS = "orderStatus";
     String MESSAGE = "message";
-
     String REVIEWS = "reviews";
     String REVIEW_ID_COLUMN_NAME = "review";
     String TODAY = "today";
@@ -72,4 +66,13 @@ public interface StringConstants {
     String HOME_RATED_RESTAURANTS = "ratedRestaurants";
     String HOME_ORDERED_RESTAURANTS = "orderedRestaurants";
     String HOME_MENU_ITEMS = "menuItems";
+    String ALPHABETICAL = "ALPHABETICAL";
+    String INVERSE = "INVERSE";
+    String POPULAR = "POPULAR";
+    String RATING_UPPER_CASED = "RATING";
+    String APPROVED = "approved";
+    String UNAPPROVED = "unapproved";
+    String WAITING = "waiting";
+    String PAST = "past";
+    String FUTURE = "future";
 }

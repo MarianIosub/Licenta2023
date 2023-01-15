@@ -15,6 +15,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.takeaseat.constants.StringConstants.APPROVED;
+import static com.takeaseat.constants.StringConstants.FUTURE;
+import static com.takeaseat.constants.StringConstants.PAST;
+import static com.takeaseat.constants.StringConstants.UNAPPROVED;
+import static com.takeaseat.constants.StringConstants.WAITING;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -55,15 +60,15 @@ public class OrderServiceImpl implements OrderService {
         }
 
         switch (orderStatus.toLowerCase()) {
-            case "approved":
+            case APPROVED:
                 return orders.stream().filter(o -> nonNull(o.getApproved()) && o.getApproved()).collect(Collectors.toList());
-            case "unapproved":
+            case UNAPPROVED:
                 return orders.stream().filter(o -> nonNull(o.getApproved()) && !o.getApproved()).collect(Collectors.toList());
-            case "waiting":
+            case WAITING:
                 return orders.stream().filter(o -> isNull(o.getApproved())).collect(Collectors.toList());
-            case "past":
+            case PAST:
                 return orders.stream().filter(o -> o.getDate().isBefore(LocalDate.now())).collect(Collectors.toList());
-            case "future":
+            case FUTURE:
                 return orders.stream().filter(o -> o.getDate().isAfter(LocalDate.now())).collect(Collectors.toList());
             default:
                 return orders;
@@ -104,7 +109,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private void calculateRestaurantRating(Restaurant restaurant) {
-        double rating = 0.0;
+        double rating = Double.NaN;
         for (Review review : restaurant.getReviews()) {
             rating = rating + review.getGrade();
         }
