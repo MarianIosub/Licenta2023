@@ -1,6 +1,5 @@
 package com.takeaseat.service.impl;
 
-import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.model.Order;
 import com.takeaseat.model.User;
 import com.takeaseat.service.EmailService;

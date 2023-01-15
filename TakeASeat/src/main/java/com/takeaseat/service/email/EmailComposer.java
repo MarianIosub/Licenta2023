@@ -1,6 +1,5 @@
 package com.takeaseat.service.email;
 
-import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.model.Order;
 import com.takeaseat.model.User;
 import org.springframework.mail.SimpleMailMessage;

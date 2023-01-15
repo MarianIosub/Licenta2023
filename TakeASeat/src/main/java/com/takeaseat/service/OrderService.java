@@ -58,7 +58,7 @@ public interface OrderService {
      *
      * @param orderId the id of the order to place a review on
      * @param message the message to include in the review
-     * @param rating the rating to include in the review
+     * @param rating  the rating to include in the review
      */
     void placeReview(final Long orderId, final String message, final Integer rating);
 }

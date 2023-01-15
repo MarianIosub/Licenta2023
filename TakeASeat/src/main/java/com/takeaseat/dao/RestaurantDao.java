@@ -5,6 +5,7 @@ import com.takeaseat.model.Restaurant;
 import com.takeaseat.model.User;
 
 import java.util.List;
+
 /**
  * This interface defines the methods for a Restaurant Data Access Object.
  *

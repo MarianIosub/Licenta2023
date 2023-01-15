@@ -3,7 +3,6 @@ package com.takeaseat.service;
 import com.takeaseat.controller.form.RegisterForm;
 import com.takeaseat.controller.form.UpdateProfileForm;
 import com.takeaseat.model.User;
-import org.springframework.stereotype.Service;
 
 /**
  * This interface defines the methods for a user service.

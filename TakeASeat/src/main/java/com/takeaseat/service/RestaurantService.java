@@ -43,7 +43,7 @@ public interface RestaurantService {
      * Adds a menu item to the specified restaurant.
      *
      * @param restaurant the restaurant to add the menu item to
-     * @param menuItem the menu item to add to the restaurant
+     * @param menuItem   the menu item to add to the restaurant
      * @return the updated set of menu items for the restaurant
      */
     Set<MenuItem> addMenuItemToRestaurant(Restaurant restaurant, MenuItem menuItem);
@@ -81,7 +81,7 @@ public interface RestaurantService {
      * Searches for restaurants matching the specified search term and sort option.
      *
      * @param searchedItem the search term to match restaurants against
-     * @param sortOption the option to sort the results by
+     * @param sortOption   the option to sort the results by
      * @return the list of restaurants matching the search term and sort option
      */
     List<Restaurant> searchForRestaurant(String searchedItem, String sortOption);
@@ -99,7 +99,7 @@ public interface RestaurantService {
      *
      * @param restaurantId the id of the restaurant to retrieve menu items for
      * @param searchedItem the search term to match menu items against
-     * @param sortOption the option to sort the results by
+     * @param sortOption   the option to sort the results by
      * @return the set of menu items for the specified restaurant, matching the search term and sort option
      */
     Set<MenuItem> getMenuItemsForRestaurant(String restaurantId, String searchedItem, String sortOption);

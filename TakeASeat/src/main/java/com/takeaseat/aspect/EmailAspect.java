@@ -1,6 +1,5 @@
 package com.takeaseat.aspect;
 
-import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.controller.form.RegisterForm;
 import com.takeaseat.model.Order;
 import com.takeaseat.model.User;
@@ -31,15 +30,15 @@ public class EmailAspect {
     }
 
     @After("execution(* com.takeaseat.dao.impl.OrderDaoImpl.save(..))")
-    public void sendOrderEmails(JoinPoint joinPoint){
-        Order order = (Order)joinPoint.getArgs()[0];
+    public void sendOrderEmails(JoinPoint joinPoint) {
+        Order order = (Order) joinPoint.getArgs()[0];
 
         emailService.sendOrderConfirmationEmail(order);
         emailService.sendReservationEmail(order);
     }
 
     @After("execution(* com.takeaseat.service.impl.OrderServiceImpl.acceptOrder(..))")
-    public void sendAcceptOrderEmail(JoinPoint joinPoint){
+    public void sendAcceptOrderEmail(JoinPoint joinPoint) {
         Long orderId = (Long) joinPoint.getArgs()[0];
         Order order = orderService.getOrderForId(orderId);
 
@@ -47,7 +46,7 @@ public class EmailAspect {
     }
 
     @After("execution(* com.takeaseat.service.impl.OrderServiceImpl.refuseOrder(..))")
-    public void sendRefuseOrderEmail(JoinPoint joinPoint){
+    public void sendRefuseOrderEmail(JoinPoint joinPoint) {
         Long orderId = (Long) joinPoint.getArgs()[0];
         Order order = orderService.getOrderForId(orderId);
 
