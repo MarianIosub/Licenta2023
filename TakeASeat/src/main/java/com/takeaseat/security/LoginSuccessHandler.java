@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static com.takeaseat.constants.EndpointsConstants.HOME_ENDPOINT;
-import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
+import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.StringConstants.CART;
 import static com.takeaseat.constants.StringConstants.ROLE_ADMINISTRATOR;
@@ -30,7 +30,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         updateLastLoginDate();
 
         if (isAdministrator(authentication)) {
-            response.sendRedirect(createEndpoint(RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENPOINT));
+            response.sendRedirect(createEndpoint(RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENDPOINT));
         } else {
             if (request.getSession().getAttribute(CART) != null) {
                 redirectToRestaurantIfCartCreated(request, response, authentication);

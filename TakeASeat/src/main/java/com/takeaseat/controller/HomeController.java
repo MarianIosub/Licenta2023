@@ -33,7 +33,7 @@ public class HomeController {
 
 
     @RequestMapping(value = HOME_ENDPOINT, method = RequestMethod.GET)
-    public String index(HttpSession session, MyUserPrincipal principal, Authentication authentication, Model model) {
+    public String index(HttpSession session, Model model) {
         session.removeAttribute(LOGIN_ERROR);
         model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
         model.addAttribute(HOME_RATED_RESTAURANTS, getRestaurantService().getMostRatedRestaurants());

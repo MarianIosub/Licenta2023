@@ -117,8 +117,8 @@
         <div class="container menu-item-form__footer">
             <p class="is-danger is-hidden is-primary add-menu-item__error" id="menu-item-error"><spring:message
                     code="MenuItem.AllFieldRequired" htmlEscape="true"/></p>
-            <a class="button is-primary add-menu-item__btn" id="add-food__btn" onclick="changeMenuItemFormVisibility()">Add
-                menu item</a>
+            <a class="button is-primary add-menu-item__btn" id="add-food__btn" onclick="changeMenuItemFormVisibility()">
+                <spring:message code="Manage.Restaurant.Add.Menu.Item.Button" htmlEscape="true"/></a>
         </div>
     </div>
 </section>
@@ -141,11 +141,13 @@
 <c:if test="${currentRestaurant.reviews.size()>0}">
     <div class="container">
         <div class="restaurant-reviews">
-            <h1 class="restaurant-reviews-title">Reviews &darr;</h1>
+            <h1 class="restaurant-reviews-title"><spring:message
+                    code="Manage.Restaurant.Review" htmlEscape="true"/> &darr;</h1>
             <c:forEach var="review" items="${currentRestaurant.reviews}">
                 <div class="restaurant-review">
                     <div class="review-header">
-                        <h1 class="review-title"><strong>${review.user}</strong> visited on
+                        <h1 class="review-title"><strong>${review.user}</strong> <spring:message
+                                code="Manage.Restaurant.Visited.On" htmlEscape="true"/>
                             <strong>${review.localDate}</strong></h1>
                         <h1 class="review-rating">
                             <c:forEach begin="1" end="${review.grade}" step="1">

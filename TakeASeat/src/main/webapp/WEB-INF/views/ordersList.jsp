@@ -19,27 +19,34 @@
                     <div class="order-details-redirect">
                         <a href="${pageContext.request.contextPath}/order/confirmation/${order.id}"><span>&#8594;</span></a>
                     </div>
-                    <h1 class="order-title">Order #${order.id} - ${order.restaurant.name}</h1>
+                    <h1 class="order-title"><spring:message code="Reservations.Order.Number"
+                                                            htmlEscape="true"/> #${order.id}
+                        - ${order.restaurant.name}</h1>
                     <div class="order-description">
                         <div>
-                            <h1>When ?</h1>
+                            <h1><spring:message code="Reservations.When.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${order.date}</strong></h1>
                         </div>
                         <div>
-                            <h1>Hours ?</h1>
+                            <h1><spring:message code="Reservations.Hours.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${fn:replace(order.startingHour, '.', ':')}0
                                 <span>&#8594;</span> ${fn:replace(order.endingHour, '.', ':')}0</strong></h1>
                         </div>
                         <div>
-                            <h1>Price ?</h1>
+                            <h1><spring:message code="Reservations.Price.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${order.totalPrice} RON</strong></h1>
                         </div>
                         <div>
-                            <h1>Placed on ?</h1>
+                            <h1><spring:message code="Reservations.Placed.On.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${fn:replace(order.creationDate, 'T', ' ')}</strong></h1>
                         </div>
                         <div>
-                            <h1>Transaction Status ?</h1>
+                            <h1><spring:message code="Reservations.Transaction.Status.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${order.transactionStatus}</strong></h1>
                         </div>
                     </div>
@@ -49,20 +56,24 @@
                                 <img src="data:image/jpeg;base64,${entry.photoLink}"/>
                                 <div class="order-entry-infos">
                                     <h2>${entry.name}</h2>
-                                    <h3>Quantity: <strong>${entry.quantity}</strong></h3>
+                                    <h3><spring:message code="Reservations.Quantity.Label"
+                                                        htmlEscape="true"/>: <strong>${entry.quantity}</strong></h3>
                                 </div>
                             </div>
                         </c:forEach>
                     </div>
                     <c:choose>
                         <c:when test="${!order.reviewed and (order.date.isBefore(today)) and order.approved}">
+                            <spring:message code="Reservations.Let.A.Review"
+                                            htmlEscape="true" var="reviewMessage"/>
                             <div class="order-review">
                                 <input id="review-message-${order.id}" class="review-message"
-                                       placeholder="Let a review for ${order.restaurant.name}.."
+                                       placeholder="${reviewMessage} ${order.restaurant.name}.."
                                        oninput="enableReviewButton(this.id)"/>
                                 <select id="review-select-${order.id}" class="review-select select"
                                         onchange="enableReviewButton(this.id)">
-                                    <option disabled selected value> Stars</option>
+                                    <option disabled selected value><spring:message code="Reservations.Stars"
+                                                                                    htmlEscape="true"/></option>
                                     <option value="5">&#9733; &#9733; &#9733; &#9733; &#9733;</option>
                                     <option value="4">&#9733; &#9733; &#9733; &#9733;</option>
                                     <option value="3">&#9733; &#9733; &#9733;</option>
@@ -71,13 +82,16 @@
                                 </select>
                                 <button id="review-${order.id}" class="button is-primary" disabled
                                         onclick="placeReview(this.id)">
-                                    Place review
+                                    <spring:message code="Reservations.Place.Review.Button"
+                                                    htmlEscape="true"/>
                                 </button>
                             </div>
                         </c:when>
                         <c:when test="${order.approved ne null}">
                             <div class="order-review">
-                                <h1 class="approval-message">Restaurant's response: <strong>${order.message}</strong>
+                                <h1 class="approval-message"><spring:message code="Reservations.Restaurant.Response"
+                                                                             htmlEscape="true"/>:
+                                    <strong>${order.message}</strong>
                                 </h1>
                             </div>
                         </c:when>

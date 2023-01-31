@@ -10,7 +10,7 @@ public interface EndpointsConstants {
     String ERROR_ENDPOINT = "/error";
     String RESTAURANT_ENDPOINT = "/restaurant";
     String CREATE_RESTAURANT_ENDPOINT = "/create";
-    String MANAGE_RESTAURANT_ENPOINT = "/manage";
+    String MANAGE_RESTAURANT_ENDPOINT = "/manage";
     String MENU_ITEM = "/menu-item";
     String MENU_ITEM_AVAILABILITY = "/menu-item/availability/{menuItemId}";
     String MENU_ITEM_DELETE = "/menu-item/delete/{menuItemId}";

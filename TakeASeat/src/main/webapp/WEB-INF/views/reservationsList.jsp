@@ -10,33 +10,40 @@
     <c:choose>
         <c:when test="${orders.size() eq 0}">
             <div class="no-orders-displayed">
-                <h1>You don't have any orders in this category!</h1>
+                <h1><spring:message code="Reservations.No.Orders.Message"
+                                    htmlEscape="true"/></h1>
             </div>
         </c:when>
         <c:otherwise>
             <c:forEach var="order" items="${orders}">
                 <div class="container order-item">
-                    <h1 class="order-title">Order #${order.id}</h1>
+                    <h1 class="order-title"><spring:message code="Reservations.Order.Number"
+                                                            htmlEscape="true"/> #${order.id}</h1>
                     <div class="order-description">
                         <div>
-                            <h1>When ?</h1>
+                            <h1><spring:message code="Reservations.When.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${order.date}</strong></h1>
                         </div>
                         <div>
-                            <h1>Hours ?</h1>
+                            <h1><spring:message code="Reservations.Hours.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${fn:replace(order.startingHour, '.', ':')}0
                                 <span>&#8594;</span> ${fn:replace(order.endingHour, '.', ':')}0</strong></h1>
                         </div>
                         <div>
-                            <h1>Price ?</h1>
+                            <h1><spring:message code="Reservations.Price.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${order.totalPrice} RON</strong></h1>
                         </div>
                         <div>
-                            <h1>Placed on ?</h1>
+                            <h1><spring:message code="Reservations.Placed.On.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${fn:replace(order.creationDate, 'T', ' ')}</strong></h1>
                         </div>
                         <div>
-                            <h1>Transaction Status ?</h1>
+                            <h1><spring:message code="Reservations.Transaction.Status.Label"
+                                                htmlEscape="true"/> ?</h1>
                             <h1><strong>${order.transactionStatus}</strong></h1>
                         </div>
                     </div>
@@ -46,7 +53,8 @@
                                 <img src="data:image/jpeg;base64,${entry.photoLink}"/>
                                 <div class="order-entry-infos">
                                     <h2>${entry.name}</h2>
-                                    <h3>Quantity: <strong>${entry.quantity}</strong></h3>
+                                    <h3><spring:message code="Reservations.Quantity.Label"
+                                                        htmlEscape="true"/>: <strong>${entry.quantity}</strong></h3>
                                 </div>
                             </div>
                         </c:forEach>
@@ -54,15 +62,18 @@
                     <c:if test="${order.approved eq null}">
                         <div class="order-status">
                             <input id="message-${order.id}" class="order-message"
-                                   placeholder="Let a message for customer.."
+                                   placeholder="<spring:message code="Reservations.Let.A.Message"
+                                                                                     htmlEscape="true"/>"
                                    oninput="showApprovalButtonsForOrder(this.value, this.id)"/>
                             <button id="accept-${order.id}" class="button is-primary" disabled
                                     onclick="acceptOrder(this.id)">
-                                Accept
+                                <spring:message code="Reservations.Accept.Button"
+                                                htmlEscape="true"/>
                             </button>
                             <button id="refuse-${order.id}" class="button is-danger" disabled
                                     onclick="refuseOrder(this.id)">
-                                Refuse
+                                <spring:message code="Reservations.Refuse.Order"
+                                                htmlEscape="true"/>
                             </button>
                         </div>
                     </c:if>

@@ -32,7 +32,7 @@ import java.util.Set;
 
 import static com.takeaseat.constants.EndpointsConstants.ALL;
 import static com.takeaseat.constants.EndpointsConstants.CREATE_RESTAURANT_ENDPOINT;
-import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENPOINT;
+import static com.takeaseat.constants.EndpointsConstants.MANAGE_RESTAURANT_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM_AVAILABILITY;
 import static com.takeaseat.constants.EndpointsConstants.MENU_ITEM_DELETE;
@@ -132,7 +132,7 @@ public class RestaurantController {
                                        Model model, RedirectAttributes redirectAttributes) {
         if (getRestaurantService().hasCurrentUserRestaurantCreated()) {
             redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RESTAURANT_ALREADY_CREATED_MESSAGE);
-            return createEndpoint(REDIRECT, RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENPOINT);
+            return createEndpoint(REDIRECT, RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENDPOINT);
         }
 
         createRestaurantForm.setMail(getUserService().getCurrentUser().getMail());
@@ -150,10 +150,10 @@ public class RestaurantController {
 
         getRestaurantService().saveRestaurant(createRestaurantForm);
 
-        return createEndpoint(REDIRECT, RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENPOINT);
+        return createEndpoint(REDIRECT, RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENDPOINT);
     }
 
-    @RequestMapping(value = MANAGE_RESTAURANT_ENPOINT, method = RequestMethod.GET)
+    @RequestMapping(value = MANAGE_RESTAURANT_ENDPOINT, method = RequestMethod.GET)
     public String getManageRestaurantPage(Model model, RedirectAttributes redirectAttributes) {
         if (!getRestaurantService().hasCurrentUserRestaurantCreated()) {
             redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RESTAURANT_NOT_CREATED_MESSAGE);

@@ -8,11 +8,11 @@
     http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans.xsd">
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/login" access="!isAuthenticated()"/>
-        <intercept-url pattern="/register" access="!isAuthenticated()"/>
+        <intercept-url pattern="/login" access="isAnonymous()"/>
+        <intercept-url pattern="/register" access="isAnonymous()"/>
         <intercept-url pattern="/updateProfile" access="isAuthenticated()"/>
-        <!--        <intercept-url pattern="/restaurant/**" access="hasRole('ROLE_ADMINISTRATOR')"/>-->
-        <!--        TODO: SAAS                        -->
+        <intercept-url pattern="/restaurant/all" access="!hasRole('ROLE_ADMINISTRATOR')"/>
+        <intercept-url pattern="/orders/reservations" access="hasRole('ROLE_ADMINISTRATOR')"/>
         <form-login
                 login-page="/login"
                 default-target-url="/"

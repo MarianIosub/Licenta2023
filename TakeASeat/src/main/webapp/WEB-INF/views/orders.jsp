@@ -32,23 +32,27 @@
 <st:header/>
 <div class="reservations-header">
     <h1 class="reservations-restaurant-name">${currentUser.name} ${currentUser.surname}</h1>
-    <h2 class="reservations-title">Reservations board</h2>
+    <h2 class="reservations-title"><spring:message code="Reservations.Title" htmlEscape="true"/></h2>
     <div class="reservations-filter-option">
         <button class="button is-primary order-status-btn" id="status-approved"
-                onclick="showOrdersByStatus('Approved', this.id)">Approved
+                onclick="showOrdersByStatus('Approved', this.id)"><spring:message
+                code="Reservations.Approved.Filter" htmlEscape="true"/>
         </button>
         <button class="button is-primary order-status-btn" id="status-unapproved"
-                onclick="showOrdersByStatus('Unapproved', this.id)">Unapproved
+                onclick="showOrdersByStatus('Unapproved', this.id)"><spring:message
+                code="Reservations.Unapproved.Filter" htmlEscape="true"/>
         </button>
         <button class="button is-primary order-status-btn" id="status-waiting" disabled
                 onclick="showOrdersByStatus('Waiting', this.id)">
-            Waiting for approval
+            <spring:message code="Reservations.Waiting.For.Approval.Filter" htmlEscape="true"/>
         </button>
         <button class="button is-primary order-status-btn" id="status-past"
-                onclick="showOrdersByStatus('Past', this.id)">From past
+                onclick="showOrdersByStatus('Past', this.id)"><spring:message code="Reservations.From.past.Filter"
+                                                                              htmlEscape="true"/>
         </button>
         <button class="button is-primary order-status-btn" id="status-future"
-                onclick="showOrdersByStatus('Future', this.id)">In future
+                onclick="showOrdersByStatus('Future', this.id)"><spring:message code="Reservations.In.Future.Filter"
+                                                                                htmlEscape="true"/>
         </button>
     </div>
 </div>

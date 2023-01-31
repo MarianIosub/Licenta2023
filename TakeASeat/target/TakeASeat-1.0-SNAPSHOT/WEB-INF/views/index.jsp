@@ -3,6 +3,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="st" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,12 +28,12 @@
     <div class="home-header">
         <c:choose>
             <c:when test="${currentUser eq null}">
-                <h1>Hi there! Welcome to <strong>Take a sEAT!</strong></h1>
-                <h3>Reservations are much easier with us! Reserve, order and pay with some clicks!</h3>
+                <h1><spring:message code="Home.Welcome.Message.Anonymous"/></h1>
+                <h3><spring:message code="Home.Subtitle.Message"/></h3>
             </c:when>
             <c:otherwise>
-                <h1>Hi, <strong>${currentUser.name}</strong>! Welcome back to <strong>Take a sEAT!</strong></h1>
-                <h3>Reservations are much easier with us! Reserve, order and pay with some clicks!</h3>
+                <h1><spring:message code="Home.Welcome.Message.Authenticated" arguments="${currentUser.name}"/></h1>
+                <h3><spring:message code="Home.Subtitle.Message"/></h3>
             </c:otherwise>
         </c:choose>
     </div>
@@ -41,47 +42,49 @@
         <c:choose>
             <c:when test="${isAdmin}">
                 <div class="home-manage">
-                    <h1>Manage restaurant</h1>
+                    <h1><spring:message code="Home.Manage.Restaurant"/></h1>
                     <div class="home-text-content">
                         <div>
-                            <p>✓ Create Restaurant</p>
-                            <p>✓ Price for reservation</p>
-                            <p>✓ Zero taxes</p>
-                            <p>✓ Set program</p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.First.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Second.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Third.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Fourth.Paragraph"/></p>
                         </div>
                         <div>
-                            <p>✓ Create Menu Items</p>
-                            <p>✓ Change availability</p>
-                            <p>✓ Delete from menu</p>
-                            <p>✓ Set prices for each</p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Fifth.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Sixth.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Seventh.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Manage.Eighth.Paragraph"/></p>
                         </div>
                     </div>
                     <a class="button is-large is-warning is-centered"
-                       href="${pageContext.request.contextPath}/restaurant/manage">Manage restaurant</a>
+                       href="${pageContext.request.contextPath}/restaurant/manage"><spring:message
+                            code="Home.Admin.Manage.Restaurant.Button"/></a>
                 </div>
                 <div class="home-orders">
-                    <h1>Manage orders</h1>
+                    <h1><spring:message code="Home.Admin.Orders"/></h1>
                     <div class="home-text-content">
                         <div>
-                            <p>✓ Online orders</p>
-                            <p>✓ Accept/Deny orders</p>
-                            <p>✓ Message for client</p>
-                            <p>✓ Instant emails</p>
+                            <p>✓ <spring:message code="Home.Admin.Order.First.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Second.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Third.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Fourth.Paragraph"/></p>
                         </div>
                         <div>
-                            <p>✓ Online pays</p>
-                            <p>✓ Users' review</p>
-                            <p>✓ No phone calls</p>
-                            <p>✓ Easy to use</p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Fifth.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Sixth.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Seventh.Paragraph"/></p>
+                            <p>✓ <spring:message code="Home.Admin.Order.Eighth.Paragraph"/></p>
                         </div>
                     </div>
                     <a class="button is-large is-warning is-centered"
-                       href="${pageContext.request.contextPath}/order/reservations">Accept orders</a>
+                       href="${pageContext.request.contextPath}/order/reservations"><spring:message
+                            code="Home.Admin.Orders.Button"/></a>
                 </div>
             </c:when>
             <c:otherwise>
                 <div class="home-ordered">
-                    <h1>Most orders &darr;</h1>
+                    <h1><spring:message code="Home.Client.Most.Orders"/> &darr;</h1>
                     <div class="small-items-list">
                         <c:forEach var="restaurant" items="${orderedRestaurants}">
                             <a class="small-item" href="/restaurant/${restaurant.id}">
@@ -101,7 +104,7 @@
                     </div>
                 </div>
                 <div class="home-rating">
-                    <h1>Best rated &darr;</h1>
+                    <h1><spring:message code="Home.Client.Best.Rated"/> &darr;</h1>
                     <div class="big-items-list">
                         <c:forEach var="restaurant" items="${ratedRestaurants}">
                             <a class="big-item" href="/restaurant/${restaurant.id}">
@@ -121,7 +124,7 @@
                     </div>
                 </div>
                 <div class="home-items">
-                    <h1>Most delicious &darr;</h1>
+                    <h1><spring:message code="Home.Client.Most.Delicious"/> &darr;</h1>
                     <div class="small-items-list">
                         <c:forEach var="menuItem" items="${menuItems}">
                             <a class="small-item" href="/restaurant/${menuItem.value.id}">
