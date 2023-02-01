@@ -34,4 +34,5 @@ public interface EndpointsConstants {
     String RESERVATIONS_REFUSE_ENDPOINT = "/reservations/refuse";
     String ORDERS_LIST_ENDPOINT = "/orders/filter";
     String REVIEW_ENDPOINT = "/review";
+    String FORGOT_PASSWORD_ENDPOINT = "/forgot-password";
 }

@@ -24,64 +24,47 @@
 <st:header/>
 <st:flashMessage/>
 <spring:url value="/update-profile" var="updateProfileUrl"/>
-<div id="update_profile-label" class="form-modal">
-    <h3 class="title is-center">Change your <strong>Take a sEAT!</strong> account:</h3>
+<div id="update_profile-label" class="update-profile-form">
+    <h1 class="login-form__h1">Change your <strong>Take a sEAT!</strong> account:</h1>
     <form:form method="post" action="${updateProfileUrl}" modelAttribute="updateProfileForm">
         <spring:bind path="name">
-            <div class="field">
-                <form:label class="label" path="name">Name</form:label>
-                <div class="control">
-                    <form:input name="name" class="input" type="text" placeholder="name" path="name"
-                                required="required"/>
-                    <form:errors path="name" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="surname">
-            <div class="field">
-                <form:label class="label" path="surname">Surname</form:label>
-                <div class="control">
-                    <form:input class="input" type="text" placeholder="surname" required="true" path="surname"/>
-                    <form:errors path="surname" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="mail">
-            <div class="field">
-                <form:label class="label" path="mail">Mail</form:label>
-                <div class="control">
-                    <form:input class="input" type="email" placeholder="mail" required="true" path="mail"/>
-                    <form:errors path="mail" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="password">
-            <div class="field">
-                <form:label class="label" path="password">Password</form:label>
-                <div class="control ">
-                    <form:input class="input" type="password" placeholder="password" required="true"
-                                path="password"/>
-                    <form:errors path="password" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="confirmPassword">
-            <div class="field">
-                <form:label class="label" path="confirmPassword">Confirm Password</form:label>
-                <div class="control">
-                    <form:input class="input" type="password" placeholder="password" required="true"
-                                path="confirmPassword"/>
-                    <form:errors path="confirmPassword" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <div class="field is-grouped is-center is-10">
-            <div class="control">
-                <button class="button is-link" type="submit">Change profile</button>
-            </div>
-        </div>
-    </form:form>
+            <form:label class="label is-hidden" path="name">Name</form:label>
+            <form:input name="name" class="form-field" type="text" placeholder="Name" path="name"
+                        required="required"/>
 
+        </spring:bind>
+
+        <spring:bind path="surname">
+            <form:label class="label is-hidden" path="surname">Surname</form:label>
+            <form:input class="form-field" type="text" placeholder="Surname" required="true" path="surname"/>
+        </spring:bind>
+
+        <spring:bind path="mail">
+            <form:label class="label is-hidden" path="mail">Mail</form:label>
+            <form:input class="form-field" type="email" placeholder="Mail" required="true" path="mail"/>
+        </spring:bind>
+
+        <spring:bind path="password">
+            <form:label class="label is-hidden" path="password">Password</form:label>
+            <form:input class="form-field" type="password" placeholder="Password" required="true"
+                        path="password"/>
+        </spring:bind>
+
+        <spring:bind path="confirmPassword">
+            <form:label class="label is-hidden" path="confirmPassword">Confirm Password</form:label>
+            <form:input class="form-field" type="password" placeholder="Confirm password" required="true"
+                        path="confirmPassword"/>
+        </spring:bind>
+        <div class="update_profile_errors">
+            <p class="form_error"><form:errors path="name"/></p>
+            <p class="form_error"><form:errors path="surname"/></p>
+            <p class="form_error"><form:errors path="mail"/></p>
+            <p class="form_error"><form:errors path="password"/></p>
+            <p class="form_error"><form:errors path="confirmPassword"/></p>
+        </div>
+
+        <button class="login-btn" type="submit">Change profile</button>
+    </form:form>
 </div>
 <st:footer/>
 </body>

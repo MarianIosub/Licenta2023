@@ -6,7 +6,9 @@ import com.takeaseat.converter.Converter;
 import com.takeaseat.dao.UserDao;
 import com.takeaseat.model.User;
 import com.takeaseat.security.MyUserPrincipal;
+import com.takeaseat.service.EmailService;
 import com.takeaseat.service.UserService;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,15 +24,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final Converter<RegisterForm, User> registerFormUserConverter;
     private final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final EmailService emailService;
 
 
     public UserServiceImpl(final UserDao userDao, final Converter<RegisterForm, User> registerFormUserConverter,
                            final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter,
-                           final BCryptPasswordEncoder bCryptPasswordEncoder) {
+                           final BCryptPasswordEncoder bCryptPasswordEncoder, final EmailService emailService) {
         this.userDao = userDao;
         this.registerFormUserConverter = registerFormUserConverter;
         this.userUpdateProfileFormConverter = userUpdateProfileFormConverter;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.emailService = emailService;
     }
 
 
@@ -81,6 +85,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public void recoverPassword(final String mail) {
+        User user = findByMail(mail);
+        final String passwordGenerated = generateNewPassword();
+
+        getEmailService().sendRecoverPasswordEmail(user, passwordGenerated);
+        user.setPassword(encryptPassword(passwordGenerated));
+
+        getUserDao().update(user);
+    }
+
+    @Override
     public MyUserPrincipal loadUserByUsername(final String mail) throws UsernameNotFoundException {
         User user = getUserDao().findByMail(mail);
         return new MyUserPrincipal(user);
@@ -94,6 +109,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     private String encryptPassword(final String password) {
         return getbCryptPasswordEncoder().encode(password);
+    }
+
+    private String generateNewPassword() {
+        return RandomStringUtils.random(10, true, true);
     }
 
     protected UserDao getUserDao() {
@@ -110,5 +129,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     protected BCryptPasswordEncoder getbCryptPasswordEncoder() {
         return bCryptPasswordEncoder;
+    }
+
+    protected EmailService getEmailService() {
+        return emailService;
     }
 }

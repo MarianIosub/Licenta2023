@@ -22,4 +22,6 @@ public interface MessagePropertiesConstants {
     String MENU_ITEM_ADDED_MESSAGE = "MenuItem.Added";
     String MENU_ITEM_AVAILABILITY_MESSAGE = "MenuItem.Availability";
     String MENU_ITEM_DELETED_MESSAGE = "MenuItem.Deleted";
+    String NO_USER_FOUND_ERROR = "No.User.Found";
+    String RECOVER_PASSWORD_MAIL_SENT = "Recover.Password.Mail.Sent";
 }

@@ -24,46 +24,34 @@
 <st:header/>
 <st:flashMessage/>
 <spring:url value="/login" var="loginUrl"/>
-<div id="login-label" class="login-modal">
-    <h3 class="title is-center"><spring:message code="Login.Title" htmlEscape="true"/> <strong>Take a sEAT!</strong>
-    </h3>
+<div id="login-label" class="login-form">
+    <h1 class="login-form__h1"><spring:message code="Login.Title" htmlEscape="true"/> <strong>Take a sEAT!</strong>
+    </h1>
     <form:form method="post" action="${loginUrl}" modelAttribute="loginForm">
-        <div class="field">
-            <form:label class="label" path="mail"><spring:message code="Login.Mail" htmlEscape="true"/></form:label>
-            <div class="control">
-                <form:input class="input" type="text" placeholder="Email" required="true" path="mail"/>
-                <form:errors path="mail" class="help is-danger"/>
-            </div>
-        </div>
-        <div class="field">
-            <form:label class="label" path="password"><spring:message code="Login.Password"
-                                                                      htmlEscape="true"/></form:label>
-            <div class="control">
-                <form:input class="input" type="password" placeholder="Password" required="true"
-                            path="password"/>
-                <form:errors path="password" class="help is-danger"/>
-            </div>
-        </div>
-        <div class="field">
-            <div class="control">
-                <form:label class="checkbox" path="rememberMe">
-                    <form:checkbox path="rememberMe"/>
-                    <spring:message code="Login.RememberMe" htmlEscape="true"/>!
-                </form:label>
-                <form:errors path="rememberMe" class="is-danger"/>
-            </div>
-        </div>
-        <c:if test="${loginError ne null}">
-            <p class="help is-danger is-large"><spring:message code="${loginError}"/></p>
-        </c:if>
+        <form:label class="label is-hidden" path="mail"><spring:message code="Login.Mail"
+                                                                        htmlEscape="true"/></form:label>
+        <form:input class="form-field" type="text" placeholder="Email" required="true" path="mail"/>
+        <form:errors path="mail" class="help is-danger"/>
 
-        <div class="field is-grouped is-center is-10">
-            <div class="control">
-                <button class="button is-link" type="submit"><spring:message code="Login.Button"
-                                                                             htmlEscape="true"/></button>
-            </div>
+        <form:label class="label is-hidden" path="password"><spring:message code="Login.Password"
+                                                                            htmlEscape="true"/></form:label>
+        <form:input class="form-field" type="password" placeholder="Password" required="true"
+                    path="password"/>
+        <form:errors path="password" class="help is-danger"/>
+        <div class="login-form__checkers">
+            <form:label class="checkbox" path="rememberMe">
+                <form:checkbox path="rememberMe" cssClass="remember-me"/>
+                <spring:message code="Login.RememberMe" htmlEscape="true"/>!
+            </form:label>
+            <form:errors path="rememberMe" class="is-danger"/>
+            <c:if test="${loginError ne null}">
+                <p class="form_error"><spring:message code="${loginError}"/></p>
+            </c:if>
         </div>
+        <button class="login-btn" type="submit"><spring:message code="Login.Button"
+                                                                htmlEscape="true"/></button>
     </form:form>
+    <a class="forget-password" href="/forgot-password">Forgot password? <span>&#8594;</span></a>
 </div>
 <st:footer/>
 </body>

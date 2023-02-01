@@ -13,4 +13,6 @@ public interface EmailService {
     void sendAcceptOrderEmail(final Order order);
 
     void sendRefuseOrderEmail(final Order order);
+
+    void sendRecoverPasswordEmail(final User user, final String passwordGenerated);
 }

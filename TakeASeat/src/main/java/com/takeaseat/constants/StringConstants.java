@@ -75,4 +75,5 @@ public interface StringConstants {
     String WAITING = "waiting";
     String PAST = "past";
     String FUTURE = "future";
+    String FORGOT_PASSWORD_FORM = "forgotPasswordForm";
 }

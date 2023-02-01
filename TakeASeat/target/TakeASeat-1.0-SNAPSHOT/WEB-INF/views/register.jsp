@@ -24,91 +24,76 @@
 <st:header/>
 <st:flashMessage/>
 <spring:url value="/register" var="registerUrl"/>
-<div id="registration-label" class="form-modal">
-    <h3 class="title is-center"><spring:message code="Register.Title"/> <strong>Take a sEAT!</strong></h3>
+<div id="registration-label" class="register-form">
+    <h1 class="register-form__h1"><spring:message code="Register.Title"/> <strong>Take a sEAT!</strong></h1>
     <form:form method="post" action="${registerUrl}" modelAttribute="registerForm">
-        <spring:bind path="name">
-            <div class="field">
-                <form:label class="label" path="name"><spring:message code="Register.Name"/></form:label>
-                <div class="control">
-                    <form:input name="registerForm.name" class="input" type="text" placeholder="Name" path="name"
-                                required="required"/>
-                    <form:errors path="name" class="help is-danger"/>
-                </div>
-            </div>
+        <div><spring:bind path="name">
+            <form:label class="label is-hidden" path="name"><spring:message code="Register.Name"/></form:label>
+            <form:input name="registerForm.name" class="form-field" type="text" placeholder="Name" path="name"
+                        required="required"/>
         </spring:bind>
-        <spring:bind path="surname">
-            <div class="field">
-                <form:label class="label" path="surname"><spring:message code="Register.Surname"/></form:label>
-                <div class="control">
-                    <form:input class="input" type="text" placeholder="Surname" required="true" path="surname"/>
-                    <form:errors path="surname" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="mail">
-            <div class="field">
-                <form:label class="label" path="mail"><spring:message code="Register.Mail"/></form:label>
-                <div class="control">
-                    <form:input class="input" type="email" placeholder="Email" required="true" path="mail"/>
-                    <form:errors path="mail" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="password">
-            <div class="field">
-                <form:label class="label" path="password"><spring:message code="Register.Password"/></form:label>
-                <div class="control ">
-                    <form:input class="input" type="password" placeholder="Password" required="true"
-                                path="password"/>
-                    <form:errors path="password" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="confirmPassword">
-            <div class="field">
-                <form:label class="label" path="confirmPassword"><spring:message
-                        code="Register.Confirm.Password"/></form:label>
-                <div class="control">
-                    <form:input class="input" type="password" placeholder="Confirm Password" required="true"
-                                path="confirmPassword"/>
-                    <form:errors path="confirmPassword" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="role">
-            <div class="field">
-                <form:label class="label" path="role"><spring:message code="Register.Role.Label"/>:</form:label>
-                <div class="control">
-                    <div class="select">
-                        <form:select required="required" path="role">
-                            <option value="" selected disabled hidden>Click me!</option>
-                            <option value="ROLE_FOOD_LOVER"><spring:message code="Register.Food.Lover.Role"/></option>
-                            <option value="ROLE_ADMINISTRATOR"><spring:message
-                                    code="Register.Administrator.Role"/></option>
-                        </form:select>
-                        <form:errors path="role" class="help is-danger"/>
-                    </div>
-                </div>
-            </div>
-        </spring:bind>
-        <spring:bind path="terms">
-            <div class="field">
-                <div class="control">
-                    <form:label class="checkbox" path="terms">
-                        <form:checkbox required="true" path="terms"/>
-                        <spring:message code="Register.Terms.And.Conditions.First"/> <a href="#"><spring:message
-                            code="Register.Terms.And.Conditions.Second"/></a>
-                    </form:label>
-                    <form:errors path="role" class="help is-danger"/>
-                </div>
-            </div>
-        </spring:bind>
-        <div class="field is-grouped is-center is-10">
-            <div class="control">
-                <button class="button is-link" type="submit"><spring:message code="Register.Button"/></button>
-            </div>
         </div>
+        <div>
+            <spring:bind path="surname">
+
+                <form:label class="label is-hidden" path="surname"><spring:message
+                        code="Register.Surname"/></form:label>
+                <form:input class="form-field" type="text" placeholder="Surname" required="true" path="surname"/>
+
+            </spring:bind>
+        </div>
+        <div>
+            <spring:bind path="mail">
+                <form:label class="label is-hidden" path="mail"><spring:message code="Register.Mail"/></form:label>
+                <form:input class="form-field" type="email" placeholder="Email" required="true" path="mail"/>
+            </spring:bind>
+        </div>
+        <div>
+            <spring:bind path="password">
+                <form:label class="label is-hidden" path="password"><spring:message
+                        code="Register.Password"/></form:label>
+                <form:input class="form-field" type="password" placeholder="Password" required="true"
+                            path="password"/>
+            </spring:bind>
+        </div>
+        <div>
+            <spring:bind path="confirmPassword">
+                <form:label class="label is-hidden" path="confirmPassword"><spring:message
+                        code="Register.Confirm.Password"/></form:label>
+                <form:input class="form-field" type="password" placeholder="Confirm Password" required="true"
+                            path="confirmPassword"/>
+            </spring:bind>
+        </div>
+        <div>
+            <spring:bind path="role">
+                <form:label class="label is-hidden" path="role"><spring:message
+                        code="Register.Role.Label"/>:</form:label>
+                <form:select required="required" path="role" cssClass="form-field">
+                    <option value="" selected disabled hidden>Click me!</option>
+                    <option value="ROLE_FOOD_LOVER"><spring:message code="Register.Food.Lover.Role"/></option>
+                    <option value="ROLE_ADMINISTRATOR"><spring:message
+                            code="Register.Administrator.Role"/></option>
+                </form:select>
+
+            </spring:bind>
+        </div>
+        <div class="login-form__checkers">
+            <spring:bind path="terms">
+                <form:label class="checkbox" path="terms">
+                    <form:checkbox required="true" path="terms"/>
+                    <spring:message code="Register.Terms.And.Conditions.First"/> <a href="#"><spring:message
+                        code="Register.Terms.And.Conditions.Second"/></a>
+                </form:label>
+            </spring:bind>
+            <p class="form_error"><form:errors path="role" class="is-danger"/></p>
+            <p class="form_error"><form:errors path="name" class="is-danger"/></p>
+            <p class="form_error"><form:errors path="surname" class="is-danger"/></p>
+            <p class="form_error"><form:errors path="mail" class="is-danger"/></p>
+            <p class="form_error"><form:errors path="password" class="is-danger"/></p>
+            <p class="form_error"><form:errors path="confirmPassword" class="is-danger"/></p>
+            <p class="form_error"><form:errors path="role" class="is-danger"/></p>
+        </div>
+        <button class="login-btn" type="submit"><spring:message code="Register.Button"/></button>
     </form:form>
 </div>
 <st:footer/>

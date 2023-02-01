@@ -19,6 +19,7 @@ public interface ViewsConstants {
     String ORDERS_LIST_VIEW = "ordersList";
     String RESERVATIONS_VIEW = "reservations";
     String RESERVATIONS_LIST_VIEW = "reservationsList";
+    String FORGOT_PASSWORD_PAGE = "forgotPassword";
 
     //ERRORS
     String ERROR_404 = "404";

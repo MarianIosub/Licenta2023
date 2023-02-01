@@ -51,6 +51,14 @@ public class EmailServiceImpl implements EmailService {
         getMailSender().send(message);
     }
 
+    @Override
+    public void sendRecoverPasswordEmail(User user, String passwordGenerated) {
+        SimpleMailMessage message = getEmailComposer().composeRecoverPasswordEmail(user, passwordGenerated);
+
+        getMailSender().send(message);
+    }
+
+
     protected EmailComposer getEmailComposer() {
         return emailComposer;
     }

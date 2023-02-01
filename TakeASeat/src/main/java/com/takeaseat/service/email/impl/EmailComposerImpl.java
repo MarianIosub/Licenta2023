@@ -123,4 +123,28 @@ public class EmailComposerImpl implements EmailComposer {
                 "TakeAsEAT Team");
         return message;
     }
+
+    @Override
+    public SimpleMailMessage composeRecoverPasswordEmail(User user, String passwordGenerated) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("noreply@takeAsEAT.com");
+        message.setTo(user.getMail());
+        message.setSubject("Password Reset Request - TakeAsEAT");
+        message.setText("Dear " + user.getName() + ",\n" +
+                "\n" +
+                "We received a request to reset the password for your TakeAsEAT account. To reset your password, please use the following password:\n" +
+                "\n" +
+                passwordGenerated + "\n" +
+                "\n" +
+                "Please log in to your account with this temporary password and update your account with a new one.\n" +
+                "\n" +
+                "If you did not request a password reset, please let us know immediately.\n" +
+                "\n" +
+                "Thank you for your attention to this matter.\n" +
+                "\n" +
+                "Best regards,\n" +
+                "TakeAsEAT Team");
+
+        return message;
+    }
 }

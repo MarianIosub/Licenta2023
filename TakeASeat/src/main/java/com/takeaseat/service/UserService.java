@@ -52,4 +52,11 @@ public interface UserService {
      * Updates the last login date of the current user.
      */
     void updateLastLoginDate();
+
+    /**
+     * Sends an email to user with new password and changes his password with sent one.
+     *
+     * @param mail user's mail for recovering password
+     */
+    void recoverPassword(final String mail);
 }

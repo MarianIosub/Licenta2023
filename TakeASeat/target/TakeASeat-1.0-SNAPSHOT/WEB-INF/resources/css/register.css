@@ -20,13 +20,163 @@
     font-size: 2.5rem;
 }
 
-#loginForm {
-    width: 80%;
+.forgot-password-form {
+    background-color: hwb(171deg 53% 5% / 90%);
+    border-radius: 20px;
+    height: 28em;
+    width: 45em;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
-    height: 20rem;
+    margin: 10rem auto;
+}
+
+.register-form {
+    background-color: hwb(171deg 53% 5% / 90%);
+    border-radius: 20px;
+    height: 54em;
+    width: 40em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem auto 1rem;
+}
+
+.update-profile-form {
+    background-color: hwb(171deg 53% 5% / 90%);
+    border-radius: 20px;
+    height: 49em;
+    width: 45em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem auto 1rem;
+}
+
+.update_profile_errors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    height: 1rem;
+}
+
+.login-form {
+    background-color: hwb(171deg 53% 5% / 90%);
+    border-radius: 20px;
+    height: 36em;
+    width: 35em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 6em auto;
+}
+
+.forget-password {
+    text-decoration: none;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 800;
+}
+
+.form_error {
+    font-size: 1rem;
+    color: red;
+    font-weight: 500;
+}
+
+.login-form__h1 {
+    margin-top: 1.5em;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2.3rem;
+}
+
+.register-form__h1 {
+    margin-top: 0.5em;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2.3rem;
+}
+
+.form-field {
+    border: 0;
+    background: #bffdd9;
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+    height: 4rem;
+    width: 20rem;
+    color: black;
+    border-radius: 1.5em;
+    transition: 0.25s;
+    font-size: 1.5rem;
+}
+
+.form-field:focus {
+    outline: #3498DB;
+    border: 1px solid #3498DB;
+    width: 22rem;
+}
+
+.login-form__checkers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    height: 4rem;
+}
+
+.login-btn {
+    border: 0;
+    background: #2ecc71;
+    display: block;
+    margin: 1.5rem auto;
+    text-align: center;
+    height: 4rem;
+    width: 15rem;
+    color: white;
+    border-radius: 1.5em;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.login-btn:hover {
+    width: 17rem;
+    border-color: #2ecc71;
+    background-color: #3498DB;
+}
+
+.forgot-password-btn {
+    border: 0;
+    background: #2ecc71;
+    display: block;
+    margin: 1.5rem auto;
+    text-align: center;
+    height: 5rem;
+    width: 19rem;
+    color: white;
+    border-radius: 1.5em;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size: 2rem;
+}
+
+.forgot-password-btn:hover {
+    width: 21rem;
+    border-color: #2ecc71;
+    background-color: #3498DB;
+}
+
+.login-btn:focus,
+.sign-up-btn:focus {
+    outline: #3498DB;
+    background-color: #3498DB;
 }
 
 .form-modal__create-restaurant {
@@ -48,7 +198,7 @@
 }
 
 .flash-message {
-    position: fixed;
+    position: absolute;
     padding: 0 10px;
     height: 30px;
     border-bottom: 3px solid #00d1b2;

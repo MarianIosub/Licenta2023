@@ -1,8 +1,10 @@
 package com.takeaseat.controller;
 
+import com.takeaseat.controller.form.ForgotPasswordForm;
 import com.takeaseat.controller.form.LoginForm;
 import com.takeaseat.controller.form.RegisterForm;
 import com.takeaseat.controller.form.UpdateProfileForm;
+import com.takeaseat.controller.validator.ForgotPasswordFormValidator;
 import com.takeaseat.controller.validator.RegisterFormValidator;
 import com.takeaseat.controller.validator.UpdateProfileFormValidator;
 import com.takeaseat.service.UserService;
@@ -22,19 +24,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import static com.takeaseat.constants.EndpointsConstants.FORGOT_PASSWORD_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.LOGIN_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.REDIRECT;
 import static com.takeaseat.constants.EndpointsConstants.REGISTER_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.UPDATE_PROFILE_ENDPOINT;
 import static com.takeaseat.constants.MessagePropertiesConstants.LOGOUT_SUCCESS_MESSAGE;
+import static com.takeaseat.constants.MessagePropertiesConstants.RECOVER_PASSWORD_MAIL_SENT;
 import static com.takeaseat.constants.MessagePropertiesConstants.REGISTER_SUCCESSFUL_MESSAGE;
 import static com.takeaseat.constants.MessagePropertiesConstants.UPDATE_PROFILE_SUCCESS_MESSAGE;
 import static com.takeaseat.constants.StringConstants.FLASH_MESSAGE;
+import static com.takeaseat.constants.StringConstants.FORGOT_PASSWORD_FORM;
 import static com.takeaseat.constants.StringConstants.LOGIN_ERROR;
 import static com.takeaseat.constants.StringConstants.LOGIN_FORM;
 import static com.takeaseat.constants.StringConstants.LOGOUT;
 import static com.takeaseat.constants.StringConstants.REGISTER_FORM;
 import static com.takeaseat.constants.StringConstants.UPDATE_PROFILE_FORM;
+import static com.takeaseat.constants.ViewsConstants.FORGOT_PASSWORD_PAGE;
 import static com.takeaseat.constants.ViewsConstants.LOGIN_PAGE;
 import static com.takeaseat.constants.ViewsConstants.REGISTER_PAGE;
 import static com.takeaseat.constants.ViewsConstants.UPDATE_PROFILE_PAGE;
@@ -49,6 +55,7 @@ public class UserController {
 
     private final RegisterFormValidator registerFormValidator;
     private final UpdateProfileFormValidator updateProfileFormValidator;
+    private final ForgotPasswordFormValidator forgotPasswordFormValidator;
     private final UserService userService;
 
     @InitBinder(REGISTER_FORM)
@@ -59,6 +66,11 @@ public class UserController {
     @InitBinder(UPDATE_PROFILE_FORM)
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(getUpdateProfileFormValidator());
+    }
+
+    @InitBinder(FORGOT_PASSWORD_FORM)
+    protected void initBinderForgotPassword(WebDataBinder binder) {
+        binder.setValidator(getForgotPasswordFormValidator());
     }
 
     @RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.GET)
@@ -110,6 +122,26 @@ public class UserController {
         return createEndpoint(REDIRECT, UPDATE_PROFILE_ENDPOINT);
     }
 
+    @RequestMapping(value = FORGOT_PASSWORD_ENDPOINT, method = RequestMethod.GET)
+    public String getForgotPasswordPage(@ModelAttribute(FORGOT_PASSWORD_FORM) ForgotPasswordForm forgotPasswordForm, Model model) {
+        model.addAttribute(FORGOT_PASSWORD_FORM, forgotPasswordForm);
+
+        return FORGOT_PASSWORD_PAGE;
+    }
+
+    @RequestMapping(value = FORGOT_PASSWORD_ENDPOINT, method = RequestMethod.POST)
+    public String recoverPassword(@ModelAttribute(FORGOT_PASSWORD_FORM) @Validated ForgotPasswordForm forgotPasswordForm,
+                                  BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (bindingResult.hasErrors()) {
+            return FORGOT_PASSWORD_PAGE;
+        }
+
+        getUserService().recoverPassword(forgotPasswordForm.getMail());
+
+        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RECOVER_PASSWORD_MAIL_SENT);
+        return createEndpoint(REDIRECT, LOGIN_ENDPOINT);
+    }
+
     protected RegisterFormValidator getRegisterFormValidator() {
         return registerFormValidator;
     }
@@ -120,5 +152,9 @@ public class UserController {
 
     protected UserService getUserService() {
         return userService;
+    }
+
+    protected ForgotPasswordFormValidator getForgotPasswordFormValidator() {
+        return forgotPasswordFormValidator;
     }
 }

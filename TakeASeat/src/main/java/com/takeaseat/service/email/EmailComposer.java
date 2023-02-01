@@ -14,4 +14,6 @@ public interface EmailComposer {
     SimpleMailMessage composeAcceptOrderMessage(Order order);
 
     SimpleMailMessage composeRefuseOrderMessage(Order order);
+
+    SimpleMailMessage composeRecoverPasswordEmail(User user, String passwordGenerated);
 }

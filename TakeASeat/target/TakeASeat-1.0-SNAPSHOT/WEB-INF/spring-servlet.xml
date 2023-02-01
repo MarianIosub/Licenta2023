@@ -72,6 +72,11 @@
 
     <!-- FORMS -->
 
+    <alias name="defaultForgotPasswordFormValidator" alias="forgotPasswordFormValidator"/>
+    <bean id="defaultForgotPasswordFormValidator" class="com.takeaseat.controller.validator.ForgotPasswordFormValidator">
+        <constructor-arg name="userService" ref="userService"/>
+    </bean>
+
     <alias name="defaultRegisterFormValidator" alias="registerFormValidator"/>
     <bean id="defaultRegisterFormValidator" class="com.takeaseat.controller.validator.RegisterFormValidator">
         <constructor-arg name="userService" ref="userService"/>
@@ -187,6 +192,7 @@
         <constructor-arg name="registerFormUserConverter" ref="converter"/>
         <constructor-arg name="userUpdateProfileFormConverter" ref="converter"/>
         <constructor-arg name="bCryptPasswordEncoder" ref="bCrypt"/>
+        <constructor-arg name="emailService" ref="defaultEmailService"/>
     </bean>
 
     <alias name="defaultRestaurantService" alias="restaurantService"/>

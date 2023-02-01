@@ -49,8 +49,9 @@
                                                                                     htmlEscape="true"/>
         </button>
         <button class="button is-primary order-status-btn" id="status-future"
-                onclick="showReservationsByStatus('Future', this.id)"><spring:message code="Reservations.In.Future.Filter"
-                                                                                      htmlEscape="true"/>
+                onclick="showReservationsByStatus('Future', this.id)"><spring:message
+                code="Reservations.In.Future.Filter"
+                htmlEscape="true"/>
         </button>
     </div>
 </div>
