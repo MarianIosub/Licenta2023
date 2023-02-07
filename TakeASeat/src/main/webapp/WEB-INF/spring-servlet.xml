@@ -203,4 +203,10 @@
         <constructor-arg name="restaurantDao" ref="restaurantDao"/>
         <constructor-arg name="menuItemDao" ref="menuItemDao"/>
     </bean>
+
+    <bean name="defaultStatisticsService" class="com.takeaseat.service.impl.StatisticsServiceImpl">
+        <constructor-arg name="userService" ref="userService"/>
+        <constructor-arg name="orderService" ref="orderService"/>
+        <constructor-arg name="restaurantService" ref="restaurantService"/>
+    </bean>
 </beans>

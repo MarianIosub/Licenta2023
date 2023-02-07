@@ -35,4 +35,8 @@ public interface EndpointsConstants {
     String ORDERS_LIST_ENDPOINT = "/orders/filter";
     String REVIEW_ENDPOINT = "/review";
     String FORGOT_PASSWORD_ENDPOINT = "/forgot-password";
+    String STATISTICS_ENDPOINT = "/statistics";
+    String ORDERS_PER_DAY_ENDPOINT = "/orders-per-day";
+    String USERS_VISITED = "/users-visited";
+    String INCOME_PER_DAY_ENDPOINT = "/income-per-day";
 }

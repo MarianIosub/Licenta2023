@@ -2,6 +2,7 @@ package com.takeaseat.service;
 
 import com.takeaseat.controller.dto.Cart;
 import com.takeaseat.model.Order;
+import com.takeaseat.model.Restaurant;
 
 import java.util.List;
 
@@ -61,4 +62,6 @@ public interface OrderService {
      * @param rating  the rating to include in the review
      */
     void placeReview(final Long orderId, final String message, final Integer rating);
+
+    List<Order> getLastMonthOrders(final Restaurant currentUserRestaurant);
 }

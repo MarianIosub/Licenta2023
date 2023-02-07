@@ -12,6 +12,7 @@ import com.takeaseat.service.UserService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +21,8 @@ import static com.takeaseat.constants.StringConstants.FUTURE;
 import static com.takeaseat.constants.StringConstants.PAST;
 import static com.takeaseat.constants.StringConstants.UNAPPROVED;
 import static com.takeaseat.constants.StringConstants.WAITING;
+import static java.time.temporal.TemporalAdjusters.firstDayOfMonth;
+import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
@@ -108,8 +111,20 @@ public class OrderServiceImpl implements OrderService {
         getOrderDao().updateOrder(order);
     }
 
+    @Override
+    public List<Order> getLastMonthOrders(Restaurant currentUserRestaurant) {
+        LocalDate initial = LocalDate.now();
+        LocalDate start = initial.withMonth(initial.getMonthValue()-1).with(firstDayOfMonth());
+        LocalDate end = initial.withMonth(initial.getMonthValue()-1).with(lastDayOfMonth());
+        return getCurrentUserOrders(PAST).stream()
+                .filter(o -> o.getDate().isAfter(start))
+                .filter(o -> o.getDate().isBefore(end))
+                .sorted(Comparator.comparing(Order::getDate))
+                .collect(Collectors.toList());
+    }
+
     private void calculateRestaurantRating(Restaurant restaurant) {
-        double rating = Double.NaN;
+        double rating = 0.0d;
         for (Review review : restaurant.getReviews()) {
             rating = rating + review.getGrade();
         }

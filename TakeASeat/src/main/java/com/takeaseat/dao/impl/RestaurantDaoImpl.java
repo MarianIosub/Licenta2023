@@ -19,6 +19,7 @@ public class RestaurantDaoImpl implements RestaurantDao {
     private static final String MOST_RATED_RESTAURANT = "SELECT a FROM Restaurant a ORDER BY a.rating DESC";
     private static final String MOST_ORDERED_RESTAURANT = "SELECT a FROM Restaurant a ORDER BY a.noOfReservations DESC";
     private static final String RESTAURANT_BY_MENU_ITEM = "SELECT a from Restaurant a where '%s' in (SELECT m.id from a.menuItems m)";
+
     @PersistenceContext(unitName = PERSISTENCE_UNIT_NAME)
     private EntityManager manager;
 

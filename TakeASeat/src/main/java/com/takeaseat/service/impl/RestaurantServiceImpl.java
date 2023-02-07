@@ -21,14 +21,17 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import static com.takeaseat.constants.StringConstants.ALPHABETICAL;
 import static com.takeaseat.constants.StringConstants.INVERSE;
+import static com.takeaseat.constants.StringConstants.N;
 import static com.takeaseat.constants.StringConstants.POPULAR;
 import static com.takeaseat.constants.StringConstants.RATING_UPPER_CASED;
+import static com.takeaseat.constants.StringConstants.Y;
 
 @Transactional
 public class RestaurantServiceImpl implements RestaurantService {
@@ -96,11 +99,15 @@ public class RestaurantServiceImpl implements RestaurantService {
     public void changeMenuItemAvailability(Long menuItemId) {
         Restaurant restaurant = getCurrentUserRestaurant();
 
-        restaurant.getMenuItems().stream()
-                .filter(menuItem -> menuItem.getId().equals(menuItemId))
-                .forEach(menuItem -> menuItem.setAvailable(!menuItem.isAvailable()));
+        Optional<MenuItem> menuItem = restaurant.getMenuItems().stream()
+                .filter(m -> m.getId().equals(menuItemId))
+                .findFirst();
 
-        getRestaurantDao().update(restaurant);
+        menuItem.ifPresent(m -> {
+            m.setAvailableForOrder(m.getAvailableForOrder().equals(Y) ? N : Y);
+            getMenuItemDao().update(menuItem.get());
+            getRestaurantDao().update(restaurant);
+        });
     }
 
     @Override
@@ -190,12 +197,12 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public boolean hasAvailableItems(Set<MenuItem> menuItems) {
-        return menuItems.stream().anyMatch(MenuItem::isAvailable);
+        return menuItems.stream().anyMatch(m-> m.getAvailableForOrder().equals(Y));
     }
 
     @Override
     public boolean hasUnavailableItems(Set<MenuItem> menuItems) {
-        return !menuItems.stream().allMatch(MenuItem::isAvailable);
+        return !menuItems.stream().allMatch(m-> m.getAvailableForOrder().equals(Y));
     }
 
     @Override

@@ -40,6 +40,11 @@ public class MenuItemDaoImpl implements MenuItemDao {
         getManager().remove(menuItem);
     }
 
+    @Override
+    public void update(MenuItem menuItem) {
+        getManager().merge(menuItem);
+    }
+
     protected EntityManager getManager() {
         return manager;
     }

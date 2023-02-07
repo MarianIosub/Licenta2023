@@ -3,6 +3,7 @@ package com.takeaseat.dao;
 import com.takeaseat.model.MenuItem;
 import com.takeaseat.model.Restaurant;
 
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -34,4 +35,6 @@ public interface MenuItemDao {
      * @param menuItem the menu item to delete
      */
     void delete(MenuItem menuItem);
+
+    void update(MenuItem menuItem);
 }

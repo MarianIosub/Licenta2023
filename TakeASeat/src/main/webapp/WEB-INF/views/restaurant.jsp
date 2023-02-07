@@ -14,10 +14,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${currentRestaurant.name} | Take a sEAT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../resources/css/register.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
@@ -132,7 +131,7 @@
                     <c:forEach var="review" items="${currentRestaurant.reviews}">
                         <div class="restaurant-review">
                             <div class="review-header">
-                                <h1 class="review-title"><strong>${review.user}</strong> was here on
+                                <h1 class="review-title"><strong>${review.user}</strong> <spring:message code="Manage.Restaurant.Visited.On"/>
                                     <strong>${review.localDate}</strong></h1>
                                 <h1 class="review-rating">
                                     <c:forEach begin="1" end="${review.grade}" step="1">

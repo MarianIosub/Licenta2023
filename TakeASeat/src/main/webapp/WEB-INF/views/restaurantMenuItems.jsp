@@ -10,7 +10,7 @@
     <h1 class="menu-items-availability-groups"><spring:message code="MenuItems.Available.Products.Label"/> &darr; </h1>
     <div class="menu-items-list">
         <c:forEach items="${menuItems}" var="menuItem">
-        <c:if test="${menuItem.available}">
+        <c:if test="${menuItem.availableForOrder eq 'Y'}">
         <c:choose>
         <c:when test="${isAuthenticated}">
         <div class="menu-item" id="menuItem-${menuItem.id}" onmouseover="displayCartButton(this.id)"
@@ -54,7 +54,7 @@
                 &darr; </h1>
             <div class="menu-items-list">
                 <c:forEach items="${menuItems}" var="menuItem">
-                    <c:if test="${not menuItem.available}">
+                    <c:if test="${menuItem.availableForOrder ne 'Y'}">
                         <div class="menu-item" id="menuItem-${menuItem.id}">
                             <div class="menu-item-photo">
                                 <img src="data:image/jpeg;base64,${menuItem.photoLink}" alt="">

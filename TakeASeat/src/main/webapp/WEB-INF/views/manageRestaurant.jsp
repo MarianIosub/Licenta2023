@@ -12,15 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manage Restaurant | Take a sEAT</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../resources/css/register.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
             crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../resources/js/menuItemForm.js"></script>
     <script src="../resources/js/menuItemsSearch.js"></script>
     <script src="../resources/js/menuItemsManage.js"></script>
+    <script src="../resources/js/statistics.js"></script>
 
 </head>
 <body>
@@ -117,8 +119,14 @@
         <div class="container menu-item-form__footer">
             <p class="is-danger is-hidden is-primary add-menu-item__error" id="menu-item-error"><spring:message
                     code="MenuItem.AllFieldRequired" htmlEscape="true"/></p>
-            <a class="button is-primary add-menu-item__btn" id="add-food__btn" onclick="changeMenuItemFormVisibility()">
-                <spring:message code="Manage.Restaurant.Add.Menu.Item.Button" htmlEscape="true"/></a>
+            <div>
+                <a class="button is-dark" id="generate_statistics" onclick="generateRestaurantStatistics()">
+                    Generate statistics
+                </a>
+                <a class="button is-primary add-menu-item__btn" id="add-food__btn"
+                   onclick="changeMenuItemFormVisibility()">
+                    <spring:message code="Manage.Restaurant.Add.Menu.Item.Button" htmlEscape="true"/></a>
+            </div>
         </div>
     </div>
 </section>
@@ -160,6 +168,8 @@
                 </div>
             </c:forEach>
         </div>
+    </div>
+    <div id="charts">
     </div>
 </c:if>
 <st:footer/>

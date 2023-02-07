@@ -33,7 +33,7 @@
                     <div class="menu-item-manage is-hidden">
                         <div class="menu-item-buttons">
                             <c:choose>
-                                <c:when test="${not menuItem.available}">
+                                <c:when test="${menuItem.availableForOrder ne 'Y'}">
                                     <button id="available-${menuItem.id}"
                                             class="button is-small is-responsive is-success"
                                             onclick="changeMenuItemAvailability(this.id)">

@@ -16,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID_COLUMN_NAME;
 import static com.takeaseat.constants.StringConstants.RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.RESTAURANT_ID_COLUMN_NAME;
 
@@ -66,6 +68,7 @@ public class Restaurant {
     private Integer noOfReservations = 0;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OrderBy(MENU_ITEM_ID_COLUMN_NAME)
     private Set<MenuItem> menuItems;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Review> reviews = new HashSet<>();

@@ -7,6 +7,10 @@
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>com.takeaseat.model.User</class>
         <class>com.takeaseat.model.Restaurant</class>
+        <class>com.takeaseat.model.MenuItem</class>
+        <class>com.takeaseat.model.Order</class>
+        <class>com.takeaseat.model.OrderEntry</class>
+        <class>com.takeaseat.model.Review</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="marian"/>

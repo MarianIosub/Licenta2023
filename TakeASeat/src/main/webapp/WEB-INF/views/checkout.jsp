@@ -11,7 +11,7 @@
     <title>Checkout | Take a sEAT</title>
     <script src="../resources/js/reservation.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="../resources/css/register.css">
+    <link rel="stylesheet" href="../resources/css/style.css">
     <script
             src="https://code.jquery.com/jquery-3.6.0.min.js"
             integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="

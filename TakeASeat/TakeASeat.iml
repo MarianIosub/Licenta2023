@@ -124,5 +124,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.0" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.26" level="project" />
     <orderEntry type="library" name="Maven: javax.validation:validation-api:2.0.1.Final" level="project" />
+    <orderEntry type="library" name="Chart.js" level="application" />
+    <orderEntry type="library" name="chart.js" level="application" />
   </component>
 </module>

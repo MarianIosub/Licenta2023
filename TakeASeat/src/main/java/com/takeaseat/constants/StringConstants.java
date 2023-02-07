@@ -76,4 +76,7 @@ public interface StringConstants {
     String PAST = "past";
     String FUTURE = "future";
     String FORGOT_PASSWORD_FORM = "forgotPasswordForm";
+    String AVAILABLE = "available";
+    String Y = "Y";
+    String N = "N";
 }

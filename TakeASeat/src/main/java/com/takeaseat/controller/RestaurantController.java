@@ -60,6 +60,7 @@ import static com.takeaseat.constants.StringConstants.PRICE;
 import static com.takeaseat.constants.StringConstants.RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.SEARCHED_ITEM;
 import static com.takeaseat.constants.StringConstants.SORT_OPTION;
+import static com.takeaseat.constants.StringConstants.Y;
 import static com.takeaseat.constants.ViewsConstants.CREATE_RESTAURANT_PAGE;
 import static com.takeaseat.constants.ViewsConstants.ERROR_404;
 import static com.takeaseat.constants.ViewsConstants.MANAGE_RESTAURANT_PAGE;
@@ -211,7 +212,7 @@ public class RestaurantController {
 
     private MenuItem createMenuItemFromRequest(String name, String ingredients, String price, MultipartFile photo) throws IOException {
         byte[] encodeBase64 = Base64.getEncoder().encode(photo.getBytes());
-        return new MenuItem(name, ingredients, Double.valueOf(price), new String(encodeBase64, StandardCharsets.UTF_8));
+        return new MenuItem(name, ingredients, Double.valueOf(price), new String(encodeBase64, StandardCharsets.UTF_8), Y);
     }
 
     private void setCartInSession(Restaurant restaurant, HttpSession session) {

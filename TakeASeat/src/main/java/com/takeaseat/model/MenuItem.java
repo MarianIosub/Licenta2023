@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import static com.takeaseat.constants.StringConstants.AVAILABLE;
 import static com.takeaseat.constants.StringConstants.MENU_ITEMS;
 import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID_COLUMN_NAME;
 
@@ -42,29 +43,7 @@ public class MenuItem {
     @Column(columnDefinition = "LONGBLOB")
     private String photoLink;
     private Integer noOfOrders = 0;
-    private boolean available = true;
+    @NonNull
+    private String availableForOrder;
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public String getPhotoLink() {
-        return photoLink;
-    }
-
-    public boolean isAvailable() {
-        return available;
-    }
 }
