@@ -53,6 +53,17 @@
     margin: 2rem auto 1rem;
 }
 
+.create-restaurant-form {
+    background-color: hwb(171deg 53% 5% / 90%);
+    border-radius: 20px;
+    height: 88em;
+    width: 45em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem auto 1rem;
+}
+
 .update_profile_errors {
     display: flex;
     flex-direction: column;
@@ -92,6 +103,7 @@
     text-transform: uppercase;
     font-weight: 700;
     font-size: 2.3rem;
+    text-align: center;
 }
 
 .register-form__h1 {
@@ -131,7 +143,8 @@
     height: 4rem;
 }
 
-.login-btn {
+.login-btn,
+.create-restaurant-btn {
     border: 0;
     background: #2ecc71;
     display: block;
@@ -144,6 +157,22 @@
     transition: 0.25s;
     cursor: pointer;
     font-size: 2rem;
+}
+
+.my-photo-label {
+    width: 20rem;
+}
+
+.my-file-name {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2rem;
+}
+
+.create-restaurant-btn{
+    width: 20rem !important;
 }
 
 .login-btn:hover {
