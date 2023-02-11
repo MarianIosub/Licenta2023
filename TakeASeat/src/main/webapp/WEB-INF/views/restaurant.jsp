@@ -131,7 +131,8 @@
                     <c:forEach var="review" items="${currentRestaurant.reviews}">
                         <div class="restaurant-review">
                             <div class="review-header">
-                                <h1 class="review-title"><strong>${review.user}</strong> <spring:message code="Manage.Restaurant.Visited.On"/>
+                                <h1 class="review-title"><strong>${review.user}</strong> <spring:message
+                                        code="Manage.Restaurant.Visited.On"/>
                                     <strong>${review.localDate}</strong></h1>
                                 <h1 class="review-rating">
                                     <c:forEach begin="1" end="${review.grade}" step="1">

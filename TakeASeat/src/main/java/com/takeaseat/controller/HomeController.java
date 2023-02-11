@@ -20,31 +20,32 @@ import static com.takeaseat.constants.StringConstants.HOME_RATED_RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.LOGIN_ERROR;
 import static com.takeaseat.constants.ViewsConstants.HOME_PAGE;
 
+
 @Controller
 @AllArgsConstructor
 public class HomeController {
 
-    private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
-    private final RestaurantService restaurantService;
-    private final UserService userService;
+	private final RestaurantService restaurantService;
+	private final UserService userService;
 
 
-    @RequestMapping(value = HOME_ENDPOINT, method = RequestMethod.GET)
-    public String index(HttpSession session, Model model) {
-        session.removeAttribute(LOGIN_ERROR);
-        model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
-        model.addAttribute(HOME_RATED_RESTAURANTS, getRestaurantService().getMostRatedRestaurants());
-        model.addAttribute(HOME_ORDERED_RESTAURANTS, getRestaurantService().getMostOrderedRestaurants());
-        model.addAttribute(HOME_MENU_ITEMS, getRestaurantService().getMostOrderedMenuItems());
-        return HOME_PAGE;
-    }
+	@RequestMapping(value = HOME_ENDPOINT, method = RequestMethod.GET)
+	public String index(HttpSession session, Model model) {
+		session.removeAttribute(LOGIN_ERROR);
+		model.addAttribute(CURRENT_USER, getUserService().getCurrentUser());
+		model.addAttribute(HOME_RATED_RESTAURANTS, getRestaurantService().getMostRatedRestaurants());
+		model.addAttribute(HOME_ORDERED_RESTAURANTS, getRestaurantService().getMostOrderedRestaurants());
+		model.addAttribute(HOME_MENU_ITEMS, getRestaurantService().getMostOrderedMenuItems());
+		return HOME_PAGE;
+	}
 
-    public RestaurantService getRestaurantService() {
-        return restaurantService;
-    }
+	public RestaurantService getRestaurantService() {
+		return restaurantService;
+	}
 
-    public UserService getUserService() {
-        return userService;
-    }
+	public UserService getUserService() {
+		return userService;
+	}
 }

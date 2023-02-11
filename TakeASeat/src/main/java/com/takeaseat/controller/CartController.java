@@ -48,114 +48,115 @@ import static com.takeaseat.constants.ViewsConstants.CHECKOUT_VIEW;
 import static com.takeaseat.constants.ViewsConstants.ERROR_DEFAULT;
 import static com.takeaseat.constants.ViewsConstants.RESERVATION_COMPONENT;
 
+
 @Controller
 @RequestMapping(CART_ENDPOINT)
 @AllArgsConstructor
 public class CartController {
 
-    private final CartService cartService;
-    private final PaymentService paymentService;
-    private final OrderService orderService;
-    private final UserService userService;
+	private final CartService cartService;
+	private final PaymentService paymentService;
+	private final OrderService orderService;
+	private final UserService userService;
 
-    @RequestMapping(value = ADD_TO_CART_ENDPOINT, method = RequestMethod.POST)
-    public String addToCart(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
-        getCartService().addToCart(cart, menuItemId);
+	@RequestMapping(value = ADD_TO_CART_ENDPOINT, method = RequestMethod.POST)
+	public String addToCart(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
+		getCartService().addToCart(cart, menuItemId);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = DELETE_FROM_CART_ENDPOINT, method = RequestMethod.POST)
-    public String deleteFromCart(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
-        getCartService().deleteFromCart(cart, menuItemId);
+	@RequestMapping(value = DELETE_FROM_CART_ENDPOINT, method = RequestMethod.POST)
+	public String deleteFromCart(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
+		getCartService().deleteFromCart(cart, menuItemId);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = INCREASE_QTY_ENDPOINT, method = RequestMethod.POST)
-    public String increaseQuantity(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
-        getCartService().increaseQuantityForMenuItem(cart, menuItemId);
+	@RequestMapping(value = INCREASE_QTY_ENDPOINT, method = RequestMethod.POST)
+	public String increaseQuantity(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
+		getCartService().increaseQuantityForMenuItem(cart, menuItemId);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = DECREASE_QTY_CART_ENDPOINT, method = RequestMethod.POST)
-    public String decreaseQuantity(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
-        getCartService().decreaseQuantityForMenuItem(cart, menuItemId);
+	@RequestMapping(value = DECREASE_QTY_CART_ENDPOINT, method = RequestMethod.POST)
+	public String decreaseQuantity(@SessionAttribute(CART) Cart cart, @RequestParam(MENU_ITEM_ID) Long menuItemId) {
+		getCartService().decreaseQuantityForMenuItem(cart, menuItemId);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = DATE_CART_ENDPOINT, method = RequestMethod.POST)
-    public String setCartDate(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_DATE) String date) {
-        getCartService().setCartDate(cart, date);
+	@RequestMapping(value = DATE_CART_ENDPOINT, method = RequestMethod.POST)
+	public String setCartDate(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_DATE) String date) {
+		getCartService().setCartDate(cart, date);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = START_CART_ENDPOINT, method = RequestMethod.POST)
-    public String setCartStart(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_START) String start) {
-        getCartService().setCartReservationStart(cart, start);
+	@RequestMapping(value = START_CART_ENDPOINT, method = RequestMethod.POST)
+	public String setCartStart(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_START) String start) {
+		getCartService().setCartReservationStart(cart, start);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = END_CART_ENDPOINT, method = RequestMethod.POST)
-    public String setCartEnd(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_END) String end) {
-        getCartService().setCartReservationEnd(cart, end);
+	@RequestMapping(value = END_CART_ENDPOINT, method = RequestMethod.POST)
+	public String setCartEnd(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_END) String end) {
+		getCartService().setCartReservationEnd(cart, end);
 
-        return RESERVATION_COMPONENT;
-    }
+		return RESERVATION_COMPONENT;
+	}
 
-    @RequestMapping(value = CHECKOUT_ENDPOINT, method = RequestMethod.GET)
-    public String checkout(Model model) {
-        model.addAttribute(STRIPE_PUBLIC_KEY, STRIPE_API_PUBLIC_KEY);
-        model.addAttribute(CURRENCY, ChargeRequest.Currency.RON);
-        return CHECKOUT_VIEW;
-    }
+	@RequestMapping(value = CHECKOUT_ENDPOINT, method = RequestMethod.GET)
+	public String checkout(Model model) {
+		model.addAttribute(STRIPE_PUBLIC_KEY, STRIPE_API_PUBLIC_KEY);
+		model.addAttribute(CURRENCY, ChargeRequest.Currency.RON);
+		return CHECKOUT_VIEW;
+	}
 
-    @RequestMapping(value = CHARGE_ENDPOINT, method = RequestMethod.POST)
-    public String charge(HttpServletRequest request, @SessionAttribute(CART) Cart cart,
-                         HttpSession session, Model model) throws StripeException {
-        ChargeRequest chargeRequest = getChargeRequest(request);
-        Charge charge = getPaymentService().charge(chargeRequest);
-        cart.setCharge(charge);
-        Order order = getOrderService().placeOrder(cart);
-        model.addAttribute(ORDER, order);
-        session.removeAttribute(CART);
-        return CHECKOUT_CONFIRMATION_VIEW;
-    }
+	@RequestMapping(value = CHARGE_ENDPOINT, method = RequestMethod.POST)
+	public String charge(HttpServletRequest request, @SessionAttribute(CART) Cart cart,
+						 HttpSession session, Model model) throws StripeException {
+		ChargeRequest chargeRequest = getChargeRequest(request);
+		Charge charge = getPaymentService().charge(chargeRequest);
+		cart.setCharge(charge);
+		Order order = getOrderService().placeOrder(cart);
+		model.addAttribute(ORDER, order);
+		session.removeAttribute(CART);
+		return CHECKOUT_CONFIRMATION_VIEW;
+	}
 
 
-    @ExceptionHandler(StripeException.class)
-    public String handleError(Model model, StripeException ex) {
-        model.addAttribute(ERROR_DEFAULT, ex.getMessage());
-        return CHECKOUT_CONFIRMATION_VIEW;
-    }
+	@ExceptionHandler(StripeException.class)
+	public String handleError(Model model, StripeException ex) {
+		model.addAttribute(ERROR_DEFAULT, ex.getMessage());
+		return CHECKOUT_CONFIRMATION_VIEW;
+	}
 
-    private ChargeRequest getChargeRequest(HttpServletRequest request) {
-        ChargeRequest chargeRequest = new ChargeRequest();
-        chargeRequest.setAmount((int) (Double.parseDouble(request.getParameter(AMOUNT)) * 100));
-        chargeRequest.setCurrency(ChargeRequest.Currency.RON);
-        chargeRequest.setStripeEmail(request.getParameter(STRIPE_EMAIL));
-        chargeRequest.setStripeToken(request.getParameter(STRIPE_TOKEN));
+	private ChargeRequest getChargeRequest(HttpServletRequest request) {
+		ChargeRequest chargeRequest = new ChargeRequest();
+		chargeRequest.setAmount((int) (Double.parseDouble(request.getParameter(AMOUNT)) * 100));
+		chargeRequest.setCurrency(ChargeRequest.Currency.RON);
+		chargeRequest.setStripeEmail(request.getParameter(STRIPE_EMAIL));
+		chargeRequest.setStripeToken(request.getParameter(STRIPE_TOKEN));
 
-        return chargeRequest;
-    }
+		return chargeRequest;
+	}
 
-    protected CartService getCartService() {
-        return cartService;
-    }
+	protected CartService getCartService() {
+		return cartService;
+	}
 
-    protected PaymentService getPaymentService() {
-        return paymentService;
-    }
+	protected PaymentService getPaymentService() {
+		return paymentService;
+	}
 
-    protected OrderService getOrderService() {
-        return orderService;
-    }
+	protected OrderService getOrderService() {
+		return orderService;
+	}
 
-    protected UserService getUserService() {
-        return userService;
-    }
+	protected UserService getUserService() {
+		return userService;
+	}
 }

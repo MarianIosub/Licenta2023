@@ -17,121 +17,122 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
 
-    private final UserDao userDao;
-    private final Converter<RegisterForm, User> registerFormUserConverter;
-    private final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final EmailService emailService;
+	private final UserDao userDao;
+	private final Converter<RegisterForm, User> registerFormUserConverter;
+	private final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter;
+	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+	private final EmailService emailService;
 
 
-    public UserServiceImpl(final UserDao userDao, final Converter<RegisterForm, User> registerFormUserConverter,
-                           final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter,
-                           final BCryptPasswordEncoder bCryptPasswordEncoder, final EmailService emailService) {
-        this.userDao = userDao;
-        this.registerFormUserConverter = registerFormUserConverter;
-        this.userUpdateProfileFormConverter = userUpdateProfileFormConverter;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.emailService = emailService;
-    }
+	public UserServiceImpl(final UserDao userDao, final Converter<RegisterForm, User> registerFormUserConverter,
+						   final Converter<User, UpdateProfileForm> userUpdateProfileFormConverter,
+						   final BCryptPasswordEncoder bCryptPasswordEncoder, final EmailService emailService) {
+		this.userDao = userDao;
+		this.registerFormUserConverter = registerFormUserConverter;
+		this.userUpdateProfileFormConverter = userUpdateProfileFormConverter;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.emailService = emailService;
+	}
 
 
-    @Override
-    public User findByMail(final String mail) {
-        return getUserDao().findByMail(mail);
-    }
+	@Override
+	public User findByMail(final String mail) {
+		return getUserDao().findByMail(mail);
+	}
 
-    @Override
-    public void registerUser(final RegisterForm form) {
-        User user = getRegisterFormUserConverter().convert(form, User.class);
-        encryptUserPassword(user);
+	@Override
+	public void registerUser(final RegisterForm form) {
+		User user = getRegisterFormUserConverter().convert(form, User.class);
+		encryptUserPassword(user);
 
-        getUserDao().save(user);
-    }
+		getUserDao().save(user);
+	}
 
-    @Override
-    public UpdateProfileForm getUpdateProfileForm() {
-        User user = getUserDao().findByMail(getCurrentUser().getMail());
-        UpdateProfileForm updateProfileForm = getUserUpdateProfileFormConverter().convert(user, UpdateProfileForm.class);
-        updateProfileForm.setPassword(null);
-        return updateProfileForm;
-    }
+	@Override
+	public UpdateProfileForm getUpdateProfileForm() {
+		User user = getUserDao().findByMail(getCurrentUser().getMail());
+		UpdateProfileForm updateProfileForm = getUserUpdateProfileFormConverter().convert(user, UpdateProfileForm.class);
+		updateProfileForm.setPassword(null);
+		return updateProfileForm;
+	}
 
-    @Override
-    public User getCurrentUser() {
-        try {
-            return ((MyUserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
-        } catch (Exception e) {
-            return null;
-        }
-    }
+	@Override
+	public User getCurrentUser() {
+		try {
+			return ((MyUserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
-    @Override
-    public void updateCurrentUser(UpdateProfileForm updateProfileForm) {
-        User user = getCurrentUser();
-        user.setSurname(updateProfileForm.getSurname());
-        user.setName(updateProfileForm.getName());
-        user.setPassword(encryptPassword(updateProfileForm.getPassword()));
-        getUserDao().update(user);
-    }
+	@Override
+	public void updateCurrentUser(UpdateProfileForm updateProfileForm) {
+		User user = getCurrentUser();
+		user.setSurname(updateProfileForm.getSurname());
+		user.setName(updateProfileForm.getName());
+		user.setPassword(encryptPassword(updateProfileForm.getPassword()));
+		getUserDao().update(user);
+	}
 
-    @Override
-    public void updateLastLoginDate() {
-        User user = getCurrentUser();
-        user.setLastLoginDate(LocalDateTime.now());
-        userDao.update(user);
-    }
+	@Override
+	public void updateLastLoginDate() {
+		User user = getCurrentUser();
+		user.setLastLoginDate(LocalDateTime.now());
+		userDao.update(user);
+	}
 
-    @Override
-    public void recoverPassword(final String mail) {
-        User user = findByMail(mail);
-        final String passwordGenerated = generateNewPassword();
+	@Override
+	public void recoverPassword(final String mail) {
+		User user = findByMail(mail);
+		final String passwordGenerated = generateNewPassword();
 
-        getEmailService().sendRecoverPasswordEmail(user, passwordGenerated);
-        user.setPassword(encryptPassword(passwordGenerated));
+		getEmailService().sendRecoverPasswordEmail(user, passwordGenerated);
+		user.setPassword(encryptPassword(passwordGenerated));
 
-        getUserDao().update(user);
-    }
+		getUserDao().update(user);
+	}
 
-    @Override
-    public MyUserPrincipal loadUserByUsername(final String mail) throws UsernameNotFoundException {
-        User user = getUserDao().findByMail(mail);
-        return new MyUserPrincipal(user);
-    }
+	@Override
+	public MyUserPrincipal loadUserByUsername(final String mail) throws UsernameNotFoundException {
+		User user = getUserDao().findByMail(mail);
+		return new MyUserPrincipal(user);
+	}
 
-    private void encryptUserPassword(User user) {
-        String password = user.getPassword();
-        password = encryptPassword(password);
-        user.setPassword(password);
-    }
+	private void encryptUserPassword(User user) {
+		String password = user.getPassword();
+		password = encryptPassword(password);
+		user.setPassword(password);
+	}
 
-    private String encryptPassword(final String password) {
-        return getbCryptPasswordEncoder().encode(password);
-    }
+	private String encryptPassword(final String password) {
+		return getbCryptPasswordEncoder().encode(password);
+	}
 
-    private String generateNewPassword() {
-        return RandomStringUtils.random(10, true, true);
-    }
+	private String generateNewPassword() {
+		return RandomStringUtils.random(10, true, true);
+	}
 
-    protected UserDao getUserDao() {
-        return userDao;
-    }
+	protected UserDao getUserDao() {
+		return userDao;
+	}
 
-    protected Converter<RegisterForm, User> getRegisterFormUserConverter() {
-        return registerFormUserConverter;
-    }
+	protected Converter<RegisterForm, User> getRegisterFormUserConverter() {
+		return registerFormUserConverter;
+	}
 
-    protected Converter<User, UpdateProfileForm> getUserUpdateProfileFormConverter() {
-        return userUpdateProfileFormConverter;
-    }
+	protected Converter<User, UpdateProfileForm> getUserUpdateProfileFormConverter() {
+		return userUpdateProfileFormConverter;
+	}
 
-    protected BCryptPasswordEncoder getbCryptPasswordEncoder() {
-        return bCryptPasswordEncoder;
-    }
+	protected BCryptPasswordEncoder getbCryptPasswordEncoder() {
+		return bCryptPasswordEncoder;
+	}
 
-    protected EmailService getEmailService() {
-        return emailService;
-    }
+	protected EmailService getEmailService() {
+		return emailService;
+	}
 }

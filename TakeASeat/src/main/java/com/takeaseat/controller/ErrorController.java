@@ -11,18 +11,19 @@ import static com.takeaseat.constants.ViewsConstants.ERROR_404;
 import static com.takeaseat.constants.ViewsConstants.ERROR_DEFAULT;
 import static javax.servlet.RequestDispatcher.ERROR_STATUS_CODE;
 
+
 @Controller
 public class ErrorController {
 
-    @RequestMapping(ERROR_ENDPOINT)
-    public String handleError(@RequestAttribute(value = ERROR_STATUS_CODE, required = false) Integer status) {
-        if (status == HttpStatus.NOT_FOUND.value()) {
-            return ERROR_404;
-        }
-        if (status == HttpStatus.FORBIDDEN.value()) {
-            return ERROR_403;
-        }
+	@RequestMapping(ERROR_ENDPOINT)
+	public String handleError(@RequestAttribute(value = ERROR_STATUS_CODE, required = false) Integer status) {
+		if (status == HttpStatus.NOT_FOUND.value()) {
+			return ERROR_404;
+		}
+		if (status == HttpStatus.FORBIDDEN.value()) {
+			return ERROR_403;
+		}
 
-        return ERROR_DEFAULT;
-    }
+		return ERROR_DEFAULT;
+	}
 }

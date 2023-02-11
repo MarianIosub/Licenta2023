@@ -16,44 +16,45 @@ import static com.takeaseat.constants.StringConstants.CART;
 import static com.takeaseat.constants.StringConstants.ROLE_ADMINISTRATOR;
 import static com.takeaseat.helper.CreateEndpointHelper.createEndpoint;
 
+
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
-    private final UserService userService;
+	private final UserService userService;
 
-    public LoginSuccessHandler(final UserService userService) {
-        this.userService = userService;
-    }
+	public LoginSuccessHandler(final UserService userService) {
+		this.userService = userService;
+	}
 
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                        Authentication authentication) throws IOException {
-        updateLastLoginDate();
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+										Authentication authentication) throws IOException {
+		updateLastLoginDate();
 
-        if (isAdministrator(authentication)) {
-            response.sendRedirect(createEndpoint(RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENDPOINT));
-        } else {
-            if (request.getSession().getAttribute(CART) != null) {
-                redirectToRestaurantIfCartCreated(request, response, authentication);
-            } else {
-                response.sendRedirect(HOME_ENDPOINT);
-            }
-        }
-    }
+		if (isAdministrator(authentication)) {
+			response.sendRedirect(createEndpoint(RESTAURANT_ENDPOINT, MANAGE_RESTAURANT_ENDPOINT));
+		} else {
+			if (request.getSession().getAttribute(CART) != null) {
+				redirectToRestaurantIfCartCreated(request, response, authentication);
+			} else {
+				response.sendRedirect(HOME_ENDPOINT);
+			}
+		}
+	}
 
-    private void redirectToRestaurantIfCartCreated(HttpServletRequest request, HttpServletResponse response,
-                                                   Authentication authentication) throws IOException {
-        Cart cart = (Cart) request.getSession().getAttribute(CART);
-        cart.setUser(((MyUserPrincipal) authentication.getPrincipal()).getUser());
-        request.getSession().setAttribute(CART, cart);
-        response.sendRedirect(createEndpoint(RESTAURANT_ENDPOINT, "/",
-                String.valueOf(cart.getRestaurant().getId())));
-    }
+	private void redirectToRestaurantIfCartCreated(HttpServletRequest request, HttpServletResponse response,
+												   Authentication authentication) throws IOException {
+		Cart cart = (Cart) request.getSession().getAttribute(CART);
+		cart.setUser(((MyUserPrincipal) authentication.getPrincipal()).getUser());
+		request.getSession().setAttribute(CART, cart);
+		response.sendRedirect(createEndpoint(RESTAURANT_ENDPOINT, "/",
+											 String.valueOf(cart.getRestaurant().getId())));
+	}
 
-    private void updateLastLoginDate() {
-        userService.updateLastLoginDate();
-    }
+	private void updateLastLoginDate() {
+		userService.updateLastLoginDate();
+	}
 
-    private boolean isAdministrator(Authentication authentication) {
-        return authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_ADMINISTRATOR));
-    }
+	private boolean isAdministrator(Authentication authentication) {
+		return authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals(ROLE_ADMINISTRATOR));
+	}
 }

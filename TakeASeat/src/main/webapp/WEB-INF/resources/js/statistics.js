@@ -4,30 +4,30 @@ function generateRestaurantStatistics() {
     callForThirdStatistics();
 }
 
-function callForFirstStatistics(){
+function callForFirstStatistics() {
     $.ajax({
         type: "GET",
         url: "/statistics/orders-per-day",
     }).then(function (response) {
-        generateChart(response, "bar","Orders per day", 'Number of orders per day', "bar-chart-1");
+        generateChart(response, "bar", "Orders per day", 'Number of orders per day', "bar-chart-1");
     });
 }
 
-function callForSecondStatistics(){
+function callForSecondStatistics() {
     $.ajax({
         type: "GET",
         url: "/statistics/users-visited",
     }).then(function (response) {
-        generateChart(response, "bar","Users' visits", "Number of users' visits", "bar-chart-2");
+        generateChart(response, "bar", "Users' visits", "Number of users' visits", "bar-chart-2");
     });
 }
 
-function callForThirdStatistics(){
+function callForThirdStatistics() {
     $.ajax({
         type: "GET",
         url: "/statistics/income-per-day",
     }).then(function (response) {
-        generateChart(response, "line","Income per day", "Income per day in RON", "bar-chart-3");
+        generateChart(response, "line", "Income per day", "Income per day in RON", "bar-chart-3");
     });
 }
 

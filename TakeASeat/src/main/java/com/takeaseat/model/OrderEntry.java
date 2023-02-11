@@ -28,17 +28,17 @@ import static com.takeaseat.constants.StringConstants.ORDER_ENTRY_ID_COLUMN_NAME
 @Builder
 @Table(name = ORDER_ENTRIES)
 public class OrderEntry {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ORDER_ENTRY_ID_COLUMN_NAME)
-    private Long id;
-    @NonNull
-    private String name;
-    @NonNull
-    private Double price;
-    @NonNull
-    @Column(columnDefinition = "LONGBLOB")
-    private String photoLink;
-    @NonNull
-    private Integer quantity;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ORDER_ENTRY_ID_COLUMN_NAME)
+	private Long id;
+	@NonNull
+	private String name;
+	@NonNull
+	private Double price;
+	@NonNull
+	@Column(columnDefinition = "LONGBLOB")
+	private String photoLink;
+	@NonNull
+	private Integer quantity;
 }

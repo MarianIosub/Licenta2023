@@ -12,38 +12,39 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 public class CartToOrderConverter {
 
-    public Order convert(final Cart cart) {
-        final Set<OrderEntry> orderEntries = getOrderEntriesFromCart(cart);
-        return Order.builder()
-                .user(cart.getUser())
-                .restaurant(cart.getRestaurant())
-                .cardExpirationMonth(((Card) cart.getCharge().getSource()).getExpMonth())
-                .cardExpirationYear(((Card) cart.getCharge().getSource()).getExpYear())
-                .cardLastDigits(((Card) cart.getCharge().getSource()).getLast4())
-                .cardPaymentNetwork(((Card) cart.getCharge().getSource()).getBrand())
-                .chargeId(cart.getCharge().getId())
-                .startingHour(cart.getStartingHour())
-                .endingHour(cart.getEndingHour())
-                .date(cart.getDate())
-                .creationDate(LocalDateTime.now())
-                .totalPrice(cart.getTotalPrice())
-                .transactionStatus(cart.getCharge().getStatus())
-                .orderEntries(orderEntries)
-                .build();
-    }
+	public Order convert(final Cart cart) {
+		final Set<OrderEntry> orderEntries = getOrderEntriesFromCart(cart);
+		return Order.builder()
+					.user(cart.getUser())
+					.restaurant(cart.getRestaurant())
+					.cardExpirationMonth(((Card) cart.getCharge().getSource()).getExpMonth())
+					.cardExpirationYear(((Card) cart.getCharge().getSource()).getExpYear())
+					.cardLastDigits(((Card) cart.getCharge().getSource()).getLast4())
+					.cardPaymentNetwork(((Card) cart.getCharge().getSource()).getBrand())
+					.chargeId(cart.getCharge().getId())
+					.startingHour(cart.getStartingHour())
+					.endingHour(cart.getEndingHour())
+					.date(cart.getDate())
+					.creationDate(LocalDateTime.now())
+					.totalPrice(cart.getTotalPrice())
+					.transactionStatus(cart.getCharge().getStatus())
+					.orderEntries(orderEntries)
+					.build();
+	}
 
-    private Set<OrderEntry> getOrderEntriesFromCart(final Cart cart) {
-        Set<OrderEntry> orderEntries = new HashSet<>();
-        for (Map.Entry<MenuItem, Integer> entry : cart.getMenuItems().entrySet()) {
-            orderEntries.add(OrderEntry.builder()
-                    .name(entry.getKey().getName())
-                    .price(entry.getKey().getPrice())
-                    .photoLink(entry.getKey().getPhotoLink())
-                    .quantity(entry.getValue())
-                    .build());
-        }
-        return orderEntries;
-    }
+	private Set<OrderEntry> getOrderEntriesFromCart(final Cart cart) {
+		Set<OrderEntry> orderEntries = new HashSet<>();
+		for (Map.Entry<MenuItem, Integer> entry : cart.getMenuItems().entrySet()) {
+			orderEntries.add(OrderEntry.builder()
+									   .name(entry.getKey().getName())
+									   .price(entry.getKey().getPrice())
+									   .photoLink(entry.getKey().getPhotoLink())
+									   .quantity(entry.getValue())
+									   .build());
+		}
+		return orderEntries;
+	}
 }

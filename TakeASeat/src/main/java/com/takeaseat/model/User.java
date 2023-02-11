@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 import static com.takeaseat.constants.StringConstants.USERS;
 import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
 
+
 @Entity
 @Getter
 @Setter
@@ -27,39 +28,39 @@ import static com.takeaseat.constants.StringConstants.USER_ID_COLUMN_NAME;
 @Table(name = USERS)
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = USER_ID_COLUMN_NAME)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = USER_ID_COLUMN_NAME)
+	private Long id;
 
-    @NonNull
-    @Column(unique = true)
-    private String mail;
+	@NonNull
+	@Column(unique = true)
+	private String mail;
 
-    @NonNull
-    private String name;
+	@NonNull
+	private String name;
 
-    @NonNull
-    private String surname;
+	@NonNull
+	private String surname;
 
-    @NonNull
-    private String password;
+	@NonNull
+	private String password;
 
-    @NonNull
-    private String role;
+	@NonNull
+	private String role;
 
-    private LocalDateTime lastLoginDate;
+	private LocalDateTime lastLoginDate;
 
-    public LocalDateTime getLastLoginDate() {
-        return lastLoginDate;
-    }
+	public LocalDateTime getLastLoginDate() {
+		return lastLoginDate;
+	}
 
-    public void setLastLoginDate(LocalDateTime lastLoginDate) {
-        this.lastLoginDate = lastLoginDate;
-    }
+	public void setLastLoginDate(LocalDateTime lastLoginDate) {
+		this.lastLoginDate = lastLoginDate;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        return obj instanceof User && this.getMail().equals(((User) obj).getMail());
-    }
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof User && this.getMail().equals(((User) obj).getMail());
+	}
 }

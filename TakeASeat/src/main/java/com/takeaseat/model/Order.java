@@ -26,6 +26,7 @@ import java.util.Set;
 import static com.takeaseat.constants.StringConstants.ORDERS;
 import static com.takeaseat.constants.StringConstants.ORDER_ID_COLUMN_NAME;
 
+
 @Entity
 @Getter
 @Setter
@@ -35,45 +36,45 @@ import static com.takeaseat.constants.StringConstants.ORDER_ID_COLUMN_NAME;
 @Builder
 @Table(name = ORDERS)
 public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = ORDER_ID_COLUMN_NAME)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = ORDER_ID_COLUMN_NAME)
+	private Long id;
 
-    @OneToOne
-    @NonNull
-    private User user;
+	@OneToOne
+	@NonNull
+	private User user;
 
-    @OneToOne
-    private Restaurant restaurant;
+	@OneToOne
+	private Restaurant restaurant;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<OrderEntry> orderEntries = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<OrderEntry> orderEntries = new HashSet<>();
 
-    @NonNull
-    private LocalDate date;
-    @NonNull
-    private Double startingHour;
-    @NonNull
-    private Double endingHour;
-    @NonNull
-    private Double totalPrice;
-    @NonNull
-    private String chargeId;
-    @NonNull
-    private String cardPaymentNetwork;
-    @NonNull
-    private Integer cardExpirationMonth;
-    @NonNull
-    private Integer cardExpirationYear;
-    @NonNull
-    private String cardLastDigits;
-    @NonNull
-    private String transactionStatus;
-    @NonNull
-    private LocalDateTime creationDate = LocalDateTime.now();
+	@NonNull
+	private LocalDate date;
+	@NonNull
+	private Double startingHour;
+	@NonNull
+	private Double endingHour;
+	@NonNull
+	private Double totalPrice;
+	@NonNull
+	private String chargeId;
+	@NonNull
+	private String cardPaymentNetwork;
+	@NonNull
+	private Integer cardExpirationMonth;
+	@NonNull
+	private Integer cardExpirationYear;
+	@NonNull
+	private String cardLastDigits;
+	@NonNull
+	private String transactionStatus;
+	@NonNull
+	private LocalDateTime creationDate = LocalDateTime.now();
 
-    private Boolean approved = null;
-    private String message;
-    private boolean reviewed = false;
+	private Boolean approved = null;
+	private String message;
+	private boolean reviewed = false;
 }

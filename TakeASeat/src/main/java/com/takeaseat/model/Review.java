@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import static com.takeaseat.constants.StringConstants.REVIEWS;
 import static com.takeaseat.constants.StringConstants.REVIEW_ID_COLUMN_NAME;
 
+
 @Entity
 @Getter
 @Setter
@@ -29,17 +30,17 @@ import static com.takeaseat.constants.StringConstants.REVIEW_ID_COLUMN_NAME;
 @Table(name = REVIEWS)
 public class Review {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = REVIEW_ID_COLUMN_NAME)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = REVIEW_ID_COLUMN_NAME)
+	private Long id;
 
-    @NonNull
-    private String comment;
-    @NonNull
-    private Integer grade;
-    @NonNull
-    private String user;
-    @NonNull
-    private LocalDate localDate;
+	@NonNull
+	private String comment;
+	@NonNull
+	private Integer grade;
+	@NonNull
+	private String user;
+	@NonNull
+	private LocalDate localDate;
 }

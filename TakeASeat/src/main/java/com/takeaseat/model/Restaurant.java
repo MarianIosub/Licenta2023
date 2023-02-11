@@ -25,6 +25,7 @@ import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID_COLUMN_NAME;
 import static com.takeaseat.constants.StringConstants.RESTAURANTS;
 import static com.takeaseat.constants.StringConstants.RESTAURANT_ID_COLUMN_NAME;
 
+
 @Entity
 @Getter
 @Setter
@@ -34,48 +35,48 @@ import static com.takeaseat.constants.StringConstants.RESTAURANT_ID_COLUMN_NAME;
 @Table(name = RESTAURANTS)
 public class Restaurant {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = RESTAURANT_ID_COLUMN_NAME)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = RESTAURANT_ID_COLUMN_NAME)
+	private Long id;
 
-    @OneToOne
-    private User administrator;
+	@OneToOne
+	private User administrator;
 
-    @NonNull
-    @Column(columnDefinition = "LONGBLOB")
-    private String image;
-    @NonNull
-    private String name;
-    @NonNull
-    @Column(columnDefinition = "TEXT")
-    private String description;
-    @NonNull
-    private String city;
-    @NonNull
-    private String address;
-    @NonNull
-    private String mail;
-    @NonNull
-    private String phoneNumber;
-    @NonNull
-    private Double openingHour;
-    @NonNull
-    private Double closingHour;
-    @NonNull
-    private Double priceRequired;
+	@NonNull
+	@Column(columnDefinition = "LONGBLOB")
+	private String image;
+	@NonNull
+	private String name;
+	@NonNull
+	@Column(columnDefinition = "TEXT")
+	private String description;
+	@NonNull
+	private String city;
+	@NonNull
+	private String address;
+	@NonNull
+	private String mail;
+	@NonNull
+	private String phoneNumber;
+	@NonNull
+	private Double openingHour;
+	@NonNull
+	private Double closingHour;
+	@NonNull
+	private Double priceRequired;
 
-    private Integer noOfReservations = 0;
+	private Integer noOfReservations = 0;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @OrderBy(MENU_ITEM_ID_COLUMN_NAME)
-    private Set<MenuItem> menuItems;
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Review> reviews = new HashSet<>();
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OrderBy(MENU_ITEM_ID_COLUMN_NAME)
+	private Set<MenuItem> menuItems;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Review> reviews = new HashSet<>();
 
-    private Double rating = 0.0;
+	private Double rating = 0.0;
 
-    public void addReview(final Review review) {
-        reviews.add(review);
-    }
+	public void addReview(final Review review) {
+		reviews.add(review);
+	}
 }

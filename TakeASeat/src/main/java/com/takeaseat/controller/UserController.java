@@ -47,114 +47,116 @@ import static com.takeaseat.constants.ViewsConstants.UPDATE_PROFILE_PAGE;
 import static com.takeaseat.helper.CreateEndpointHelper.createEndpoint;
 import static java.util.Objects.nonNull;
 
+
 @Controller
 @AllArgsConstructor
 public class UserController {
 
-    private final Logger LOG = LoggerFactory.getLogger(UserController.class);
+	private final Logger LOG = LoggerFactory.getLogger(UserController.class);
 
-    private final RegisterFormValidator registerFormValidator;
-    private final UpdateProfileFormValidator updateProfileFormValidator;
-    private final ForgotPasswordFormValidator forgotPasswordFormValidator;
-    private final UserService userService;
+	private final RegisterFormValidator registerFormValidator;
+	private final UpdateProfileFormValidator updateProfileFormValidator;
+	private final ForgotPasswordFormValidator forgotPasswordFormValidator;
+	private final UserService userService;
 
-    @InitBinder(REGISTER_FORM)
-    protected void initBinderRegister(WebDataBinder binder) {
-        binder.setValidator(getRegisterFormValidator());
-    }
+	@InitBinder(REGISTER_FORM)
+	protected void initBinderRegister(WebDataBinder binder) {
+		binder.setValidator(getRegisterFormValidator());
+	}
 
-    @InitBinder(UPDATE_PROFILE_FORM)
-    protected void initBinder(WebDataBinder binder) {
-        binder.setValidator(getUpdateProfileFormValidator());
-    }
+	@InitBinder(UPDATE_PROFILE_FORM)
+	protected void initBinder(WebDataBinder binder) {
+		binder.setValidator(getUpdateProfileFormValidator());
+	}
 
-    @InitBinder(FORGOT_PASSWORD_FORM)
-    protected void initBinderForgotPassword(WebDataBinder binder) {
-        binder.setValidator(getForgotPasswordFormValidator());
-    }
+	@InitBinder(FORGOT_PASSWORD_FORM)
+	protected void initBinderForgotPassword(WebDataBinder binder) {
+		binder.setValidator(getForgotPasswordFormValidator());
+	}
 
-    @RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.GET)
-    public String getRegisterPage(@ModelAttribute(REGISTER_FORM) RegisterForm registerForm, Model model) {
-        model.addAttribute(REGISTER_FORM, registerForm);
-        return REGISTER_PAGE;
-    }
+	@RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.GET)
+	public String getRegisterPage(@ModelAttribute(REGISTER_FORM) RegisterForm registerForm, Model model) {
+		model.addAttribute(REGISTER_FORM, registerForm);
+		return REGISTER_PAGE;
+	}
 
-    @RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute(REGISTER_FORM) @Validated RegisterForm form, BindingResult bindingResult,
-                               Model model, RedirectAttributes redirectAttributes) {
-        if (bindingResult.hasErrors()) {
-            return REGISTER_PAGE;
-        }
-        userService.registerUser(form);
-        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, REGISTER_SUCCESSFUL_MESSAGE);
-        return createEndpoint(REDIRECT, LOGIN_ENDPOINT);
-    }
+	@RequestMapping(value = REGISTER_ENDPOINT, method = RequestMethod.POST)
+	public String registerUser(@ModelAttribute(REGISTER_FORM) @Validated RegisterForm form, BindingResult bindingResult,
+							   Model model, RedirectAttributes redirectAttributes) {
+		if (bindingResult.hasErrors()) {
+			return REGISTER_PAGE;
+		}
+		userService.registerUser(form);
+		redirectAttributes.addFlashAttribute(FLASH_MESSAGE, REGISTER_SUCCESSFUL_MESSAGE);
+		return createEndpoint(REDIRECT, LOGIN_ENDPOINT);
+	}
 
-    @RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)
-    public String getLoginPage(@ModelAttribute(LOGIN_FORM) LoginForm loginForm,
-                               @SessionAttribute(value = LOGIN_ERROR, required = false) String loginError,
-                               @RequestParam(value = LOGOUT, required = false) String logout,
-                               Model model) {
-        if (nonNull(logout)) {
-            model.addAttribute(FLASH_MESSAGE, LOGOUT_SUCCESS_MESSAGE);
-        }
-        model.addAttribute(LOGIN_FORM, loginForm);
-        model.addAttribute(LOGIN_ERROR, loginError);
-        return LOGIN_PAGE;
-    }
+	@RequestMapping(value = LOGIN_ENDPOINT, method = RequestMethod.GET)
+	public String getLoginPage(@ModelAttribute(LOGIN_FORM) LoginForm loginForm,
+							   @SessionAttribute(value = LOGIN_ERROR, required = false) String loginError,
+							   @RequestParam(value = LOGOUT, required = false) String logout,
+							   Model model) {
+		if (nonNull(logout)) {
+			model.addAttribute(FLASH_MESSAGE, LOGOUT_SUCCESS_MESSAGE);
+		}
+		model.addAttribute(LOGIN_FORM, loginForm);
+		model.addAttribute(LOGIN_ERROR, loginError);
+		return LOGIN_PAGE;
+	}
 
-    @RequestMapping(value = UPDATE_PROFILE_ENDPOINT, method = RequestMethod.GET)
-    public String getUpdateProfilePage(Model model) {
-        model.addAttribute(UPDATE_PROFILE_FORM, getUserService().getUpdateProfileForm());
-        return UPDATE_PROFILE_PAGE;
-    }
+	@RequestMapping(value = UPDATE_PROFILE_ENDPOINT, method = RequestMethod.GET)
+	public String getUpdateProfilePage(Model model) {
+		model.addAttribute(UPDATE_PROFILE_FORM, getUserService().getUpdateProfileForm());
+		return UPDATE_PROFILE_PAGE;
+	}
 
-    @RequestMapping(value = UPDATE_PROFILE_ENDPOINT, method = RequestMethod.POST)
-    public String updateProfile(@ModelAttribute(UPDATE_PROFILE_FORM) @Validated UpdateProfileForm updateProfileForm,
-                                BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                                Model model) {
+	@RequestMapping(value = UPDATE_PROFILE_ENDPOINT, method = RequestMethod.POST)
+	public String updateProfile(@ModelAttribute(UPDATE_PROFILE_FORM) @Validated UpdateProfileForm updateProfileForm,
+								BindingResult bindingResult, RedirectAttributes redirectAttributes,
+								Model model) {
 
-        if (bindingResult.hasErrors()) {
-            return UPDATE_PROFILE_PAGE;
-        }
-        getUserService().updateCurrentUser(updateProfileForm);
-        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, UPDATE_PROFILE_SUCCESS_MESSAGE);
-        return createEndpoint(REDIRECT, UPDATE_PROFILE_ENDPOINT);
-    }
+		if (bindingResult.hasErrors()) {
+			return UPDATE_PROFILE_PAGE;
+		}
+		getUserService().updateCurrentUser(updateProfileForm);
+		redirectAttributes.addFlashAttribute(FLASH_MESSAGE, UPDATE_PROFILE_SUCCESS_MESSAGE);
+		return createEndpoint(REDIRECT, UPDATE_PROFILE_ENDPOINT);
+	}
 
-    @RequestMapping(value = FORGOT_PASSWORD_ENDPOINT, method = RequestMethod.GET)
-    public String getForgotPasswordPage(@ModelAttribute(FORGOT_PASSWORD_FORM) ForgotPasswordForm forgotPasswordForm, Model model) {
-        model.addAttribute(FORGOT_PASSWORD_FORM, forgotPasswordForm);
+	@RequestMapping(value = FORGOT_PASSWORD_ENDPOINT, method = RequestMethod.GET)
+	public String getForgotPasswordPage(@ModelAttribute(FORGOT_PASSWORD_FORM) ForgotPasswordForm forgotPasswordForm,
+										Model model) {
+		model.addAttribute(FORGOT_PASSWORD_FORM, forgotPasswordForm);
 
-        return FORGOT_PASSWORD_PAGE;
-    }
+		return FORGOT_PASSWORD_PAGE;
+	}
 
-    @RequestMapping(value = FORGOT_PASSWORD_ENDPOINT, method = RequestMethod.POST)
-    public String recoverPassword(@ModelAttribute(FORGOT_PASSWORD_FORM) @Validated ForgotPasswordForm forgotPasswordForm,
-                                  BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        if (bindingResult.hasErrors()) {
-            return FORGOT_PASSWORD_PAGE;
-        }
+	@RequestMapping(value = FORGOT_PASSWORD_ENDPOINT, method = RequestMethod.POST)
+	public String recoverPassword(@ModelAttribute(FORGOT_PASSWORD_FORM) @Validated ForgotPasswordForm forgotPasswordForm,
+								  BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+		if (bindingResult.hasErrors()) {
+			return FORGOT_PASSWORD_PAGE;
+		}
 
-        getUserService().recoverPassword(forgotPasswordForm.getMail());
+		getUserService().recoverPassword(forgotPasswordForm.getMail());
 
-        redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RECOVER_PASSWORD_MAIL_SENT);
-        return createEndpoint(REDIRECT, LOGIN_ENDPOINT);
-    }
+		redirectAttributes.addFlashAttribute(FLASH_MESSAGE, RECOVER_PASSWORD_MAIL_SENT);
+		return createEndpoint(REDIRECT, LOGIN_ENDPOINT);
+	}
 
-    protected RegisterFormValidator getRegisterFormValidator() {
-        return registerFormValidator;
-    }
+	protected RegisterFormValidator getRegisterFormValidator() {
+		return registerFormValidator;
+	}
 
-    protected UpdateProfileFormValidator getUpdateProfileFormValidator() {
-        return updateProfileFormValidator;
-    }
+	protected UpdateProfileFormValidator getUpdateProfileFormValidator() {
+		return updateProfileFormValidator;
+	}
 
-    protected UserService getUserService() {
-        return userService;
-    }
+	protected UserService getUserService() {
+		return userService;
+	}
 
-    protected ForgotPasswordFormValidator getForgotPasswordFormValidator() {
-        return forgotPasswordFormValidator;
-    }
+	protected ForgotPasswordFormValidator getForgotPasswordFormValidator() {
+		return forgotPasswordFormValidator;
+	}
 }

@@ -14,9 +14,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import static com.takeaseat.constants.StringConstants.AVAILABLE;
 import static com.takeaseat.constants.StringConstants.MENU_ITEMS;
 import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID_COLUMN_NAME;
+
 
 @Entity
 @Getter
@@ -27,23 +27,23 @@ import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID_COLUMN_NAME;
 @Table(name = MENU_ITEMS)
 public class MenuItem {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = MENU_ITEM_ID_COLUMN_NAME)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = MENU_ITEM_ID_COLUMN_NAME)
+	private Long id;
 
-    @NonNull
-    private String name;
-    @NonNull
-    @Column(columnDefinition = "TEXT")
-    private String ingredients;
-    @NonNull
-    private Double price;
-    @NonNull
-    @Column(columnDefinition = "LONGBLOB")
-    private String photoLink;
-    private Integer noOfOrders = 0;
-    @NonNull
-    private String availableForOrder;
+	@NonNull
+	private String name;
+	@NonNull
+	@Column(columnDefinition = "TEXT")
+	private String ingredients;
+	@NonNull
+	private Double price;
+	@NonNull
+	@Column(columnDefinition = "LONGBLOB")
+	private String photoLink;
+	private Integer noOfOrders = 0;
+	@NonNull
+	private String availableForOrder;
 
 }

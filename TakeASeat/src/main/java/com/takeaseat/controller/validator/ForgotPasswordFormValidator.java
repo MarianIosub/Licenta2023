@@ -12,33 +12,34 @@ import static com.takeaseat.constants.MessagePropertiesConstants.NOT_EMPTY_MAIL;
 import static com.takeaseat.constants.MessagePropertiesConstants.NO_USER_FOUND_ERROR;
 import static com.takeaseat.constants.StringConstants.MAIL;
 
+
 public class ForgotPasswordFormValidator implements Validator {
 
-    private final UserService userService;
+	private final UserService userService;
 
-    public ForgotPasswordFormValidator(final UserService userService) {
-        this.userService = userService;
-    }
+	public ForgotPasswordFormValidator(final UserService userService) {
+		this.userService = userService;
+	}
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return ForgotPasswordForm.class.equals(clazz);
-    }
+	@Override
+	public boolean supports(Class<?> clazz) {
+		return ForgotPasswordForm.class.equals(clazz);
+	}
 
-    @Override
-    public void validate(Object target, Errors errors) {
-        ForgotPasswordForm form = (ForgotPasswordForm) target;
+	@Override
+	public void validate(Object target, Errors errors) {
+		ForgotPasswordForm form = (ForgotPasswordForm) target;
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, MAIL, NOT_EMPTY_MAIL);
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, MAIL, NOT_EMPTY_MAIL);
 
-        try {
-            getUserService().findByMail(form.getMail());
-        } catch (NoResultException e) {
-            errors.rejectValue(MAIL, NO_USER_FOUND_ERROR);
-        }
-    }
+		try {
+			getUserService().findByMail(form.getMail());
+		} catch (NoResultException e) {
+			errors.rejectValue(MAIL, NO_USER_FOUND_ERROR);
+		}
+	}
 
-    protected UserService getUserService() {
-        return userService;
-    }
+	protected UserService getUserService() {
+		return userService;
+	}
 }

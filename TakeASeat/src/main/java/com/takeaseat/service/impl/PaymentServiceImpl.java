@@ -16,19 +16,20 @@ import static com.takeaseat.constants.StringConstants.DESCRIPTION;
 import static com.takeaseat.constants.StringConstants.SOURCE;
 import static com.takeaseat.constants.StringConstants.STRIPE_API_SECRET_KEY;
 
+
 public class PaymentServiceImpl implements PaymentService {
 
-    @PostConstruct
-    public void init() {
-        Stripe.apiKey = STRIPE_API_SECRET_KEY;
-    }
+	@PostConstruct
+	public void init() {
+		Stripe.apiKey = STRIPE_API_SECRET_KEY;
+	}
 
-    public Charge charge(ChargeRequest chargeRequest) throws StripeException {
-        Map<String, Object> chargeParams = new HashMap<>();
-        chargeParams.put(AMOUNT, chargeRequest.getAmount());
-        chargeParams.put(CURRENCY, chargeRequest.getCurrency().toString().toLowerCase());
-        chargeParams.put(DESCRIPTION, chargeRequest.getDescription());
-        chargeParams.put(SOURCE, chargeRequest.getStripeToken());
-        return Charge.create(chargeParams);
-    }
+	public Charge charge(ChargeRequest chargeRequest) throws StripeException {
+		Map<String, Object> chargeParams = new HashMap<>();
+		chargeParams.put(AMOUNT, chargeRequest.getAmount());
+		chargeParams.put(CURRENCY, chargeRequest.getCurrency().toString().toLowerCase());
+		chargeParams.put(DESCRIPTION, chargeRequest.getDescription());
+		chargeParams.put(SOURCE, chargeRequest.getStripeToken());
+		return Charge.create(chargeParams);
+	}
 }
