@@ -50,7 +50,7 @@
                 </p>
                 <p><span>&#8594;</span> Price for food: <strong>${order.totalPrice - order.restaurant.priceRequired}
                     RON</strong></p>
-                <p><span>&#8594;</span> Order items: <strong>${order.orderEntries.size()}</strong></p>
+                <p><span>&#8594;</span> Number of people: <strong>${order.noOfPeople}</strong></p>
                 <p><span>&#8594;</span> Transaction status: <strong>${order.transactionStatus}</strong></p>
                 <p><span>&#8594;</span> Bill date: <strong>${fn:replace(order.creationDate, 'T', ' at ')}</strong></p>
                 <p><span>&#8594;</span> Card type: <strong>${order.cardPaymentNetwork}</strong></p>

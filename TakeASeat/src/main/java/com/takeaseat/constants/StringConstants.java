@@ -59,6 +59,7 @@ public interface StringConstants {
 	String RESERVATION_DATE = "reservationDate";
 	String RESERVATION_START = "reservationStart";
 	String RESERVATION_END = "reservationEnd";
+	String NO_OF_PEOPLE = "noOfPeople";
 	String ORDER_STATUS = "orderStatus";
 	String MESSAGE = "message";
 	String REVIEWS = "reviews";

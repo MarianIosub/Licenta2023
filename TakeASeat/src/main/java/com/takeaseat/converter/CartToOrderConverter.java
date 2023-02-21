@@ -27,6 +27,7 @@ public class CartToOrderConverter {
 					.chargeId(cart.getCharge().getId())
 					.startingHour(cart.getStartingHour())
 					.endingHour(cart.getEndingHour())
+					.noOfPeople(cart.getNoOfPeople())
 					.date(cart.getDate())
 					.creationDate(LocalDateTime.now())
 					.totalPrice(cart.getTotalPrice())

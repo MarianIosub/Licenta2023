@@ -109,6 +109,12 @@ public class CartServiceImpl implements CartService {
 		checkIfOrderCanBePlaced(cart);
 	}
 
+	@Override
+	public void setNoOfPeople(Cart cart, Integer noOfPeople) {
+		cart.setNoOfPeople(noOfPeople);
+		checkIfOrderCanBePlaced(cart);
+	}
+
 	private MenuItem getMenuItemFromRestaurant(Cart cart, Long menuItemId) {
 		return cart.getRestaurant().getMenuItems().stream()
 				   .filter(m -> m.getId().equals(menuItemId))
@@ -117,7 +123,9 @@ public class CartServiceImpl implements CartService {
 	}
 
 	private void checkIfOrderCanBePlaced(Cart cart) {
-		cart.setCanBePlaced(nonNull(cart.getDate()) && nonNull(cart.getEndingHour()) && nonNull(cart.getStartingHour()));
+		cart.setCanBePlaced(
+				nonNull(cart.getDate()) && nonNull(cart.getEndingHour()) && nonNull(cart.getStartingHour()) && nonNull(
+						cart.getNoOfPeople()));
 	}
 
 	protected UserService getUserService() {

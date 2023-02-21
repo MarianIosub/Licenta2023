@@ -18,6 +18,7 @@ public class Cart {
 	private Date today = new Date(new Date().getTime() + (1000 * 60 * 60 * 24));
 	private Double startingHour;
 	private Double endingHour;
+	private Integer noOfPeople;
 	private User user;
 	private Restaurant restaurant;
 	private Map<MenuItem, Integer> menuItems = new HashMap<>();

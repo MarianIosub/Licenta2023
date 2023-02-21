@@ -80,6 +80,17 @@ function setReservationEnd(value) {
     });
 }
 
+function setNumberOfPeople(value) {
+    value = parseFloat(value.replace(':', '.'));
+    $.ajax({
+        type: "POST",
+        data: {noOfPeople: value},
+        url: "/cart/people",
+    }).then(function (response) {
+        $('#reservation-component').html(response);
+    });
+}
+
 function redirectToCheckout() {
     const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : window.screenX;
     const dualScreenTop = window.screenTop !== undefined ? window.screenTop : window.screenY;

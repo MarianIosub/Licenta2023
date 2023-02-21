@@ -25,6 +25,7 @@ public interface EndpointsConstants {
 	String DATE_CART_ENDPOINT = "/date";
 	String START_CART_ENDPOINT = "/start";
 	String END_CART_ENDPOINT = "/end";
+	String PEOPLE_CART_ENDPOINT = "/people";
 	String ORDER_ENDPOINT = "/order";
 	String ORDER_CONFIRMATION_ENDPOINT = "/confirmation/{orderId}";
 	String ORDERS_ENDPOINT = "/orders";

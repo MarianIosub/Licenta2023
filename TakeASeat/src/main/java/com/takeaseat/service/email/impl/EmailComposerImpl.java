@@ -43,6 +43,7 @@ public class EmailComposerImpl implements EmailComposer {
 						"Date: " + order.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n" +
 						"Starting hour: " + order.getStartingHour().toString().replace('.', ':') + "0\n" +
 						"Ending hour: " + order.getEndingHour().toString().replace('.', ':') + "0\n" +
+						"Number of people: " + order.getNoOfPeople() + "\n" +
 						"Total price: " + order.getTotalPrice() + " RON\n" +
 						"Payment method: " + order.getCardPaymentNetwork() + " ending in " + order.getCardLastDigits()
 						+ " (expires " + order.getCardExpirationMonth() + "/" + order.getCardExpirationYear() + ")\n" +
@@ -76,6 +77,7 @@ public class EmailComposerImpl implements EmailComposer {
 								"Date: " + order.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n" +
 								"Starting hour: " + order.getStartingHour().toString().replace('.', ':') + "0\n" +
 								"Ending hour: " + order.getEndingHour().toString().replace('.', ':') + "0\n" +
+								"Number of people: " + order.getNoOfPeople() + "\n" +
 								"Total price: " + order.getTotalPrice() + " RON\n" +
 								"Payment method: " + order.getCardPaymentNetwork() + " ending in " + order.getCardLastDigits()
 								+ " (expires " + order.getCardExpirationMonth() + "/" + order.getCardExpirationYear() + ")\n" +
@@ -106,6 +108,7 @@ public class EmailComposerImpl implements EmailComposer {
 								"Order number: #" + order.getId() + "\n" +
 								"Date:" + order.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n" +
 								"Starting hour: " + order.getStartingHour().toString().replace('.', ':') + "0\n" +
+								"Number of people: " + order.getNoOfPeople() + "\n" +
 								"Total price: " + order.getTotalPrice() + " RON\n" +
 								"Restaurant message: \"" + order.getMessage() + "\" \n" +
 								"Restaurant is waiting for you at the specified date and time. If you have any special requests "
@@ -133,6 +136,7 @@ public class EmailComposerImpl implements EmailComposer {
 								"Order number: #" + order.getId() + "\n" +
 								"Date:" + order.getDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + "\n" +
 								"Starting hour: " + order.getStartingHour().toString().replace('.', ':') + "0\n" +
+								"Number of people: " + order.getNoOfPeople() + "\n" +
 								"Total price: " + order.getTotalPrice() + " RON\n" +
 								"Restaurant message: \"" + order.getMessage() + "\" \n" +
 								"We apologize for any inconvenience this may have caused. Please contact us if you have any "

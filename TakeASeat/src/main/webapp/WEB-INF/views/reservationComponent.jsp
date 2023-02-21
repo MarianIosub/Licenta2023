@@ -68,6 +68,11 @@
                                    value="${fn:replace(cart.endingHour eq null ? cart.restaurant.closingHour : cart.endingHour, '.', ':')}0"
                                    onchange="setReservationEnd(this.value)"/>
                         </div>
+                        <div class="reservation-end">
+                            <input type="number" id="number-of-people" class="number-of-people fas" step="1"
+                                   value="${cart.noOfPeople ne null ? cart.noOfPeople : ''}" min="1" placeholder="&#xf183;"
+                                   onchange="setNumberOfPeople(this.value)"/>
+                        </div>
                     </div>
                     <div class="reservation-component-menu-items">
                         <c:forEach var="menuItem" items="${cart.menuItems}">
@@ -127,4 +132,5 @@
             </c:otherwise>
         </c:choose>
     </div>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </div>

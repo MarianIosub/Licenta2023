@@ -58,6 +58,8 @@ public class Order {
 	@NonNull
 	private Double endingHour;
 	@NonNull
+	private Integer noOfPeople;
+	@NonNull
 	private Double totalPrice;
 	@NonNull
 	private String chargeId;

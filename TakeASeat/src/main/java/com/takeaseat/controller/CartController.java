@@ -30,11 +30,13 @@ import static com.takeaseat.constants.EndpointsConstants.DECREASE_QTY_CART_ENDPO
 import static com.takeaseat.constants.EndpointsConstants.DELETE_FROM_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.END_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.INCREASE_QTY_ENDPOINT;
+import static com.takeaseat.constants.EndpointsConstants.PEOPLE_CART_ENDPOINT;
 import static com.takeaseat.constants.EndpointsConstants.START_CART_ENDPOINT;
 import static com.takeaseat.constants.StringConstants.AMOUNT;
 import static com.takeaseat.constants.StringConstants.CART;
 import static com.takeaseat.constants.StringConstants.CURRENCY;
 import static com.takeaseat.constants.StringConstants.MENU_ITEM_ID;
+import static com.takeaseat.constants.StringConstants.NO_OF_PEOPLE;
 import static com.takeaseat.constants.StringConstants.ORDER;
 import static com.takeaseat.constants.StringConstants.RESERVATION_DATE;
 import static com.takeaseat.constants.StringConstants.RESERVATION_END;
@@ -104,6 +106,13 @@ public class CartController {
 	@RequestMapping(value = END_CART_ENDPOINT, method = RequestMethod.POST)
 	public String setCartEnd(@SessionAttribute(CART) Cart cart, @RequestParam(RESERVATION_END) String end) {
 		getCartService().setCartReservationEnd(cart, end);
+
+		return RESERVATION_COMPONENT;
+	}
+
+	@RequestMapping(value = PEOPLE_CART_ENDPOINT, method = RequestMethod.POST)
+	public String setCartNoOfPeople(@SessionAttribute(CART) Cart cart, @RequestParam(NO_OF_PEOPLE) Integer noOfPeople) {
+		getCartService().setNoOfPeople(cart, noOfPeople);
 
 		return RESERVATION_COMPONENT;
 	}

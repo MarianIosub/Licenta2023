@@ -79,4 +79,6 @@ public interface CartService {
 	 * @param end the end time to set for the reservation
 	 */
 	void setCartReservationEnd(Cart cart, String end);
+
+	void setNoOfPeople(Cart cart, Integer noOfPeople);
 }
